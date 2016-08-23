@@ -7,6 +7,7 @@ changelog:
 - add decorator transform
 - off some eslint rules
 - pass store object in html and parser in client side to sync states
+- add example to get the params from path & switch path programmly
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),

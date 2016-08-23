@@ -10,7 +10,7 @@
 import React, { PropTypes } from 'react'
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import s from './Contact.css'
-import { observer } from 'mobx-react'
+import { observer, propTypes } from 'mobx-react'
 
 
 const title = 'Contact Us'
@@ -41,7 +41,7 @@ class Contact extends React.Component {
 }
 
 Contact.propTypes = {
-  timerData: PropTypes.object.isRequired,
+  timerData: propTypes.objectOrObservableObject,
 };
 
 Contact.contextTypes = {

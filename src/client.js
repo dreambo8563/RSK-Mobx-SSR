@@ -21,7 +21,7 @@ import {
   windowScrollY,
 } from './core/DOMUtils';
 
-import { setTokenFromClient, getToken } from './core/token';
+import { setTokenFromClient } from './core/token';
 
 const context = {
   insertCss: (...styles) => {
@@ -94,7 +94,7 @@ function run() {
   const storeEl = document.getElementById('store');
  setTokenFromClient(JSON.parse(storeEl.innerHTML.replace(/&quot;/g, '"')));
 
- console.log(getToken());
+//  console.log(getToken());
   let currentLocation = history.getCurrentLocation();
 
   // Make taps on links and buttons work fast on mobiles

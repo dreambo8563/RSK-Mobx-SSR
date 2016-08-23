@@ -206,7 +206,7 @@ const clientConfig = extend(true, {}, config, {
 
   entry: {
     app: './client.js',
-    vendor: ['react', 'react-dom', 'universal-router', 'fastclick'],
+    vendor: ['react', 'react-dom', 'universal-router', 'fastclick', 'mobx-react', 'mobx'],
   },
 
   output: {
