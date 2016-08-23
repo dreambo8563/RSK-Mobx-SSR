@@ -9,6 +9,7 @@
 
 import React from 'react';
 // import Contact from './Contact';
+import { observable } from 'mobx';
 
 export default {
 
@@ -18,7 +19,14 @@ export default {
     const Contact = await new Promise((resolve) => {
       require.ensure([], (require) => resolve(require('./Contact').default));
     });
-    return <Contact />;
+    const timerData = observable({
+    secondsPassed: 0,
+})
+
+setInterval(() => {
+    timerData.secondsPassed++
+}, 1000)
+    return <Contact timerData={timerData} />;
   },
 
 };

@@ -10,22 +10,42 @@
 import React, { PropTypes } from 'react'
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import s from './Contact.css'
+import { observer } from 'mobx-react'
+
 
 const title = 'Contact Us'
 
-function Contact (props, context) {
-  context.setTitle(title)
-  return (
-    <div className={s.root}>
-      <div className={s.container}>
-        <h1>{title}</h1>
-        <input>
-        </input>
-      </div>
-    </div>
-  )
+// function Contact (props, context) {
+//   context.setTitle(title)
+//   return (
+//     <div className={s.root}>
+//       <div className={s.container}>
+//         <h1>{title}</h1>
+//         <input>
+//         </input>
+//       </div>
+//     </div>
+//   )
+// }
+
+// Contact.contextTypes = { setTitle: PropTypes.func.isRequired }
+
+@observer
+class Contact extends React.Component {
+    componentWillMount () {
+    this.context.setTitle(title);
+  }
+    render() {
+        return (<span>Seconds passed: { this.props.timerData.secondsPassed } </span>)
+    }
 }
 
-Contact.contextTypes = { setTitle: PropTypes.func.isRequired }
+Contact.propTypes = {
+  timerData: PropTypes.object.isRequired,
+};
 
-export default withStyles(s)(Contact)
+Contact.contextTypes = {
+  setTitle: PropTypes.func.isRequired,
+};
+
+export default withStyles(s)(Contact);
