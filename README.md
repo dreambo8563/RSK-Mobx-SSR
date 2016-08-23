@@ -6,6 +6,7 @@ changelog:
 - common out the sequelizejs/graphql
 - add decorator transform
 - off some eslint rules
+- pass store object in html and parser in client side to sync states
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),
