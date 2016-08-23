@@ -21,7 +21,7 @@ import {
   windowScrollY,
 } from './core/DOMUtils';
 
-import { setTokenFromClient , getToken } from './core/token';
+import { setTokenFromClient, getToken } from './core/token';
 
 const context = {
   insertCss: (...styles) => {
@@ -92,7 +92,7 @@ function render(container, state, component) {
 function run() {
   const container = document.getElementById('app');
   const storeEl = document.getElementById('store');
- setTokenFromClient(JSON.parse(storeEl.innerHTML.replace(/&quot;/g,'"'))) ;
+ setTokenFromClient(JSON.parse(storeEl.innerHTML.replace(/&quot;/g, '"')));
 
  console.log(getToken());
   let currentLocation = history.getCurrentLocation();
