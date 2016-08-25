@@ -11,7 +11,7 @@ import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
 import { observer } from 'mobx-react'
-import { userInfo } from './../../data/models/UserInfo'
+import { userInfo } from './../../models/UserInfo'
 
 const title = 'React Starter Kit';
 

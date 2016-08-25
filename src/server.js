@@ -30,7 +30,8 @@ import assets from './assets'; // eslint-disable-line import/no-unresolved
 import { port, auth } from './config';
 
 // import { getToken } from './core/token';
-import { userInfo } from './data/models/UserInfo'
+import { userInfo } from './models/UserInfo'
+import { getStore, clearStore } from './models/syncStore'
 
 
 const app = express();
@@ -152,10 +153,11 @@ app.get('*', async (req, res, next) => {
                 return true;
             },
         });
-        // console.log(JSON.stringify(userInfo), 'before embem in html');
+        // console.log(JSON.stringify(getStore()), 'before embem in html');
         const html = ReactDOM.renderToStaticMarkup(<Html
-            {...data } store={JSON.stringify(userInfo) }
+            {...data } store={JSON.stringify(getStore()) }
             />);
+        clearStore()
 
         res.status(statusCode); res.send(`<!doctype html>${html}`);
     } catch (err) {

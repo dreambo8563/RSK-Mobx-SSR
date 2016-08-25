@@ -1,6 +1,6 @@
 
-import { observable, action } from 'mobx';
-import fetch from './../../core/fetch'
+import { observable } from 'mobx';
+import fetch from './../core/fetch'
 import filter from 'lodash/filter'
 
 
@@ -11,6 +11,7 @@ class UserInfo {
     @observable userPreviligy = null;
     @observable authorize = false;
     @observable news = [];
+    @observable noFetch = false
 
     constructor() {
         console.log('constructror')
@@ -21,7 +22,7 @@ class UserInfo {
         this.userPreviligy = user.userPreviligy
         this.authorize = user.authorize
     }
-    @action
+    // @action
     deleteNewsById(newsid) {
         // require.ensure([], (require) => {
         // const filter = require('lodash/filter');
@@ -49,7 +50,23 @@ class UserInfo {
             if (!data) throw new Error('Failed to load the news feed.');
         }
     }
+    initial(store) {
+        this.id = store.id
+        this.name = store.name
+        this.userPreviligy = store.userPreviligy
+        this.authorize = store.authorize
+        this.news = store.news
+    }
 
+    toJson() {
+        return {
+            id: this.id,
+            name: this.name,
+            authorize: this.authorize,
+            userPreviligy: this.userPreviligy,
+            news: this.news,
+        };
+    }
 }
 
 export const userInfo = new UserInfo();

@@ -132,7 +132,7 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _assets = __webpack_require__(96);
+  var _assets = __webpack_require__(92);
   
   var _assets2 = _interopRequireDefault(_assets);
   
@@ -140,8 +140,17 @@ module.exports =
   
   var _UserInfo = __webpack_require__(65);
   
+  var _syncStore = __webpack_require__(69);
+  
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
+  // import { getToken } from './core/token';
+  var app = (0, _express2.default)();
+  
+  //
+  // Tell any CSS tooling (such as Material UI) to use all vendor prefixes if the
+  // user agent is not known.
+  // -----------------------------------------------------------------------------
   // eslint-disable-line import/no-unresolved
   
   // import passport from './core/passport';
@@ -158,15 +167,6 @@ module.exports =
    * LICENSE.txt file in the root directory of this source tree.
    */
   
-  var app = (0, _express2.default)();
-  
-  //
-  // Tell any CSS tooling (such as Material UI) to use all vendor prefixes if the
-  // user agent is not known.
-  // -----------------------------------------------------------------------------
-  
-  
-  // import { getToken } from './core/token';
   global.navigator = global.navigator || {};
   global.navigator.userAgent = global.navigator.userAgent || 'all';
   
@@ -308,14 +308,15 @@ module.exports =
                                               });
   
                                           case 6:
-                                              // console.log(JSON.stringify(userInfo), 'before embem in html');
-                                              html = _server2.default.renderToStaticMarkup(_react2.default.createElement(_Html2.default, (0, _extends3.default)({}, data, { store: (0, _stringify2.default)(_UserInfo.userInfo)
+                                              // console.log(JSON.stringify(getStore()), 'before embem in html');
+                                              html = _server2.default.renderToStaticMarkup(_react2.default.createElement(_Html2.default, (0, _extends3.default)({}, data, { store: (0, _stringify2.default)((0, _syncStore.getStore)())
                                               })));
   
+                                              (0, _syncStore.clearStore)();
   
                                               res.status(statusCode);res.send('<!doctype html>' + html);
   
-                                          case 9:
+                                          case 10:
                                           case 'end':
                                               return _context.stop();
                                       }
@@ -963,19 +964,28 @@ module.exports =
   
   var _register2 = _interopRequireDefault(_register);
   
-  var _content = __webpack_require__(87);
-  
-  var _content2 = _interopRequireDefault(_content);
-  
-  var _error = __webpack_require__(91);
+  var _error = __webpack_require__(87);
   
   var _error2 = _interopRequireDefault(_error);
   
-  var _detail = __webpack_require__(92);
+  var _detail = __webpack_require__(88);
   
   var _detail2 = _interopRequireDefault(_detail);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  // import content from './content';
+  
+  
+  // Child routes
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
   
   exports.default = {
   
@@ -984,7 +994,8 @@ module.exports =
     // keep in mind, routes are evaluated in order
     children: [_home2.default, _contact2.default, _login2.default, _register2.default, _detail2.default,
     // place new routes before...
-    _content2.default, _error2.default],
+    // content,
+    _error2.default],
   
     action: function action(_ref) {
       var _this = this;
@@ -1027,16 +1038,6 @@ module.exports =
       }))();
     }
   };
-  
-  // Child routes
-  /**
-   * React Starter Kit (https://www.reactstarterkit.com/)
-   *
-   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.txt file in the root directory of this source tree.
-   */
 
 /***/ },
 /* 30 */
@@ -2116,9 +2117,19 @@ module.exports =
   
   var _UserInfo = __webpack_require__(65);
   
+  var _syncStore = __webpack_require__(69);
+  
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  // import Home from './Home';
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
+  
   exports.default = {
   
     path: '/',
@@ -2142,12 +2153,15 @@ module.exports =
               case 2:
                 Home = _context.sent;
   
-                if (!(_UserInfo.userInfo.news.length === 0)) {
-                  _context.next = 14;
+                // avoid the duplicated requrest from client
+                console.log(_UserInfo.userInfo.noFetch);
+  
+                if (_UserInfo.userInfo.noFetch) {
+                  _context.next = 16;
                   break;
                 }
   
-                _context.next = 6;
+                _context.next = 7;
                 return (0, _fetch2.default)('http://jsonplaceholder.typicode.com/posts', {
                   method: 'get',
                   headers: {
@@ -2156,29 +2170,30 @@ module.exports =
                   }
                 });
   
-              case 6:
+              case 7:
                 resp = _context.sent;
   
                 console.log('browser', (false));
-                _context.next = 10;
+                _context.next = 11;
                 return resp.json();
   
-              case 10:
+              case 11:
                 data = _context.sent;
   
                 _UserInfo.userInfo.news = data;
+                (0, _syncStore.updateStore)({ userInfo: _UserInfo.userInfo });
   
                 if (data) {
-                  _context.next = 14;
+                  _context.next = 16;
                   break;
                 }
   
                 throw new Error('Failed to load the news feed.');
   
-              case 14:
+              case 16:
                 return _context.abrupt('return', _react2.default.createElement(Home, null));
   
-              case 15:
+              case 17:
               case 'end':
                 return _context.stop();
             }
@@ -2186,14 +2201,8 @@ module.exports =
         }, _callee, _this);
       }))();
     }
-  }; /**
-      * React Starter Kit (https://www.reactstarterkit.com/)
-      *
-      * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-      *
-      * This source code is licensed under the MIT license found in the
-      * LICENSE.txt file in the root directory of this source tree.
-      */
+  };
+  // import Home from './Home';
 
 /***/ },
 /* 60 */
@@ -2340,10 +2349,6 @@ module.exports =
   
   var _defineProperty2 = _interopRequireDefault(_defineProperty);
   
-  var _getOwnPropertyDescriptor = __webpack_require__(67);
-  
-  var _getOwnPropertyDescriptor2 = _interopRequireDefault(_getOwnPropertyDescriptor);
-  
   var _regenerator = __webpack_require__(1);
   
   var _regenerator2 = _interopRequireDefault(_regenerator);
@@ -2360,15 +2365,15 @@ module.exports =
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+  var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
   
-  var _mobx = __webpack_require__(68);
+  var _mobx = __webpack_require__(67);
   
   var _fetch = __webpack_require__(61);
   
   var _fetch2 = _interopRequireDefault(_fetch);
   
-  var _filter = __webpack_require__(69);
+  var _filter = __webpack_require__(68);
   
   var _filter2 = _interopRequireDefault(_filter);
   
@@ -2431,6 +2436,8 @@ module.exports =
   
           _initDefineProp(this, 'news', _descriptor5, this);
   
+          _initDefineProp(this, 'noFetch', _descriptor6, this);
+  
           console.log('constructror');
       }
   
@@ -2442,6 +2449,8 @@ module.exports =
               this.userPreviligy = user.userPreviligy;
               this.authorize = user.authorize;
           }
+          // @action
+  
       }, {
           key: 'deleteNewsById',
           value: function deleteNewsById(newsid) {
@@ -2511,6 +2520,26 @@ module.exports =
   
               return fetchNews;
           }()
+      }, {
+          key: 'initial',
+          value: function initial(store) {
+              this.id = store.id;
+              this.name = store.name;
+              this.userPreviligy = store.userPreviligy;
+              this.authorize = store.authorize;
+              this.news = store.news;
+          }
+      }, {
+          key: 'toJson',
+          value: function toJson() {
+              return {
+                  id: this.id,
+                  name: this.name,
+                  authorize: this.authorize,
+                  userPreviligy: this.userPreviligy,
+                  news: this.news
+              };
+          }
       }]);
       return UserInfo;
   }(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'id', [_mobx.observable], {
@@ -2536,7 +2565,12 @@ module.exports =
       initializer: function initializer() {
           return [];
       }
-  }), _applyDecoratedDescriptor(_class.prototype, 'deleteNewsById', [_mobx.action], (0, _getOwnPropertyDescriptor2.default)(_class.prototype, 'deleteNewsById'), _class.prototype)), _class);
+  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'noFetch', [_mobx.observable], {
+      enumerable: true,
+      initializer: function initializer() {
+          return false;
+      }
+  })), _class);
   var userInfo = exports.userInfo = new UserInfo();
 
 /***/ },
@@ -2549,19 +2583,34 @@ module.exports =
 /* 67 */
 /***/ function(module, exports) {
 
-  module.exports = require("babel-runtime/core-js/object/get-own-property-descriptor");
+  module.exports = require("mobx");
 
 /***/ },
 /* 68 */
 /***/ function(module, exports) {
 
-  module.exports = require("mobx");
+  module.exports = require("lodash/filter");
 
 /***/ },
 /* 69 */
 /***/ function(module, exports) {
 
-  module.exports = require("lodash/filter");
+  "use strict";
+  
+  Object.defineProperty(exports, "__esModule", {
+      value: true
+  });
+  var syncStore = undefined;
+  var updateStore = exports.updateStore = function updateStore(store) {
+      syncStore = store;
+  };
+  
+  var getStore = exports.getStore = function getStore() {
+      return syncStore;
+  };
+  var clearStore = exports.clearStore = function clearStore() {
+      syncStore = undefined;
+  };
 
 /***/ },
 /* 70 */
@@ -2812,6 +2861,10 @@ module.exports =
   
   var _Contact2 = _interopRequireDefault(_Contact);
   
+  var _testModel = __webpack_require__(78);
+  
+  var _syncStore = __webpack_require__(69);
+  
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
   /**
@@ -2874,6 +2927,7 @@ module.exports =
             while (1) {
               switch (_context2.prev = _context2.next) {
                 case 0:
+                  (0, _syncStore.updateStore)({ testInstance: _testModel.testInstance });
                   console.log('in name router');
                   return _context2.abrupt('return', _react2.default.createElement(
                     'div',
@@ -2886,7 +2940,7 @@ module.exports =
                     _react2.default.createElement(_Contact2.default, null)
                   ));
   
-                case 2:
+                case 3:
                 case 'end':
                   return _context2.stop();
               }
@@ -3061,12 +3115,13 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n\n.Contact_root_sD4 {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.Contact_container_PcA {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 1000px;\n}\n", "", {"version":3,"sources":["/./routes/contact/Contact.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;;EAI9E;;gFAE8E;;EAI9E;;gFAE8E,EAErD,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;CAC3D;;ADnBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;CACrC","file":"Contact.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: var(--max-content-width);\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n\n.Contact_root_sD4 {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.Contact_container_PcA {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 1000px;\n}\n\n.Contact_black_24u{\n  background-color:  black\n}\n", "", {"version":3,"sources":["/./routes/contact/Contact.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;;EAI9E;;gFAE8E;;EAI9E;;gFAE8E,EAErD,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;CAC3D;;ADnBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;CACrC;;AACD;EACE,wBAAwB;CACzB","file":"Contact.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: var(--max-content-width);\n}\n.black{\n  background-color:  black\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"root": "Contact_root_sD4",
-  	"container": "Contact_container_PcA"
+  	"container": "Contact_container_PcA",
+  	"black": "Contact_black_24u"
   };
 
 /***/ },
@@ -3078,7 +3133,7 @@ module.exports =
   Object.defineProperty(exports, "__esModule", {
       value: true
   });
-  exports.testInstance = exports.test = undefined;
+  exports.testInstance = undefined;
   
   var _defineProperty = __webpack_require__(66);
   
@@ -3092,9 +3147,9 @@ module.exports =
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _desc, _value, _class, _descriptor;
+  var _desc, _value, _class, _descriptor, _descriptor2;
   
-  var _mobx = __webpack_require__(68);
+  var _mobx = __webpack_require__(67);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
@@ -3141,11 +3196,13 @@ module.exports =
       throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
   
-  var test = exports.test = (_class = function () {
+  var test = (_class = function () {
       function test() {
           (0, _classCallCheck3.default)(this, test);
   
           _initDefineProp(this, 'timerData', _descriptor, this);
+  
+          _initDefineProp(this, 'noFetch', _descriptor2, this);
       }
   
       (0, _createClass3.default)(test, [{
@@ -3157,6 +3214,11 @@ module.exports =
                   _this.timerData.secondsPassed++;
               }, 1000);
           }
+      }, {
+          key: 'initial',
+          value: function initial(store) {
+              this.timerData = store.timerData;
+          }
       }]);
       return test;
   }(), (_descriptor = _applyDecoratedDescriptor(_class.prototype, 'timerData', [_mobx.observable], {
@@ -3165,6 +3227,11 @@ module.exports =
           return {
               secondsPassed: 0
           };
+      }
+  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'noFetch', [_mobx.observable], {
+      enumerable: true,
+      initializer: function initializer() {
+          return false;
       }
   })), _class);
   var testInstance = exports.testInstance = new test();
@@ -3678,269 +3745,6 @@ module.exports =
     value: true
   });
   
-  var _regenerator = __webpack_require__(1);
-  
-  var _regenerator2 = _interopRequireDefault(_regenerator);
-  
-  var _stringify = __webpack_require__(2);
-  
-  var _stringify2 = _interopRequireDefault(_stringify);
-  
-  var _asyncToGenerator2 = __webpack_require__(6);
-  
-  var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-  
-  var _react = __webpack_require__(15);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _Content = __webpack_require__(88);
-  
-  var _Content2 = _interopRequireDefault(_Content);
-  
-  var _fetch = __webpack_require__(61);
-  
-  var _fetch2 = _interopRequireDefault(_fetch);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  exports.default = {
-  
-    path: '*',
-  
-    action: function action(_ref) {
-      var _this = this;
-  
-      var path = _ref.path;
-      return (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
-        var resp, _ref2, data;
-  
-        return _regenerator2.default.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                _context.next = 2;
-                return (0, _fetch2.default)('/graphql', {
-                  method: 'post',
-                  headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                  },
-                  body: (0, _stringify2.default)({
-                    query: '{content(path:"' + path + '"){path,title,content,component}}'
-                  }),
-                  credentials: 'include'
-                });
-  
-              case 2:
-                resp = _context.sent;
-  
-                if (!(resp.status !== 200)) {
-                  _context.next = 5;
-                  break;
-                }
-  
-                throw new Error(resp.statusText);
-  
-              case 5:
-                _context.next = 7;
-                return resp.json();
-  
-              case 7:
-                _ref2 = _context.sent;
-                data = _ref2.data;
-  
-                if (!(!data || !data.content)) {
-                  _context.next = 11;
-                  break;
-                }
-  
-                return _context.abrupt('return', undefined);
-  
-              case 11:
-                return _context.abrupt('return', _react2.default.createElement(_Content2.default, data.content));
-  
-              case 12:
-              case 'end':
-                return _context.stop();
-            }
-          }
-        }, _callee, _this);
-      }))();
-    }
-  }; /**
-      * React Starter Kit (https://www.reactstarterkit.com/)
-      *
-      * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-      *
-      * This source code is licensed under the MIT license found in the
-      * LICENSE.txt file in the root directory of this source tree.
-      */
-
-/***/ },
-/* 88 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  
-  var _getPrototypeOf = __webpack_require__(31);
-  
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-  
-  var _classCallCheck2 = __webpack_require__(32);
-  
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-  
-  var _createClass2 = __webpack_require__(33);
-  
-  var _createClass3 = _interopRequireDefault(_createClass2);
-  
-  var _possibleConstructorReturn2 = __webpack_require__(34);
-  
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-  
-  var _inherits2 = __webpack_require__(35);
-  
-  var _inherits3 = _interopRequireDefault(_inherits2);
-  
-  var _react = __webpack_require__(15);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _withStyles = __webpack_require__(19);
-  
-  var _withStyles2 = _interopRequireDefault(_withStyles);
-  
-  var _Content = __webpack_require__(89);
-  
-  var _Content2 = _interopRequireDefault(_Content);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  var Content = function (_Component) {
-    (0, _inherits3.default)(Content, _Component);
-  
-    function Content() {
-      (0, _classCallCheck3.default)(this, Content);
-      return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Content).apply(this, arguments));
-    }
-  
-    (0, _createClass3.default)(Content, [{
-      key: 'componentWillMount',
-      value: function componentWillMount() {
-        this.context.setTitle(this.props.title);
-      }
-    }, {
-      key: 'componentWillReceiveProps',
-      value: function componentWillReceiveProps(nextProps) {
-        this.context.setTitle(nextProps.title);
-      }
-    }, {
-      key: 'render',
-      value: function render() {
-        return _react2.default.createElement(
-          'div',
-          { className: _Content2.default.root },
-          _react2.default.createElement(
-            'div',
-            { className: _Content2.default.container },
-            this.props.path === '/' ? null : _react2.default.createElement(
-              'h1',
-              null,
-              this.props.title
-            ),
-            _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: this.props.content || '' } })
-          )
-        );
-      }
-    }]);
-    return Content;
-  }(_react.Component); /**
-                        * React Starter Kit (https://www.reactstarterkit.com/)
-                        *
-                        * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                        *
-                        * This source code is licensed under the MIT license found in the
-                        * LICENSE.txt file in the root directory of this source tree.
-                        */
-  
-  Content.contextTypes = {
-    setTitle: _react.PropTypes.func.isRequired
-  };
-  
-  Content.propTypes = {
-    path: _react.PropTypes.string.isRequired,
-    content: _react.PropTypes.string.isRequired,
-    title: _react.PropTypes.string
-  };
-  
-  exports.default = (0, _withStyles2.default)(_Content2.default)(Content);
-
-/***/ },
-/* 89 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(90);
-      var insertCss = __webpack_require__(23);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-    
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Content.css", function() {
-          content = require("!!./../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Content.css");
-  
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-  
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 90 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(22)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n\n.Content_root_2X0 {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.Content_container_20T {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 1000px;\n}\n", "", {"version":3,"sources":["/./routes/content/Content.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;;EAI9E;;gFAE8E;;EAI9E;;gFAE8E,EAErD,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;CAC3D;;ADnBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;CACrC","file":"Content.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: var(--max-content-width);\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"root": "Content_root_2X0",
-  	"container": "Content_container_20T"
-  };
-
-/***/ },
-/* 91 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  
   var _react = __webpack_require__(15);
   
   var _react2 = _interopRequireDefault(_react);
@@ -3980,7 +3784,7 @@ module.exports =
       */
 
 /***/ },
-/* 92 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4025,7 +3829,7 @@ module.exports =
                 _context.next = 2;
                 return new _promise2.default(function (resolve) {
                   !/* require.ensure */(function (require) {
-                    return resolve(__webpack_require__(93).default);
+                    return resolve(__webpack_require__(89).default);
                   }(__webpack_require__));
                 });
   
@@ -4051,7 +3855,7 @@ module.exports =
       */
 
 /***/ },
-/* 93 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4097,7 +3901,7 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Detail = __webpack_require__(94);
+  var _Detail = __webpack_require__(90);
   
   var _Detail2 = _interopRequireDefault(_Detail);
   
@@ -4159,11 +3963,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Detail2.default)(Detail);
 
 /***/ },
-/* 94 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(95);
+      var content = __webpack_require__(91);
       var insertCss = __webpack_require__(23);
   
       if (typeof content === 'string') {
@@ -4193,7 +3997,7 @@ module.exports =
     
 
 /***/ },
-/* 95 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(22)();
@@ -4220,7 +4024,7 @@ module.exports =
   };
 
 /***/ },
-/* 96 */
+/* 92 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");

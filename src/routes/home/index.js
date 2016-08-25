@@ -10,7 +10,8 @@
 import React from 'react';
 // import Home from './Home';
 import fetch from '../../core/fetch';
-import { userInfo } from './../../data/models/UserInfo'
+import { userInfo } from './../../models/UserInfo'
+import { updateStore } from './../../models/syncStore'
 
 
 export default {
@@ -22,7 +23,8 @@ export default {
       require.ensure([], (require) => resolve(require('./Home').default));
     });
     // avoid the duplicated requrest from client
-    if (userInfo.news.length === 0) {
+    console.log(userInfo.noFetch)
+    if (!userInfo.noFetch) {
       const resp = await fetch('http://jsonplaceholder.typicode.com/posts',
         {
           method: 'get',
@@ -34,7 +36,7 @@ export default {
       console.log('browser', process.env.BROWSER);
       const data = await resp.json();
       userInfo.news = data;
-
+      updateStore({ userInfo })
       if (!data) throw new Error('Failed to load the news feed.');
     }
 

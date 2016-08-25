@@ -21,7 +21,8 @@ import {
   windowScrollY,
 } from './core/DOMUtils';
 
-import { userInfo } from './data/models/UserInfo'
+import { userInfo } from './models/UserInfo'
+import { testInstance } from './models/testModel'
 
 const context = {
   insertCss: (...styles) => {
@@ -92,13 +93,29 @@ function render(container, state, component) {
 function run() {
   const container = document.getElementById('app');
   const storeEl = document.getElementById('store');
-  console.log('before get news from html', userInfo.news.length)
-  const htmlStore = JSON.parse(storeEl.innerHTML.replace(/&quot;/g, '"'));
-  if (htmlStore.news.length > 0) {
-    userInfo.news = htmlStore.news
-    console.log('have news in html')
+  // TODO: the obj which contain all the models
+  // TODO: each model should have the initial method
+  const initialStore = {
+    userInfo,
+    testInstance,
+  };
+  const htmlStore =
+    storeEl.innerHTML.trim().length > 0
+      ? JSON.parse(storeEl.innerHTML.replace(/&quot;/g, '"'))
+      : undefined;
+  if (!!htmlStore) {
+    // TODO: loop the store and initial all the models
+    // console.log('before loop', htmlStore)
+    Object.keys(htmlStore).forEach(key => {
+      if (!!htmlStore[key]) {
+        // console.log(key)
+        initialStore[key].noFetch = true
+        initialStore[key].initial(htmlStore[key])
+        // console.log(JSON.stringify(userInfo), JSON.stringify(testInstance))
+      }
+    })
   }
-  console.log('no news in html')
+
 
   //  console.log(getToken());
   let currentLocation = history.getCurrentLocation();

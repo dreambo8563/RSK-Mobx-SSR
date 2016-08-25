@@ -9,6 +9,8 @@
 
 import React from 'react';
 import Contact from './Contact';
+import { testInstance } from './../../models/testModel'
+import { updateStore } from './../../models/syncStore'
 
 export default {
 
@@ -34,6 +36,7 @@ export default {
     {
       path: '/name',
       action: async () => {
+        updateStore({ testInstance })
         console.log('in name router')
         return (
           <div>
