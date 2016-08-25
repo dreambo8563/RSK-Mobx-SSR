@@ -14,6 +14,10 @@ changelog:
   1. using import the specific method 
   2. add the module into webpack vendor
 - add child router for contact component
+- state sync strategy
+  1. for each route which depend on the some models, we need to `updateStore(...stores dependency )`
+  2. when we add new models, we need to udpate the `initialStore` to contain it
+  3. for each model, it must have a `initial` method to sync the state
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),
