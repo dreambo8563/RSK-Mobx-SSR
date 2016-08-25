@@ -1,5 +1,5 @@
 
-import { observable } from 'mobx';
+import { observable, action } from 'mobx';
 import fetch from './../../core/fetch'
 
 
@@ -18,6 +18,10 @@ class UserInfo {
         this.name = user.name
         this.userPreviligy = user.userPreviligy
         this.authorize = user.authorize
+    }
+    @action
+    deleteNewsById(id) {
+        this.news = this.news.filter(x => x.id === id)
     }
 
     async fetchNews() {

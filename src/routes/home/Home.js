@@ -43,20 +43,24 @@ class Home extends Component {
   componentWillMount() {
     this.context.setTitle(title);
   }
-
+  delete(id) {
+    console.log("delet?", id)
+    userInfo.deleteNewsById(id);
+  }
   render() {
-    // const { news } = this.props
+    const { news } = userInfo
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1 className={s.title}>React.js News</h1>
           <ul className={s.news}>
-            {userInfo.news.map((item) => (
+            {news.map((item) => (
               <li key={item.id} className={s.newsItem}>
                 <a href={item.link} className={s.newsTitle}>{item.title}</a>
                 <span className={s.newsDesc} >
                   {item.body}
                 </span>
+                <button onClick={this.delete(item.id) }>delete this one </button>
               </li>
             ))
             }
