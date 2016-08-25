@@ -24,8 +24,8 @@ class UserInfo {
     @action
     deleteNewsById(newsid) {
         // require.ensure([], (require) => {
-            // const filter = require('lodash/filter');
-            this.news = filter(this.news, o => o.id !== newsid);
+        // const filter = require('lodash/filter');
+        this.news = filter(this.news, o => o.id !== newsid);
         // })
 
         // this.news = this.news.filter(x => x.id !== newsid)

@@ -18,17 +18,17 @@ import history from './../../core/history'
 
 class Navigation extends Component {
 
-static propTypes = {
-  className: PropTypes.string,
-}
+  static propTypes = {
+    className: PropTypes.string,
+  }
 
-jump() {
-history.push('/detail/gogogogo')
-}
-  render () {
+  jump() {
+    history.push('/detail/gogogogo')
+  }
+  render() {
     const { className } = this.props
     return (
-      <div className={cx(s.root, className)} role="navigation">
+      <div className={cx(s.root, className) } role="navigation">
         <Link className={s.link} to="/about"> About
         </Link>
         <Link className={s.link} to="/contact"> Contact
@@ -41,14 +41,14 @@ history.push('/detail/gogogogo')
         <span className={s.spacer}>|</span>
         <Link className={s.link} to="/login"> Log in
         </Link>
+        <Link className={s.link} to="/contact/name"> contact Name
+        </Link>
         <span className={s.spacer}>or</span>
-        <Link className={cx(s.link, s.highlight)} to="/register"> Sign up
+        <Link className={cx(s.link, s.highlight) } to="/register"> Sign up
         </Link>
       </div>
     )
   }
 }
-
-
 
 export default withStyles(s)(Navigation)

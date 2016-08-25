@@ -1738,6 +1738,11 @@ module.exports =
             ' Log in'
           ),
           _react2.default.createElement(
+            _Link2.default,
+            { className: _Navigation2.default.link, to: '/contact/name' },
+            ' contact Name'
+          ),
+          _react2.default.createElement(
             'span',
             { className: _Navigation2.default.spacer },
             'or'
@@ -2795,10 +2800,6 @@ module.exports =
   
   var _regenerator2 = _interopRequireDefault(_regenerator);
   
-  var _promise = __webpack_require__(60);
-  
-  var _promise2 = _interopRequireDefault(_promise);
-  
   var _asyncToGenerator2 = __webpack_require__(6);
   
   var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
@@ -2807,33 +2808,49 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
+  var _Contact = __webpack_require__(75);
+  
+  var _Contact2 = _interopRequireDefault(_Contact);
+  
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  // import Contact from './Contact';
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
   
   exports.default = {
   
     path: '/contact',
   
-    action: function action() {
+    // async action() {
+    //   const Contact = await new Promise((resolve) => {
+    //     require.ensure([], (require) => resolve(require('./Contact').default));
+    //   });
+  
+  
+    //   return <Contact />;
+    // },
+    action: function action(_ref) {
       var _this = this;
   
+      var next = _ref.next;
       return (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
-        var Contact;
+        var component;
         return _regenerator2.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return new _promise2.default(function (resolve) {
-                  !/* require.ensure */(function (require) {
-                    return resolve(__webpack_require__(75).default);
-                  }(__webpack_require__));
-                });
+                return next();
   
               case 2:
-                Contact = _context.sent;
-                return _context.abrupt('return', _react2.default.createElement(Contact, null));
+                component = _context.sent;
+                return _context.abrupt('return', component);
   
               case 4:
               case 'end':
@@ -2842,15 +2859,48 @@ module.exports =
           }
         }, _callee, _this);
       }))();
-    }
-  }; /**
-      * React Starter Kit (https://www.reactstarterkit.com/)
-      *
-      * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-      *
-      * This source code is licensed under the MIT license found in the
-      * LICENSE.txt file in the root directory of this source tree.
-      */
+    },
+  
+    children: [{
+      path: '/', // Same as /parent
+      action: function action() {
+        return _react2.default.createElement(_Contact2.default, null);
+      }
+    }, {
+      path: '/name',
+      action: function () {
+        var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
+          return _regenerator2.default.wrap(function _callee2$(_context2) {
+            while (1) {
+              switch (_context2.prev = _context2.next) {
+                case 0:
+                  console.log('in name router');
+                  return _context2.abrupt('return', _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement(
+                      'h1',
+                      null,
+                      'good'
+                    ),
+                    _react2.default.createElement(_Contact2.default, null)
+                  ));
+  
+                case 2:
+                case 'end':
+                  return _context2.stop();
+              }
+            }
+          }, _callee2, undefined);
+        }));
+  
+        return function action() {
+          return _ref2.apply(this, arguments);
+        };
+      }()
+    }]
+  
+  };
 
 /***/ },
 /* 75 */

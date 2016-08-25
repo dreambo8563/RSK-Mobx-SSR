@@ -8,27 +8,41 @@
  */
 
 import React from 'react';
-// import Contact from './Contact';
+import Contact from './Contact';
 
 export default {
 
   path: '/contact',
 
-  async action() {
-    const Contact = await new Promise((resolve) => {
-      require.ensure([], (require) => resolve(require('./Contact').default));
-    });
-    // const resp = await fetch(`http://jsonplaceholder.typicode.com/posts/${userInfo.id}`,
-    //   {
-    //     method: 'get',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json',
-    //     },
-    //   });
-    // const data = await resp.json();
+  // async action() {
+  //   const Contact = await new Promise((resolve) => {
+  //     require.ensure([], (require) => resolve(require('./Contact').default));
+  //   });
 
-    return <Contact />;
+
+  //   return <Contact />;
+  // },
+  async action({ next }) {
+    const component = await next();
+    return component;
   },
+  children: [
+    {
+      path: '/', // Same as /parent
+      action: () => <Contact />,
+    },
+    {
+      path: '/name',
+      action: async () => {
+        console.log('in name router')
+        return (
+          <div>
+            <h1>good</h1>
+            <Contact />
+          </div>
+        )
+      },
+    },
+  ],
 
 };
