@@ -29,7 +29,9 @@ import routes from './routes';
 import assets from './assets'; // eslint-disable-line import/no-unresolved
 import { port, auth } from './config';
 
-import { getToken } from './core/token';
+// import { getToken } from './core/token';
+import { userInfo } from './data/models/UserInfo'
+
 
 const app = express();
 
@@ -59,17 +61,51 @@ app.use(expressJwt({
 }));
 // app.use(passport.initialize());
 
-// app.get('/login/facebook',
-//     passport.authenticate('facebook', { scope: ['email', 'user_location'], session: false })
-// );
-app.get('/login/facebook/return',
-    (req, res) => {
-        const expiresIn = 60 * 60 * 24 * 180; // 180 days
-        const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
-        res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
-        res.redirect('/');
+
+app.post('/signup', (req, res) => {
+    // console.log(req.body)
+    // TODO: send the body to server and fetch userInfo
+    const userinfo = {
+        id: '1111',
+        name: 'testName',
+        userPreviligy: 'admin',
     }
-);
+
+    // const expiresIn = 60; // 180 days
+    const expiresIn = 60 * 60 * 24 * 180; // 180 days
+    const token = jwt.sign(userinfo, auth.jwt.secret, { expiresIn });
+
+    //  TODO: store the {userId,token} in redis
+    //  set token in cookies
+    res.cookie('id_token', token,
+        {
+            expires: new Date(Date.now() + 900000),
+            maxAge: 1000 * expiresIn,
+            httpOnly: true,
+        });
+    res.redirect('/');
+})
+
+app.use((req, res, next) => {
+    if (!!req.user) {
+        // get userInfo
+        userInfo.update({ ...req.user, authorize: true })
+// console.log('set this.state', userInfo.id)
+next()
+    } else {
+    // no token for this user
+    next()
+}
+})
+
+// app.get('/login/facebook/return',
+//     (req, res) => {
+//         const expiresIn = 60 * 60 * 24 * 180; // 180 days
+//         const token = jwt.sign(req.user, auth.jwt.secret, { expiresIn });
+//         res.cookie('id_token', token, { maxAge: 1000 * expiresIn, httpOnly: true });
+//         res.redirect('/');
+//     }
+// );
 
 //
 // Register API middleware
@@ -84,76 +120,77 @@ app.get('/login/facebook/return',
 //
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------
-app.get('*', async(req, res, next) => {
-            try {
-                let css = new Set();
-                let statusCode = 200;
-                const scripts = (Object.keys(assets)).map(key => assets[key]);
-                const data = {
-                    title: '',
-                    description: '',
-                    style: '',
-                    script: scripts.map(key => key.js),
-                    children: '',
-                };
+app.get('*', async (req, res, next) => {
+    // console.log('render req user', req.user);
+    try {
+        let css = new Set();
+        let statusCode = 200;
+        const scripts = (Object.keys(assets)).map(key => assets[key]);
+        const data = {
+            title: '',
+            description: '',
+            style: '',
+            script: scripts.map(key => key.js),
+            children: '',
+        };
 
-                await UniversalRouter.resolve(routes, {
-                    path: req.path,
-                    query: req.query,
-                    context: {
-                        insertCss: (...styles) => {
-                            styles.forEach(style => css.add(style._getCss())); // eslint-disable-line no-underscore-dangle, max-len
-                        },
-                        setTitle: value => (data.title = value),
-                        setMeta: (key, value) => (data[key] = value),
-                    },
-                    render(component, status = 200) {
-                        css = new Set();
-                        statusCode = status;
-                        data.children = ReactDOM.renderToString(component);
-                        data.style = [...css].join('');
-                        return true;
-                    },
-                });
-                const html = ReactDOM.renderToStaticMarkup(<Html
-                  {...data }
-                  store={JSON.stringify(getToken()) }
-                    />);
+        await UniversalRouter.resolve(routes, {
+            path: req.path,
+            query: req.query,
+            context: {
+                insertCss: (...styles) => {
+                    styles.forEach(style => css.add(style._getCss())); // eslint-disable-line no-underscore-dangle, max-len
+                },
+                setTitle: value => (data.title = value),
+                setMeta: (key, value) => (data[key] = value),
+            },
+            render(component, status = 200) {
+                css = new Set();
+                statusCode = status;
+                data.children = ReactDOM.renderToString(component);
+                data.style = [...css].join('');
+                return true;
+            },
+        });
+        // console.log(JSON.stringify(userInfo), 'before embem in html');
+        const html = ReactDOM.renderToStaticMarkup(<Html
+            {...data } store={JSON.stringify(userInfo) }
+            />);
 
-                    res.status(statusCode); res.send(`<!doctype html>${html}`);
-                } catch (err) {
-                    next(err);
-                }
-            });
+        res.status(statusCode); res.send(`<!doctype html>${html}`);
+    } catch (err) {
+        next(err);
+    }
+});
 
-        //
-        // Error handling
-        // -----------------------------------------------------------------------------
-        const pe = new PrettyError(); pe.skipNodeFiles(); pe.skipPackage('express');
+//
+// Error handling
+// -----------------------------------------------------------------------------
+const pe = new PrettyError(); pe.skipNodeFiles(); pe.skipPackage('express');
 
-        app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
-                console.log(pe.render(err)); // eslint-disable-line no-console
-                const statusCode = err.status || 500;
-                const html = ReactDOM.renderToStaticMarkup(
-                  <Html
-                    title="Internal Server Error"
-                    description={ err.message }
-                    style={ errorPageStyle._getCss() } > {
-                        ReactDOM.renderToString(<ErrorPage
-                          error={ err }
-                            />) } </Html>
-                        );
-                        res.status(statusCode);
-                        res.send(`<!doctype html>${html}`);
-                    });
+app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
+    console.log(pe.render(err)); // eslint-disable-line no-console
+    const statusCode = err.status || 500;
+    const html = ReactDOM.renderToStaticMarkup(<Html
+        title="Internal Server Error"
+        description={ err.message }
+        style={ errorPageStyle._getCss() } > {
+            ReactDOM.renderToString(
+                <ErrorPage error={ err } />)
+        }
+    </Html>
+    );
+    res.status(statusCode);
+    res.send(`<!doctype html>${html}`);
+});
 
-                //
-                // Launch the server
-                // -----------------------------------------------------------------------------
-                /* eslint-disable no-console */
+//
+// Launch the server
+// -----------------------------------------------------------------------------
+/* eslint-disable no-console */
 
-                app.listen(port, () => {
-                    console.log(`The server is running at http://localhost:${port}/`);
-                });
+app.listen(port, () => {
+    console.log(`The server is running at http://localhost:${port}/`);
+});
 
                 /* eslint-enable no-console */

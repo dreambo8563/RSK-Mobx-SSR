@@ -21,7 +21,7 @@ import {
   windowScrollY,
 } from './core/DOMUtils';
 
-import { setTokenFromClient } from './core/token';
+import { userInfo } from './data/models/UserInfo'
 
 const context = {
   insertCss: (...styles) => {
@@ -92,9 +92,15 @@ function render(container, state, component) {
 function run() {
   const container = document.getElementById('app');
   const storeEl = document.getElementById('store');
- setTokenFromClient(JSON.parse(storeEl.innerHTML.replace(/&quot;/g, '"')));
+  console.log('before get news from html', userInfo.news.length)
+  const htmlStore = JSON.parse(storeEl.innerHTML.replace(/&quot;/g, '"'));
+  if (htmlStore.news.length > 0) {
+    userInfo.news = htmlStore.news
+    console.log('have news in html')
+  }
+  console.log('no news in html')
 
-//  console.log(getToken());
+  //  console.log(getToken());
   let currentLocation = history.getCurrentLocation();
 
   // Make taps on links and buttons work fast on mobiles
@@ -109,38 +115,38 @@ function run() {
         scrollX: windowScrollX(),
         scrollY: windowScrollY(),
       });
-    }
-    currentLocation = location;
-
-    UniversalRouter.resolve(routes, {
-      path: location.pathname,
-      query: location.query,
-      state: location.state,
-      context,
-      render: render.bind(undefined, container, location.state), // eslint-disable-line react/jsx-no-bind, max-len
-    }).catch(err => console.error(err)); // eslint-disable-line no-console
   }
+  currentLocation = location;
 
-  // Add History API listener and trigger initial change
-  const removeHistoryListener = history.listen(onLocationChange);
-  history.replace(currentLocation);
+  UniversalRouter.resolve(routes, {
+    path: location.pathname,
+    query: location.query,
+    state: location.state,
+    context,
+    render: render.bind(undefined, container, location.state), // eslint-disable-line react/jsx-no-bind, max-len
+  }).catch(err => console.error(err)); // eslint-disable-line no-console
+}
 
-  // https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
-  let originalScrollRestoration;
-  if (window.history && 'scrollRestoration' in window.history) {
-    originalScrollRestoration = window.history.scrollRestoration;
-    window.history.scrollRestoration = 'manual';
+// Add History API listener and trigger initial change
+const removeHistoryListener = history.listen(onLocationChange);
+history.replace(currentLocation);
+
+// https://developers.google.com/web/updates/2015/09/history-api-scroll-restoration
+let originalScrollRestoration;
+if (window.history && 'scrollRestoration' in window.history) {
+  originalScrollRestoration = window.history.scrollRestoration;
+  window.history.scrollRestoration = 'manual';
+}
+
+// Prevent listeners collisions during history navigation
+addEventListener(window, 'pagehide', function onPageHide() {
+  removeEventListener(window, 'pagehide', onPageHide);
+  removeHistoryListener();
+  if (originalScrollRestoration) {
+    window.history.scrollRestoration = originalScrollRestoration;
+    originalScrollRestoration = undefined;
   }
-
-  // Prevent listeners collisions during history navigation
-  addEventListener(window, 'pagehide', function onPageHide() {
-    removeEventListener(window, 'pagehide', onPageHide);
-    removeHistoryListener();
-    if (originalScrollRestoration) {
-      window.history.scrollRestoration = originalScrollRestoration;
-      originalScrollRestoration = undefined;
-    }
-  });
+});
 }
 
 // Run the application when both DOM is ready and page content is loaded

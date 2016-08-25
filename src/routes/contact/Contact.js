@@ -10,7 +10,8 @@
 import React, { PropTypes } from 'react'
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import s from './Contact.css'
-import { observer, propTypes } from 'mobx-react'
+import { observer } from 'mobx-react'
+import { testInstance } from './../../data/models/testModel'
 
 
 const title = 'Contact Us'
@@ -32,16 +33,24 @@ const title = 'Contact Us'
 
 @observer
 class Contact extends React.Component {
-    componentWillMount () {
+  componentWillMount() {
     this.context.setTitle(title);
   }
-    render() {
-        return (<span>Seconds passed: { this.props.timerData.secondsPassed } </span>)
-    }
+
+  componentDidMount() {
+    testInstance.count();
+  }
+  render() {
+    return (
+      <span>
+        Seconds passed: { testInstance.timerData.secondsPassed }
+      </span>
+      )
+  }
 }
 
 Contact.propTypes = {
-  timerData: propTypes.objectOrObservableObject,
+  data: PropTypes.object,
 };
 
 Contact.contextTypes = {

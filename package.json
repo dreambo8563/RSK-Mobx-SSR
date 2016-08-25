@@ -138,6 +138,8 @@
       "semi": 0,
       "react/prefer-stateless-function": 0,
       "react/jsx-curly-spacing": 0,
+      "react/jsx-indent-props": 0,
+      "react/jsx-indent": 0,
       "indent": 0
     }
   },

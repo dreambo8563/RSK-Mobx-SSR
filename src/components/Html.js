@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 
 
-function Html ({ title, description, style, script, children, store }) {
+function Html({ title, description, style, script, children, store }) {
   return (
     <html className="no-js" lang="">
       <head>
@@ -15,12 +15,12 @@ function Html ({ title, description, style, script, children, store }) {
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         <style id="css" dangerouslySetInnerHTML={{ __html: style }} />
         <script id="store" type="text/json">
-          {store.replace(/&quot;/g, '"')}
+          {store}
         </script>
       </head>
       <body>
         <div id="app" dangerouslySetInnerHTML={{ __html: children }} />
-      {script && script.map((add, index) => <script key={index} src={add} />)}
+        {script && script.map((add, index) => <script key={index} src={add} />) }
       </body>
     </html>
   )

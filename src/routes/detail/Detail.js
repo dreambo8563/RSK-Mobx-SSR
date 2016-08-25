@@ -15,24 +15,31 @@ const title = 'Detail page with params';
 
 class Detail extends Component {
 
-static contextTypes = {
-   setTitle: PropTypes.func.isRequired,
+  static contextTypes = {
+    setTitle: PropTypes.func.isRequired,
   };
 
-static propTypes = {
-id: PropTypes.string,
-};
+  static propTypes = {
+    id: PropTypes.string,
+  };
 
-componentWillMount () {
+  componentWillMount() {
     this.context.setTitle(title);
   }
 
   render() {
-   return (
-     <div>
-   this is the params got from path {this.props.id}
-     </div>
-  );
+    return (
+      <div>
+        this is the params got from path {this.props.id}
+        <form action="/signup" method="post">
+          <label>name: </label>
+          <input name="name" />
+          <label>password: </label>
+          <input type="password" name="pwd" />
+          <button type="submit">submit</button>
+        </form>
+      </div>
+    );
   }
 
 }

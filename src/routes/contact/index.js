@@ -9,7 +9,6 @@
 
 import React from 'react';
 // import Contact from './Contact';
-import { observable } from 'mobx';
 
 export default {
 
@@ -19,14 +18,17 @@ export default {
     const Contact = await new Promise((resolve) => {
       require.ensure([], (require) => resolve(require('./Contact').default));
     });
-    const timerData = observable({
-    secondsPassed: 0,
-})
+    // const resp = await fetch(`http://jsonplaceholder.typicode.com/posts/${userInfo.id}`,
+    //   {
+    //     method: 'get',
+    //     headers: {
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //     },
+    //   });
+    // const data = await resp.json();
 
-setInterval(() => {
-    timerData.secondsPassed++
-}, 1000)
-    return <Contact timerData={timerData} />;
+    return <Contact />;
   },
 
 };
