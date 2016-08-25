@@ -10,6 +10,9 @@ changelog:
 - add example to get the params from path & switch path programmly
 - push store in html to sync states
 - if(state) to avoid the dup request
+- import lodash
+  1. using import the specific method 
+  2. add the module into webpack vendor
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),
