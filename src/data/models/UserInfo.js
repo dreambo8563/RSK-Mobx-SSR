@@ -1,9 +1,11 @@
 
 import { observable, action } from 'mobx';
 import fetch from './../../core/fetch'
+import filter from 'lodash/filter'
 
 
 class UserInfo {
+
     @observable id;
     @observable name = null;
     @observable userPreviligy = null;
@@ -20,8 +22,13 @@ class UserInfo {
         this.authorize = user.authorize
     }
     @action
-    deleteNewsById(id) {
-        this.news = this.news.filter(x => x.id === id)
+    deleteNewsById(newsid) {
+        // require.ensure([], (require) => {
+            // const filter = require('lodash/filter');
+            this.news = filter(this.news, o => o.id !== newsid);
+        // })
+
+        // this.news = this.news.filter(x => x.id !== newsid)
     }
 
     async fetchNews() {

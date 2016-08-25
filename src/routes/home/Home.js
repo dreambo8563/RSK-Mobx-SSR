@@ -44,7 +44,7 @@ class Home extends Component {
     this.context.setTitle(title);
   }
   delete(id) {
-    console.log("delet?", id)
+    console.log('delete', id)
     userInfo.deleteNewsById(id);
   }
   render() {
@@ -60,7 +60,7 @@ class Home extends Component {
                 <span className={s.newsDesc} >
                   {item.body}
                 </span>
-                <button onClick={this.delete(item.id) }>delete this one </button>
+                <button onClick={() => this.delete(item.id) }>delete this one </button>
               </li>
             ))
             }
