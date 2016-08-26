@@ -23,6 +23,7 @@ changelog:
   2. set the specific store.noFetch prop as `true`
   3. check the noFetch in the router
   4. recover noFetch as `false` after the request. (to make the request when nav in frontEnd router)
+- add sample pop alert before leaving specific router on contact component
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),
