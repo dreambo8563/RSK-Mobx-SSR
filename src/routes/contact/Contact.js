@@ -9,6 +9,7 @@
 
 import React, { PropTypes } from 'react'
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
+import history from './../../core/history'
 import s from './Contact.css'
 import { observer } from 'mobx-react'
 import { testInstance } from './../../models/testModel'
@@ -40,8 +41,17 @@ class Contact extends React.Component {
 
   componentDidMount() {
     testInstance.count();
+    this.unlisten = history.listenBefore((location) => {
+      console.log(location)
+      if (location.pathname !== '/contact') {
+        return 'Are you sure you want to leave this page?'
+      }
+      return true
+    })
   }
-
+  componentWillUnmount() {
+    this.unlisten()
+  }
   render() {
     return (
       <span>

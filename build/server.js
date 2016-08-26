@@ -2932,8 +2932,7 @@ module.exports =
                       'h1',
                       null,
                       'good'
-                    ),
-                    _react2.default.createElement(_Contact2.default, null)
+                    )
                   ));
   
                 case 3:
@@ -2999,6 +2998,10 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
+  var _history = __webpack_require__(44);
+  
+  var _history2 = _interopRequireDefault(_history);
+  
   var _Contact = __webpack_require__(76);
   
   var _Contact2 = _interopRequireDefault(_Contact);
@@ -3043,6 +3046,18 @@ module.exports =
       key: 'componentDidMount',
       value: function componentDidMount() {
         _testModel.testInstance.count();
+        this.unlisten = _history2.default.listenBefore(function (location) {
+          console.log(location);
+          if (location.pathname !== '/contact') {
+            return 'Are you sure you want to leave this page?';
+          }
+          return true;
+        });
+      }
+    }, {
+      key: 'componentWillUnmount',
+      value: function componentWillUnmount() {
+        this.unlisten();
       }
     }, {
       key: 'render',

@@ -41,7 +41,7 @@ export default {
         return (
           <div>
             <h1>good</h1>
-            <Contact />
+
           </div>
         )
       },
