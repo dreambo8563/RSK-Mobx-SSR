@@ -11,11 +11,8 @@ class UserInfo {
     @observable userPreviligy = null;
     @observable authorize = false;
     @observable news = [];
-    @observable noFetch = false
+    noFetch = false
 
-    constructor() {
-        console.log('constructror')
-    }
     update(user) {
         this.id = user.id
         this.name = user.name

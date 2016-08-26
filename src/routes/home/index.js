@@ -23,7 +23,7 @@ export default {
       require.ensure([], (require) => resolve(require('./Home').default));
     });
     // avoid the duplicated requrest from client
-    console.log(userInfo.noFetch)
+    console.log('check the noFetch: ', userInfo.noFetch)
     if (!userInfo.noFetch) {
       const resp = await fetch('http://jsonplaceholder.typicode.com/posts',
         {

@@ -6,7 +6,7 @@ class test {
     @observable timerData = {
         secondsPassed: 0,
     }
-    @observable noFetch = false
+    noFetch = false
 
     count() {
         setInterval(() => {

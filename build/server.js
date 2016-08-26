@@ -517,11 +517,7 @@ module.exports =
         _react2.default.createElement("meta", { name: "viewport", content: "width=device-width, initial-scale=1" }),
         _react2.default.createElement("link", { rel: "apple-touch-icon", href: "apple-touch-icon.png" }),
         _react2.default.createElement("style", { id: "css", dangerouslySetInnerHTML: { __html: style } }),
-        _react2.default.createElement(
-          "script",
-          { id: "store", type: "text/json" },
-          store
-        )
+        _react2.default.createElement("script", { id: "store", "data-initial-state": store })
       ),
       _react2.default.createElement(
         "body",
@@ -2154,7 +2150,7 @@ module.exports =
                 Home = _context.sent;
   
                 // avoid the duplicated requrest from client
-                console.log(_UserInfo.userInfo.noFetch);
+                console.log('check the noFetch: ', _UserInfo.userInfo.noFetch);
   
                 if (_UserInfo.userInfo.noFetch) {
                   _context.next = 16;
@@ -2365,7 +2361,7 @@ module.exports =
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
+  var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
   
   var _mobx = __webpack_require__(67);
   
@@ -2436,9 +2432,7 @@ module.exports =
   
           _initDefineProp(this, 'news', _descriptor5, this);
   
-          _initDefineProp(this, 'noFetch', _descriptor6, this);
-  
-          console.log('constructror');
+          this.noFetch = false;
       }
   
       (0, _createClass3.default)(UserInfo, [{
@@ -2564,11 +2558,6 @@ module.exports =
       enumerable: true,
       initializer: function initializer() {
           return [];
-      }
-  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'noFetch', [_mobx.observable], {
-      enumerable: true,
-      initializer: function initializer() {
-          return false;
       }
   })), _class);
   var userInfo = exports.userInfo = new UserInfo();
@@ -3147,7 +3136,7 @@ module.exports =
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _desc, _value, _class, _descriptor, _descriptor2;
+  var _desc, _value, _class, _descriptor;
   
   var _mobx = __webpack_require__(67);
   
@@ -3202,7 +3191,7 @@ module.exports =
   
           _initDefineProp(this, 'timerData', _descriptor, this);
   
-          _initDefineProp(this, 'noFetch', _descriptor2, this);
+          this.noFetch = false;
       }
   
       (0, _createClass3.default)(test, [{
@@ -3227,11 +3216,6 @@ module.exports =
           return {
               secondsPassed: 0
           };
-      }
-  }), _descriptor2 = _applyDecoratedDescriptor(_class.prototype, 'noFetch', [_mobx.observable], {
-      enumerable: true,
-      initializer: function initializer() {
-          return false;
       }
   })), _class);
   var testInstance = exports.testInstance = new test();

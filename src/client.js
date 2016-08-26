@@ -99,17 +99,18 @@ function run() {
     userInfo,
     testInstance,
   };
-  const htmlStore =
-    storeEl.innerHTML.trim().length > 0
-      ? JSON.parse(storeEl.innerHTML.replace(/&quot;/g, '"'))
-      : undefined;
-  if (!!htmlStore) {
+
+  if (!!storeEl.attributes['data-initial-state']) {
     // TODO: loop the store and initial all the models
-    // console.log('before loop', htmlStore)
+
+    const htmlStore = JSON.parse(storeEl.attributes['data-initial-state'].value)
+    console.log('before loop', htmlStore)
     Object.keys(htmlStore).forEach(key => {
+      console.log('checking the key: ', htmlStore[key])
       if (!!htmlStore[key]) {
-        // console.log(key)
+        console.log('client store check, we have ', key)
         initialStore[key].noFetch = true
+        console.log('client store check, we set noFetch as true ', initialStore[key].noFetch)
         initialStore[key].initial(htmlStore[key])
         // console.log(JSON.stringify(userInfo), JSON.stringify(testInstance))
       }
@@ -127,6 +128,7 @@ function run() {
   function onLocationChange(location) {
     // Save the page scroll position into the current location's state
     if (currentLocation.key) {
+      console.log('currentLocation.key here: ', currentLocation.key)
       saveState(currentLocation.key, {
         ...readState(currentLocation.key),
         scrollX: windowScrollX(),
@@ -135,6 +137,7 @@ function run() {
   }
   currentLocation = location;
 
+  console.log('start to resolve the router')
   UniversalRouter.resolve(routes, {
     path: location.pathname,
     query: location.query,

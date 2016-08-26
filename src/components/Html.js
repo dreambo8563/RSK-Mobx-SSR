@@ -14,8 +14,7 @@ function Html({ title, description, style, script, children, store }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="apple-touch-icon" href="apple-touch-icon.png" />
         <style id="css" dangerouslySetInnerHTML={{ __html: style }} />
-        <script id="store" type="text/json">
-          {store}
+        <script id="store" data-initial-state={store}>
         </script>
       </head>
       <body>
