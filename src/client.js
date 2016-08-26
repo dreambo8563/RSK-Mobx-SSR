@@ -113,6 +113,8 @@ function run() {
         console.log('client store check, we set noFetch as true ', initialStore[key].noFetch)
         initialStore[key].initial(htmlStore[key])
         // console.log(JSON.stringify(userInfo), JSON.stringify(testInstance))
+      } else {
+        initialStore[key].noFetch = true
       }
     })
   }

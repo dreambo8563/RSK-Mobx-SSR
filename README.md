@@ -18,6 +18,11 @@ changelog:
   1. for each route which depend on the some models, we need to `updateStore(...stores dependency )`
   2. when we add new models, we need to udpate the `initialStore` to contain it
   3. for each model, it must have a `initial` method to sync the state
+- dup request avode strategy
+  1. after we get state Store from HTML, we will check the which store's state we have (the one we don't need to fetch data again)
+  2. set the specific store.noFetch prop as `true`
+  3. check the noFetch in the router
+  4. recover noFetch as `false` after the request. (to make the request when nav in frontEnd router)
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),

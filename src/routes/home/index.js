@@ -40,6 +40,9 @@ export default {
       if (!data) throw new Error('Failed to load the news feed.');
     }
 
+    // recover the noFetch status
+    userInfo.noFetch = false;
+
     // to reproduce the warning
     // userInfo.fetchNews();
 

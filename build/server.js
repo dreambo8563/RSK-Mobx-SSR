@@ -2187,9 +2187,16 @@ module.exports =
                 throw new Error('Failed to load the news feed.');
   
               case 16:
+  
+                // recover the noFetch status
+                _UserInfo.userInfo.noFetch = false;
+  
+                // to reproduce the warning
+                // userInfo.fetchNews();
+  
                 return _context.abrupt('return', _react2.default.createElement(Home, null));
   
-              case 17:
+              case 18:
               case 'end':
                 return _context.stop();
             }
