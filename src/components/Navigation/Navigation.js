@@ -15,7 +15,7 @@ import Link from '../Link'
 
 import history from './../../core/history'
 
-
+@withStyles(s)
 class Navigation extends Component {
 
   static propTypes = {
@@ -51,4 +51,4 @@ class Navigation extends Component {
   }
 }
 
-export default withStyles(s)(Navigation)
+export default Navigation
