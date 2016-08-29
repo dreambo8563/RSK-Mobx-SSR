@@ -9,9 +9,10 @@
 
 import React from 'react';
 // import Home from './Home';
-import fetch from '../../core/fetch';
+// import fetch from '../../core/fetch';
 import { userInfo } from './../../models/UserInfo'
 import { updateStore } from './../../models/syncStore'
+import { httpGetJSON } from './../../core/HTTPUtils'
 
 
 export default {
@@ -25,17 +26,19 @@ export default {
     // avoid the duplicated requrest from client
     console.log('check the noFetch: ', userInfo.noFetch)
     if (!userInfo.noFetch) {
-      const resp = await fetch('http://jsonplaceholder.typicode.com/posts',
-        {
-          method: 'get',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        });
-      console.log('browser', process.env.BROWSER);
-      const data = await resp.json();
-      userInfo.news = data;
+      // const resp = await fetch('http://jsonplaceholder.typicode.com/posts',
+      //   {
+      //     method: 'get',
+      //     headers: {
+      //       Accept: 'application/json',
+      //       'Content-Type': 'application/json',
+      //     },
+      //   });
+      // console.log('browser', process.env.BROWSER);
+      // const data = await resp.json();
+      const data = await httpGetJSON('http://jsonplaceholder.typicode.com/posts');
+      userInfo.news = data
+      // make it available to client side when state sync
       updateStore({ userInfo })
       if (!data) throw new Error('Failed to load the news feed.');
     }

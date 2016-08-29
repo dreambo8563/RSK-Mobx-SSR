@@ -132,13 +132,13 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _assets = __webpack_require__(92);
+  var _assets = __webpack_require__(93);
   
   var _assets2 = _interopRequireDefault(_assets);
   
-  var _config = __webpack_require__(64);
+  var _config = __webpack_require__(67);
   
-  var _UserInfo = __webpack_require__(65);
+  var _UserInfo = __webpack_require__(61);
   
   var _syncStore = __webpack_require__(69);
   
@@ -192,13 +192,15 @@ module.exports =
   
   
   app.post('/signup', function (req, res) {
-      // console.log(req.body)
+      // console.log(req)
       // TODO: send the body to server and fetch userInfo
       var userinfo = {
           id: '1111',
           name: 'testName',
           userPreviligy: 'admin'
       };
+      //  test the http post
+      // res.send(userinfo)
   
       // const expiresIn = 60; // 180 days
       var expiresIn = 60 * 60 * 24 * 180; // 180 days
@@ -218,10 +220,8 @@ module.exports =
       if (!!req.user) {
           // get userInfo
           _UserInfo.userInfo.update((0, _extends3.default)({}, req.user, { authorize: true }));
-          // console.log('set this.state', userInfo.id)
           next();
       } else {
-          // no token for this user
           next();
       }
   });
@@ -948,23 +948,23 @@ module.exports =
   
   var _home2 = _interopRequireDefault(_home);
   
-  var _contact = __webpack_require__(74);
+  var _contact = __webpack_require__(75);
   
   var _contact2 = _interopRequireDefault(_contact);
   
-  var _login = __webpack_require__(79);
+  var _login = __webpack_require__(80);
   
   var _login2 = _interopRequireDefault(_login);
   
-  var _register = __webpack_require__(83);
+  var _register = __webpack_require__(84);
   
   var _register2 = _interopRequireDefault(_register);
   
-  var _error = __webpack_require__(87);
+  var _error = __webpack_require__(88);
   
   var _error2 = _interopRequireDefault(_error);
   
-  var _detail = __webpack_require__(88);
+  var _detail = __webpack_require__(89);
   
   var _detail2 = _interopRequireDefault(_detail);
   
@@ -1807,7 +1807,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n.Navigation_root_1XY {\n  margin: 0;\n}\n\n.Navigation_link_3AL {\n  display: inline-block;\n  padding: 3px 8px;\n  text-decoration: none;\n  font-size: 1.125em; /* ~18px */\n}\n\n.Navigation_link_3AL,\n.Navigation_link_3AL:active,\n.Navigation_link_3AL:visited {\n  color: rgba(255, 255, 255, 0.6);\n}\n\n.Navigation_link_3AL:hover {\n  color: rgba(255, 255, 255, 1);\n}\n\n.Navigation_highlight_2nH {\n  margin-right: 8px;\n  margin-left: 8px;\n  border-radius: 3px;\n  background: rgba(0, 0, 0, 0.15);\n  color: #fff;\n}\n\n.Navigation_highlight_2nH:hover {\n  background: rgba(0, 0, 0, 0.3);\n}\n\n.Navigation_spacer_3NE {\n  color: rgba(255, 255, 255, 0.3);\n}\n", "", {"version":3,"sources":["/./components/Navigation/Navigation.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE,UAAU;CACX;;AAED;EACE,sBAAsB;EACtB,iBAAiB;EACjB,sBAAsB;EACtB,mBAAmB,CAAC,WAAW;CAChC;;AAED;;;EAGE,gCAAgC;CACjC;;AAED;EACE,8BAA8B;CAC/B;;AAED;EACE,kBAAkB;EAClB,iBAAiB;EACjB,mBAAmB;EACnB,gCAAgC;EAChC,YAAY;CACb;;AAED;EACE,+BAA+B;CAChC;;AAED;EACE,gCAAgC;CACjC","file":"Navigation.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n.root {\n  margin: 0;\n}\n\n.link {\n  display: inline-block;\n  padding: 3px 8px;\n  text-decoration: none;\n  font-size: 1.125em; /* ~18px */\n}\n\n.link,\n.link:active,\n.link:visited {\n  color: rgba(255, 255, 255, 0.6);\n}\n\n.link:hover {\n  color: rgba(255, 255, 255, 1);\n}\n\n.highlight {\n  margin-right: 8px;\n  margin-left: 8px;\n  border-radius: 3px;\n  background: rgba(0, 0, 0, 0.15);\n  color: #fff;\n}\n\n.highlight:hover {\n  background: rgba(0, 0, 0, 0.3);\n}\n\n.spacer {\n  color: rgba(255, 255, 255, 0.3);\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\r\n * React Starter Kit (https://www.reactstarterkit.com/)\r\n *\r\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\r\n *\r\n * This source code is licensed under the MIT license found in the\r\n * LICENSE.txt file in the root directory of this source tree.\r\n */\r\n\r\n.Navigation_root_1XY {\r\n  margin: 0;\r\n}\r\n\r\n.Navigation_link_3AL {\r\n  display: inline-block;\r\n  padding: 3px 8px;\r\n  text-decoration: none;\r\n  font-size: 1.125em; /* ~18px */\r\n}\r\n\r\n.Navigation_link_3AL,\r\n.Navigation_link_3AL:active,\r\n.Navigation_link_3AL:visited {\r\n  color: rgba(255, 255, 255, 0.6);\r\n}\r\n\r\n.Navigation_link_3AL:hover {\r\n  color: rgba(255, 255, 255, 1);\r\n}\r\n\r\n.Navigation_highlight_2nH {\r\n  margin-right: 8px;\r\n  margin-left: 8px;\r\n  border-radius: 3px;\r\n  background: rgba(0, 0, 0, 0.15);\r\n  color: #fff;\r\n}\r\n\r\n.Navigation_highlight_2nH:hover {\r\n  background: rgba(0, 0, 0, 0.3);\r\n}\r\n\r\n.Navigation_spacer_3NE {\r\n  color: rgba(255, 255, 255, 0.3);\r\n}\r\n", "", {"version":3,"sources":["/./components/Navigation/Navigation.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;AAEH;EACE,UAAU;CACX;;AAED;EACE,sBAAsB;EACtB,iBAAiB;EACjB,sBAAsB;EACtB,mBAAmB,CAAC,WAAW;CAChC;;AAED;;;EAGE,gCAAgC;CACjC;;AAED;EACE,8BAA8B;CAC/B;;AAED;EACE,kBAAkB;EAClB,iBAAiB;EACjB,mBAAmB;EACnB,gCAAgC;EAChC,YAAY;CACb;;AAED;EACE,+BAA+B;CAChC;;AAED;EACE,gCAAgC;CACjC","file":"Navigation.css","sourcesContent":["/**\r\n * React Starter Kit (https://www.reactstarterkit.com/)\r\n *\r\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\r\n *\r\n * This source code is licensed under the MIT license found in the\r\n * LICENSE.txt file in the root directory of this source tree.\r\n */\r\n\r\n.root {\r\n  margin: 0;\r\n}\r\n\r\n.link {\r\n  display: inline-block;\r\n  padding: 3px 8px;\r\n  text-decoration: none;\r\n  font-size: 1.125em; /* ~18px */\r\n}\r\n\r\n.link,\r\n.link:active,\r\n.link:visited {\r\n  color: rgba(255, 255, 255, 0.6);\r\n}\r\n\r\n.link:hover {\r\n  color: rgba(255, 255, 255, 1);\r\n}\r\n\r\n.highlight {\r\n  margin-right: 8px;\r\n  margin-left: 8px;\r\n  border-radius: 3px;\r\n  background: rgba(0, 0, 0, 0.15);\r\n  color: #fff;\r\n}\r\n\r\n.highlight:hover {\r\n  background: rgba(0, 0, 0, 0.3);\r\n}\r\n\r\n.spacer {\r\n  color: rgba(255, 255, 255, 0.3);\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -2107,13 +2107,11 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _fetch = __webpack_require__(61);
-  
-  var _fetch2 = _interopRequireDefault(_fetch);
-  
-  var _UserInfo = __webpack_require__(65);
+  var _UserInfo = __webpack_require__(61);
   
   var _syncStore = __webpack_require__(69);
+  
+  var _HTTPUtils = __webpack_require__(94);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
@@ -2134,7 +2132,7 @@ module.exports =
       var _this = this;
   
       return (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
-        var Home, resp, data;
+        var Home, data;
         return _regenerator2.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -2142,7 +2140,7 @@ module.exports =
                 _context.next = 2;
                 return new _promise2.default(function (resolve) {
                   !/* require.ensure */(function (require) {
-                    return resolve(__webpack_require__(70).default);
+                    return resolve(__webpack_require__(71).default);
                   }(__webpack_require__));
                 });
   
@@ -2153,40 +2151,28 @@ module.exports =
                 console.log('check the noFetch: ', _UserInfo.userInfo.noFetch);
   
                 if (_UserInfo.userInfo.noFetch) {
-                  _context.next = 16;
+                  _context.next = 12;
                   break;
                 }
   
                 _context.next = 7;
-                return (0, _fetch2.default)('http://jsonplaceholder.typicode.com/posts', {
-                  method: 'get',
-                  headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                  }
-                });
+                return (0, _HTTPUtils.httpGetJSON)('http://jsonplaceholder.typicode.com/posts');
   
               case 7:
-                resp = _context.sent;
-  
-                console.log('browser', (false));
-                _context.next = 11;
-                return resp.json();
-  
-              case 11:
                 data = _context.sent;
   
                 _UserInfo.userInfo.news = data;
+                // make it available to client side when state sync
                 (0, _syncStore.updateStore)({ userInfo: _UserInfo.userInfo });
   
                 if (data) {
-                  _context.next = 16;
+                  _context.next = 12;
                   break;
                 }
   
                 throw new Error('Failed to load the news feed.');
   
-              case 16:
+              case 12:
   
                 // recover the noFetch status
                 _UserInfo.userInfo.noFetch = false;
@@ -2196,7 +2182,7 @@ module.exports =
   
                 return _context.abrupt('return', _react2.default.createElement(Home, null));
   
-              case 18:
+              case 14:
               case 'end':
                 return _context.stop();
             }
@@ -2206,6 +2192,7 @@ module.exports =
     }
   };
   // import Home from './Home';
+  // import fetch from '../../core/fetch';
 
 /***/ },
 /* 60 */
@@ -2220,135 +2207,11 @@ module.exports =
   'use strict';
   
   Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  exports.Response = exports.Headers = exports.Request = exports.default = undefined;
-  
-  var _bluebird = __webpack_require__(62);
-  
-  var _bluebird2 = _interopRequireDefault(_bluebird);
-  
-  var _nodeFetch = __webpack_require__(63);
-  
-  var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
-  
-  var _config = __webpack_require__(64);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  _nodeFetch2.default.Promise = _bluebird2.default; /**
-                                                     * React Starter Kit (https://www.reactstarterkit.com/)
-                                                     *
-                                                     * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                                     *
-                                                     * This source code is licensed under the MIT license found in the
-                                                     * LICENSE.txt file in the root directory of this source tree.
-                                                     */
-  
-  _nodeFetch.Response.Promise = _bluebird2.default;
-  
-  function localUrl(url) {
-    if (url.startsWith('//')) {
-      return 'https:' + url;
-    }
-  
-    if (url.startsWith('http')) {
-      return url;
-    }
-  
-    return 'http://' + _config.host + url;
-  }
-  
-  function localFetch(url, options) {
-    return (0, _nodeFetch2.default)(localUrl(url), options);
-  }
-  
-  exports.default = localFetch;
-  exports.Request = _nodeFetch.Request;
-  exports.Headers = _nodeFetch.Headers;
-  exports.Response = _nodeFetch.Response;
-
-/***/ },
-/* 62 */
-/***/ function(module, exports) {
-
-  module.exports = require("bluebird");
-
-/***/ },
-/* 63 */
-/***/ function(module, exports) {
-
-  module.exports = require("node-fetch");
-
-/***/ },
-/* 64 */
-/***/ function(module, exports) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-    value: true
-  });
-  /**
-   * React Starter Kit (https://www.reactstarterkit.com/)
-   *
-   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-   *
-   * This source code is licensed under the MIT license found in the
-   * LICENSE.txt file in the root directory of this source tree.
-   */
-  
-  /* eslint-disable max-len */
-  
-  var port = exports.port = process.env.PORT || 3000;
-  var host = exports.host = process.env.WEBSITE_HOSTNAME || 'localhost:' + port;
-  
-  // export const databaseUrl = process.env.DATABASE_URL || 'sqlite:database.sqlite';
-  
-  var analytics = exports.analytics = {
-  
-    // https://analytics.google.com/
-    google: {
-      trackingId: process.env.GOOGLE_TRACKING_ID }
-  
-  };
-  
-  var auth = exports.auth = {
-  
-    jwt: { secret: process.env.JWT_SECRET || 'React Starter Kit' },
-  
-    // https://developers.facebook.com/
-    facebook: {
-      id: process.env.FACEBOOK_APP_ID || '186244551745631',
-      secret: process.env.FACEBOOK_APP_SECRET || 'a970ae3240ab4b9b8aae0f9f0661c6fc'
-    },
-  
-    // https://cloud.google.com/console/project
-    google: {
-      id: process.env.GOOGLE_CLIENT_ID || '251410730550-ahcg0ou5mgfhl8hlui1urru7jn5s12km.apps.googleusercontent.com',
-      secret: process.env.GOOGLE_CLIENT_SECRET || 'Y8yR9yZAhm9jQ8FKAL8QIEcd'
-    },
-  
-    // https://apps.twitter.com/
-    twitter: {
-      key: process.env.TWITTER_CONSUMER_KEY || 'Ie20AZvLJI2lQD5Dsgxgjauns',
-      secret: process.env.TWITTER_CONSUMER_SECRET || 'KTZ6cxoKnEakQCeSpZlaUCJWGAlTEBJj0y2EMkUBujA7zWSvaQ'
-    }
-  
-  };
-
-/***/ },
-/* 65 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
       value: true
   });
   exports.userInfo = undefined;
   
-  var _defineProperty = __webpack_require__(66);
+  var _defineProperty = __webpack_require__(62);
   
   var _defineProperty2 = _interopRequireDefault(_defineProperty);
   
@@ -2370,9 +2233,9 @@ module.exports =
   
   var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
   
-  var _mobx = __webpack_require__(67);
+  var _mobx = __webpack_require__(63);
   
-  var _fetch = __webpack_require__(61);
+  var _fetch = __webpack_require__(64);
   
   var _fetch2 = _interopRequireDefault(_fetch);
   
@@ -2570,16 +2433,140 @@ module.exports =
   var userInfo = exports.userInfo = new UserInfo();
 
 /***/ },
-/* 66 */
+/* 62 */
 /***/ function(module, exports) {
 
   module.exports = require("babel-runtime/core-js/object/define-property");
 
 /***/ },
-/* 67 */
+/* 63 */
 /***/ function(module, exports) {
 
   module.exports = require("mobx");
+
+/***/ },
+/* 64 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.Response = exports.Headers = exports.Request = exports.default = undefined;
+  
+  var _bluebird = __webpack_require__(65);
+  
+  var _bluebird2 = _interopRequireDefault(_bluebird);
+  
+  var _nodeFetch = __webpack_require__(66);
+  
+  var _nodeFetch2 = _interopRequireDefault(_nodeFetch);
+  
+  var _config = __webpack_require__(67);
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  _nodeFetch2.default.Promise = _bluebird2.default; /**
+                                                     * React Starter Kit (https://www.reactstarterkit.com/)
+                                                     *
+                                                     * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                     *
+                                                     * This source code is licensed under the MIT license found in the
+                                                     * LICENSE.txt file in the root directory of this source tree.
+                                                     */
+  
+  _nodeFetch.Response.Promise = _bluebird2.default;
+  
+  function localUrl(url) {
+    if (url.startsWith('//')) {
+      return 'https:' + url;
+    }
+  
+    if (url.startsWith('http')) {
+      return url;
+    }
+  
+    return 'http://' + _config.host + url;
+  }
+  
+  function localFetch(url, options) {
+    return (0, _nodeFetch2.default)(localUrl(url), options);
+  }
+  
+  exports.default = localFetch;
+  exports.Request = _nodeFetch.Request;
+  exports.Headers = _nodeFetch.Headers;
+  exports.Response = _nodeFetch.Response;
+
+/***/ },
+/* 65 */
+/***/ function(module, exports) {
+
+  module.exports = require("bluebird");
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+  module.exports = require("node-fetch");
+
+/***/ },
+/* 67 */
+/***/ function(module, exports) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  /**
+   * React Starter Kit (https://www.reactstarterkit.com/)
+   *
+   * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+   *
+   * This source code is licensed under the MIT license found in the
+   * LICENSE.txt file in the root directory of this source tree.
+   */
+  
+  /* eslint-disable max-len */
+  
+  var port = exports.port = process.env.PORT || 3000;
+  var host = exports.host = process.env.WEBSITE_HOSTNAME || 'localhost:' + port;
+  
+  // export const databaseUrl = process.env.DATABASE_URL || 'sqlite:database.sqlite';
+  
+  var analytics = exports.analytics = {
+  
+    // https://analytics.google.com/
+    google: {
+      trackingId: process.env.GOOGLE_TRACKING_ID }
+  
+  };
+  
+  var auth = exports.auth = {
+  
+    jwt: { secret: process.env.JWT_SECRET || 'React Starter Kit' },
+  
+    // https://developers.facebook.com/
+    facebook: {
+      id: process.env.FACEBOOK_APP_ID || '186244551745631',
+      secret: process.env.FACEBOOK_APP_SECRET || 'a970ae3240ab4b9b8aae0f9f0661c6fc'
+    },
+  
+    // https://cloud.google.com/console/project
+    google: {
+      id: process.env.GOOGLE_CLIENT_ID || '251410730550-ahcg0ou5mgfhl8hlui1urru7jn5s12km.apps.googleusercontent.com',
+      secret: process.env.GOOGLE_CLIENT_SECRET || 'Y8yR9yZAhm9jQ8FKAL8QIEcd'
+    },
+  
+    // https://apps.twitter.com/
+    twitter: {
+      key: process.env.TWITTER_CONSUMER_KEY || 'Ie20AZvLJI2lQD5Dsgxgjauns',
+      secret: process.env.TWITTER_CONSUMER_SECRET || 'KTZ6cxoKnEakQCeSpZlaUCJWGAlTEBJj0y2EMkUBujA7zWSvaQ'
+    }
+  
+  };
 
 /***/ },
 /* 68 */
@@ -2609,7 +2596,8 @@ module.exports =
   };
 
 /***/ },
-/* 70 */
+/* 70 */,
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2655,13 +2643,13 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Home = __webpack_require__(71);
+  var _Home = __webpack_require__(72);
   
   var _Home2 = _interopRequireDefault(_Home);
   
-  var _mobxReact = __webpack_require__(73);
+  var _mobxReact = __webpack_require__(74);
   
-  var _UserInfo = __webpack_require__(65);
+  var _UserInfo = __webpack_require__(61);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
@@ -2771,11 +2759,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Home2.default)(Home);
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(72);
+      var content = __webpack_require__(73);
       var insertCss = __webpack_require__(23);
   
       if (typeof content === 'string') {
@@ -2805,7 +2793,7 @@ module.exports =
     
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(22)();
@@ -2826,13 +2814,13 @@ module.exports =
   };
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports) {
 
   module.exports = require("mobx-react");
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -2853,11 +2841,11 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _Contact = __webpack_require__(75);
+  var _Contact = __webpack_require__(76);
   
   var _Contact2 = _interopRequireDefault(_Contact);
   
-  var _testModel = __webpack_require__(78);
+  var _testModel = __webpack_require__(79);
   
   var _syncStore = __webpack_require__(69);
   
@@ -2952,7 +2940,7 @@ module.exports =
   };
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3002,13 +2990,13 @@ module.exports =
   
   var _history2 = _interopRequireDefault(_history);
   
-  var _Contact = __webpack_require__(76);
+  var _Contact = __webpack_require__(77);
   
   var _Contact2 = _interopRequireDefault(_Contact);
   
-  var _mobxReact = __webpack_require__(73);
+  var _mobxReact = __webpack_require__(74);
   
-  var _testModel = __webpack_require__(78);
+  var _testModel = __webpack_require__(79);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
@@ -3029,8 +3017,8 @@ module.exports =
   
   // Contact.contextTypes = { setTitle: PropTypes.func.isRequired }
   
-  var Contact = (0, _mobxReact.observer)(_class = function (_React$Component) {
-    (0, _inherits3.default)(Contact, _React$Component);
+  var Contact = (0, _mobxReact.observer)(_class = function (_Component) {
+    (0, _inherits3.default)(Contact, _Component);
   
     function Contact() {
       (0, _classCallCheck3.default)(this, Contact);
@@ -3071,7 +3059,7 @@ module.exports =
       }
     }]);
     return Contact;
-  }(_react2.default.Component)) || _class;
+  }(_react.Component)) || _class;
   
   Contact.propTypes = {
     data: _react.PropTypes.object
@@ -3084,11 +3072,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Contact2.default)(Contact);
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(77);
+      var content = __webpack_require__(78);
       var insertCss = __webpack_require__(23);
   
       if (typeof content === 'string') {
@@ -3118,7 +3106,7 @@ module.exports =
     
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(22)();
@@ -3136,7 +3124,7 @@ module.exports =
   };
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3146,7 +3134,7 @@ module.exports =
   });
   exports.testInstance = undefined;
   
-  var _defineProperty = __webpack_require__(66);
+  var _defineProperty = __webpack_require__(62);
   
   var _defineProperty2 = _interopRequireDefault(_defineProperty);
   
@@ -3160,7 +3148,7 @@ module.exports =
   
   var _desc, _value, _class, _descriptor;
   
-  var _mobx = __webpack_require__(67);
+  var _mobx = __webpack_require__(63);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
@@ -3243,7 +3231,7 @@ module.exports =
   var testInstance = exports.testInstance = new test();
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3288,7 +3276,7 @@ module.exports =
                 _context.next = 2;
                 return new _promise2.default(function (resolve) {
                   !/* require.ensure */(function (require) {
-                    return resolve(__webpack_require__(80).default);
+                    return resolve(__webpack_require__(81).default);
                   }(__webpack_require__));
                 });
   
@@ -3314,7 +3302,7 @@ module.exports =
       */
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3331,7 +3319,7 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Login = __webpack_require__(81);
+  var _Login = __webpack_require__(82);
   
   var _Login2 = _interopRequireDefault(_Login);
   
@@ -3500,11 +3488,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Login2.default)(Login);
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(82);
+      var content = __webpack_require__(83);
       var insertCss = __webpack_require__(23);
   
       if (typeof content === 'string') {
@@ -3534,7 +3522,7 @@ module.exports =
     
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(22)();
@@ -3561,7 +3549,7 @@ module.exports =
   };
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3606,7 +3594,7 @@ module.exports =
                 _context.next = 2;
                 return new _promise2.default(function (resolve) {
                   !/* require.ensure */(function (require) {
-                    return resolve(__webpack_require__(84).default);
+                    return resolve(__webpack_require__(85).default);
                   }(__webpack_require__));
                 });
   
@@ -3632,7 +3620,7 @@ module.exports =
       */
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3649,7 +3637,7 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Register = __webpack_require__(85);
+  var _Register = __webpack_require__(86);
   
   var _Register2 = _interopRequireDefault(_Register);
   
@@ -3691,11 +3679,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Register2.default)(Register);
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(86);
+      var content = __webpack_require__(87);
       var insertCss = __webpack_require__(23);
   
       if (typeof content === 'string') {
@@ -3725,7 +3713,7 @@ module.exports =
     
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(22)();
@@ -3742,7 +3730,7 @@ module.exports =
   };
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3790,7 +3778,7 @@ module.exports =
       */
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3835,7 +3823,7 @@ module.exports =
                 _context.next = 2;
                 return new _promise2.default(function (resolve) {
                   !/* require.ensure */(function (require) {
-                    return resolve(__webpack_require__(89).default);
+                    return resolve(__webpack_require__(90).default);
                   }(__webpack_require__));
                 });
   
@@ -3861,7 +3849,7 @@ module.exports =
       */
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3907,11 +3895,13 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Detail = __webpack_require__(90);
+  var _Detail = __webpack_require__(91);
   
   var _Detail2 = _interopRequireDefault(_Detail);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  // import { httpPostJSON } from './../../core/HttpUtils'
   
   var title = 'Detail page with params';
   
@@ -3929,6 +3919,20 @@ module.exports =
         this.context.setTitle(title);
       }
     }, {
+      key: 'postTest',
+      value: function postTest() {
+        console.log('post test now');
+        // httpPostJSON('/signup', { username: 'hah', nike: 'gogo' })
+        //   .then(data => {
+        //     console.log(data);
+        //   })
+      }
+    }, {
+      key: 'preventForm',
+      value: function preventForm() {
+        // e.preventDefault();
+      }
+    }, {
       key: 'render',
       value: function render() {
         return _react2.default.createElement(
@@ -3938,7 +3942,7 @@ module.exports =
           this.props.id,
           _react2.default.createElement(
             'form',
-            { action: '/signup', method: 'post' },
+            { ref: 'myForm', action: '/signup', method: 'post' },
             _react2.default.createElement(
               'label',
               null,
@@ -3953,9 +3957,14 @@ module.exports =
             _react2.default.createElement('input', { type: 'password', name: 'pwd' }),
             _react2.default.createElement(
               'button',
-              { type: 'submit' },
+              { onClick: this.preventForm.bind(this), type: 'submit' },
               'submit'
             )
+          ),
+          _react2.default.createElement(
+            'button',
+            { onClick: this.postTest.bind(this) },
+            'POST test'
           )
         );
       }
@@ -3969,11 +3978,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Detail2.default)(Detail);
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(91);
+      var content = __webpack_require__(92);
       var insertCss = __webpack_require__(23);
   
       if (typeof content === 'string') {
@@ -4003,7 +4012,7 @@ module.exports =
     
 
 /***/ },
-/* 91 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(22)();
@@ -4030,10 +4039,119 @@ module.exports =
   };
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
+
+/***/ },
+/* 94 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, "__esModule", {
+      value: true
+  });
+  exports.httpPostJSON = exports.httpGetJSON = exports.postBase = undefined;
+  
+  var _stringify = __webpack_require__(2);
+  
+  var _stringify2 = _interopRequireDefault(_stringify);
+  
+  var _regenerator = __webpack_require__(1);
+  
+  var _regenerator2 = _interopRequireDefault(_regenerator);
+  
+  var _asyncToGenerator2 = __webpack_require__(6);
+  
+  var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
+  
+  var _fetch = __webpack_require__(64);
+  
+  var _fetch2 = _interopRequireDefault(_fetch);
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  var HEADERWITHJSON = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+  };
+  
+  var getBase = function () {
+      var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(url, header) {
+          var resp, data;
+          return _regenerator2.default.wrap(function _callee$(_context) {
+              while (1) {
+                  switch (_context.prev = _context.next) {
+                      case 0:
+                          _context.next = 2;
+                          return (0, _fetch2.default)(url, header);
+  
+                      case 2:
+                          resp = _context.sent;
+                          _context.next = 5;
+                          return resp.json();
+  
+                      case 5:
+                          data = _context.sent;
+                          return _context.abrupt('return', data);
+  
+                      case 7:
+                      case 'end':
+                          return _context.stop();
+                  }
+              }
+          }, _callee, undefined);
+      }));
+  
+      return function getBase(_x, _x2) {
+          return _ref.apply(this, arguments);
+      };
+  }();
+  
+  var postBase = exports.postBase = function () {
+      var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2(url, postHeader, postBody) {
+          var resp, data;
+          return _regenerator2.default.wrap(function _callee2$(_context2) {
+              while (1) {
+                  switch (_context2.prev = _context2.next) {
+                      case 0:
+                          _context2.next = 2;
+                          return (0, _fetch2.default)(url, {
+                              method: 'post',
+                              header: postHeader,
+                              body: postBody
+                          });
+  
+                      case 2:
+                          resp = _context2.sent;
+                          _context2.next = 5;
+                          return resp.json();
+  
+                      case 5:
+                          data = _context2.sent;
+                          return _context2.abrupt('return', data);
+  
+                      case 7:
+                      case 'end':
+                          return _context2.stop();
+                  }
+              }
+          }, _callee2, undefined);
+      }));
+  
+      return function postBase(_x3, _x4, _x5) {
+          return _ref2.apply(this, arguments);
+      };
+  }();
+  
+  var httpGetJSON = exports.httpGetJSON = function httpGetJSON(url) {
+      return getBase(url, HEADERWITHJSON);
+  };
+  var httpPostJSON = exports.httpPostJSON = function httpPostJSON(url, body) {
+      return postBase(url, HEADERWITHJSON, (0, _stringify2.default)(body));
+  };
 
 /***/ }
 /******/ ]);

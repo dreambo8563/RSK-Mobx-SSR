@@ -7,7 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { PropTypes } from 'react'
+import React, { PropTypes, Component } from 'react'
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import history from './../../core/history'
 import s from './Contact.css'
@@ -33,7 +33,7 @@ const title = 'Contact Us'
 // Contact.contextTypes = { setTitle: PropTypes.func.isRequired }
 
 @observer
-class Contact extends React.Component {
+class Contact extends Component {
 
   componentWillMount() {
     this.context.setTitle(title);
@@ -49,9 +49,11 @@ class Contact extends React.Component {
       return true
     })
   }
+
   componentWillUnmount() {
     this.unlisten()
   }
+
   render() {
     return (
       <span>

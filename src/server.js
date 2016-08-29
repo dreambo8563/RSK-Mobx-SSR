@@ -64,13 +64,15 @@ app.use(expressJwt({
 
 
 app.post('/signup', (req, res) => {
-    // console.log(req.body)
+    // console.log(req)
     // TODO: send the body to server and fetch userInfo
     const userinfo = {
         id: '1111',
         name: 'testName',
         userPreviligy: 'admin',
     }
+    //  test the http post
+    // res.send(userinfo)
 
     // const expiresIn = 60; // 180 days
     const expiresIn = 60 * 60 * 24 * 180; // 180 days
@@ -90,11 +92,9 @@ app.post('/signup', (req, res) => {
 app.use((req, res, next) => {
     if (!!req.user) {
         // get userInfo
-        userInfo.update({ ...req.user, authorize: true })
-// console.log('set this.state', userInfo.id)
-next()
+        userInfo.update({ ...req.user, authorize: true });
+next();
     } else {
-    // no token for this user
     next()
 }
 })
