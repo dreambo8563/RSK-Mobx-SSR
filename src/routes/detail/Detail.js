@@ -10,7 +10,7 @@
 import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Detail.css';
-// import { httpPostJSON } from './../../core/HttpUtils'
+import { userInfo } from './../../models/UserInfo'
 
 const title = 'Detail page with params';
 
@@ -29,10 +29,6 @@ class Detail extends Component {
   }
   postTest() {
     console.log('post test now')
-    // httpPostJSON('/signup', { username: 'hah', nike: 'gogo' })
-    //   .then(data => {
-    //     console.log(data);
-    //   })
   }
   preventForm() {
     // e.preventDefault();
@@ -41,7 +37,7 @@ class Detail extends Component {
     return (
       <div>
         this is the params got from path {this.props.id}
-        <form ref="myForm" action="/signup" method="post">
+        <form ref="myForm" action="/signin" method="post">
           <label>name: </label>
           <input name="name" />
           <label>password: </label>
@@ -49,6 +45,7 @@ class Detail extends Component {
           <button onClick={:: this.preventForm} type="submit">submit</button>
         </form>
       <button onClick={:: this.postTest}>POST test</button >
+        { userInfo.loginErr ? 'error here' : 'no error' }
       </div >
     );
   }

@@ -48,10 +48,6 @@ module.exports =
 
   'use strict';
   
-  var _regenerator = __webpack_require__(1);
-  
-  var _regenerator2 = _interopRequireDefault(_regenerator);
-  
   var _stringify = __webpack_require__(2);
   
   var _stringify2 = _interopRequireDefault(_stringify);
@@ -68,13 +64,17 @@ module.exports =
   
   var _set2 = _interopRequireDefault(_set);
   
-  var _asyncToGenerator2 = __webpack_require__(6);
-  
-  var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
-  
   var _extends2 = __webpack_require__(7);
   
   var _extends3 = _interopRequireDefault(_extends2);
+  
+  var _regenerator = __webpack_require__(1);
+  
+  var _regenerator2 = _interopRequireDefault(_regenerator);
+  
+  var _asyncToGenerator2 = __webpack_require__(6);
+  
+  var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
   
   __webpack_require__(8);
   
@@ -98,10 +98,6 @@ module.exports =
   
   var _expressJwt2 = _interopRequireDefault(_expressJwt);
   
-  var _jsonwebtoken = __webpack_require__(14);
-  
-  var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
-  
   var _react = __webpack_require__(15);
   
   var _react2 = _interopRequireDefault(_react);
@@ -114,21 +110,21 @@ module.exports =
   
   var _Html2 = _interopRequireDefault(_Html);
   
-  var _ErrorPage = __webpack_require__(18);
+  var _ErrorPage = __webpack_require__(23);
   
-  var _ErrorPage2 = __webpack_require__(20);
+  var _ErrorPage2 = __webpack_require__(25);
   
   var _ErrorPage3 = _interopRequireDefault(_ErrorPage2);
   
-  var _universalRouter = __webpack_require__(27);
+  var _universalRouter = __webpack_require__(32);
   
   var _universalRouter2 = _interopRequireDefault(_universalRouter);
   
-  var _prettyError = __webpack_require__(28);
+  var _prettyError = __webpack_require__(33);
   
   var _prettyError2 = _interopRequireDefault(_prettyError);
   
-  var _routes = __webpack_require__(29);
+  var _routes = __webpack_require__(34);
   
   var _routes2 = _interopRequireDefault(_routes);
   
@@ -138,26 +134,18 @@ module.exports =
   
   var _config = __webpack_require__(67);
   
+  var _cookiesManager = __webpack_require__(94);
+  
   var _UserInfo = __webpack_require__(61);
   
   var _syncStore = __webpack_require__(69);
   
+  var _HTTPUtils = __webpack_require__(70);
+  
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  // import { getToken } from './core/token';
-  var app = (0, _express2.default)();
-  
-  //
-  // Tell any CSS tooling (such as Material UI) to use all vendor prefixes if the
-  // user agent is not known.
-  // -----------------------------------------------------------------------------
-  // eslint-disable-line import/no-unresolved
-  
-  // import passport from './core/passport';
-  // import models from './data/models';
-  // import schema from './data/schema';
-  
   // import expressGraphQL from 'express-graphql';
+  
   /**
    * React Starter Kit (https://www.reactstarterkit.com/)
    *
@@ -167,6 +155,20 @@ module.exports =
    * LICENSE.txt file in the root directory of this source tree.
    */
   
+  var app = (0, _express2.default)();
+  
+  //
+  // Tell any CSS tooling (such as Material UI) to use all vendor prefixes if the
+  // user agent is not known.
+  // -----------------------------------------------------------------------------
+  
+  
+  // import { getToken } from './core/token';
+  // eslint-disable-line import/no-unresolved
+  
+  // import passport from './core/passport';
+  // import models from './data/models';
+  // import schema from './data/schema';
   global.navigator = global.navigator || {};
   global.navigator.userAgent = global.navigator.userAgent || 'all';
   
@@ -190,9 +192,46 @@ module.exports =
   }));
   // app.use(passport.initialize());
   
+  app.post('/validate', function (req, res) {
+      // TODO change to backend API
+      res.send(false);
+  });
+  
+  app.post('/signin', function () {
+      var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee(req, res) {
+          return _regenerator2.default.wrap(function _callee$(_context) {
+              while (1) {
+                  switch (_context.prev = _context.next) {
+                      case 0:
+                          // TODO: send the body to server to validate and fetch userInfo
+                          (0, _HTTPUtils.httpPostJSON)('/validate', { username: 'hah', nike: 'gogo' }).then(function (data) {
+                              // if the user is valid then generateCookie
+                              //   generateCookie(userinfo, auth, res);
+                              // if invalide then sync error state
+                              if (!data) {
+                                  _UserInfo.userInfo.loginErr = true;
+                                  res.redirect('/detail/88');
+                              }
+                              // redirect to the page login
+                              // if valid
+                              res.redirect('/');
+                          });
+  
+                      case 1:
+                      case 'end':
+                          return _context.stop();
+                  }
+              }
+          }, _callee, undefined);
+      }));
+  
+      return function (_x, _x2) {
+          return _ref.apply(this, arguments);
+      };
+  }());
   
   app.post('/signup', function (req, res) {
-      // console.log(req)
+      console.log('signup here');
       // TODO: send the body to server and fetch userInfo
       var userinfo = {
           id: '1111',
@@ -201,18 +240,8 @@ module.exports =
       };
       //  test the http post
       // res.send(userinfo)
+      (0, _cookiesManager.generateCookie)(userinfo, _config.auth, res);
   
-      // const expiresIn = 60; // 180 days
-      var expiresIn = 60 * 60 * 24 * 180; // 180 days
-      var token = _jsonwebtoken2.default.sign(userinfo, _config.auth.jwt.secret, { expiresIn: expiresIn });
-  
-      //  TODO: store the {userId,token} in redis
-      //  set token in cookies
-      res.cookie('id_token', token, {
-          expires: new Date(Date.now() + 900000),
-          maxAge: 1000 * expiresIn,
-          httpOnly: true
-      });
       res.redirect('/');
   });
   
@@ -249,17 +278,17 @@ module.exports =
   // Register server-side rendering middleware
   // -----------------------------------------------------------------------------
   app.get('*', function () {
-      var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2(req, res, next) {
-          return _regenerator2.default.wrap(function _callee2$(_context2) {
+      var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3(req, res, next) {
+          return _regenerator2.default.wrap(function _callee3$(_context3) {
               while (1) {
-                  switch (_context2.prev = _context2.next) {
+                  switch (_context3.prev = _context3.next) {
                       case 0:
-                          _context2.prev = 0;
-                          return _context2.delegateYield(_regenerator2.default.mark(function _callee() {
+                          _context3.prev = 0;
+                          return _context3.delegateYield(_regenerator2.default.mark(function _callee2() {
                               var css, statusCode, scripts, data, html;
-                              return _regenerator2.default.wrap(function _callee$(_context) {
+                              return _regenerator2.default.wrap(function _callee2$(_context2) {
                                   while (1) {
-                                      switch (_context.prev = _context.next) {
+                                      switch (_context2.prev = _context2.next) {
                                           case 0:
                                               css = new _set2.default();
                                               statusCode = 200;
@@ -275,7 +304,7 @@ module.exports =
                                                   }),
                                                   children: ''
                                               };
-                                              _context.next = 6;
+                                              _context2.next = 6;
                                               return _universalRouter2.default.resolve(_routes2.default, {
                                                   path: req.path,
                                                   query: req.query,
@@ -318,32 +347,32 @@ module.exports =
   
                                           case 10:
                                           case 'end':
-                                              return _context.stop();
+                                              return _context2.stop();
                                       }
                                   }
-                              }, _callee, undefined);
+                              }, _callee2, undefined);
                           })(), 't0', 2);
   
                       case 2:
-                          _context2.next = 7;
+                          _context3.next = 7;
                           break;
   
                       case 4:
-                          _context2.prev = 4;
-                          _context2.t1 = _context2['catch'](0);
+                          _context3.prev = 4;
+                          _context3.t1 = _context3['catch'](0);
   
-                          next(_context2.t1);
+                          next(_context3.t1);
   
                       case 7:
                       case 'end':
-                          return _context2.stop();
+                          return _context3.stop();
                   }
               }
-          }, _callee2, undefined, [[0, 4]]);
+          }, _callee3, undefined, [[0, 4]]);
       }));
   
-      return function (_x, _x2, _x3) {
-          return _ref.apply(this, arguments);
+      return function (_x3, _x4, _x5) {
+          return _ref2.apply(this, arguments);
       };
   }());
   
@@ -486,23 +515,23 @@ module.exports =
     value: true
   });
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -582,6 +611,36 @@ module.exports =
 
 /***/ },
 /* 18 */
+/***/ function(module, exports) {
+
+  module.exports = require("babel-runtime/core-js/object/get-prototype-of");
+
+/***/ },
+/* 19 */
+/***/ function(module, exports) {
+
+  module.exports = require("babel-runtime/helpers/classCallCheck");
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+  module.exports = require("babel-runtime/helpers/createClass");
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+  module.exports = require("babel-runtime/helpers/possibleConstructorReturn");
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+  module.exports = require("babel-runtime/helpers/inherits");
+
+/***/ },
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -595,11 +654,11 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _withStyles = __webpack_require__(19);
+  var _withStyles = __webpack_require__(24);
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _ErrorPage = __webpack_require__(20);
+  var _ErrorPage = __webpack_require__(25);
   
   var _ErrorPage2 = _interopRequireDefault(_ErrorPage);
   
@@ -657,18 +716,18 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_ErrorPage2.default)(ErrorPage);
 
 /***/ },
-/* 19 */
+/* 24 */
 /***/ function(module, exports) {
 
   module.exports = require("isomorphic-style-loader/lib/withStyles");
 
 /***/ },
-/* 20 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(21);
-      var insertCss = __webpack_require__(23);
+      var content = __webpack_require__(26);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -697,10 +756,10 @@ module.exports =
     
 
 /***/ },
-/* 21 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
@@ -711,7 +770,7 @@ module.exports =
 
 
 /***/ },
-/* 22 */
+/* 27 */
 /***/ function(module, exports) {
 
   /*
@@ -767,12 +826,12 @@ module.exports =
 
 
 /***/ },
-/* 23 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
   
-  var _assign = __webpack_require__(24);
+  var _assign = __webpack_require__(29);
   
   var _assign2 = _interopRequireDefault(_assign);
   
@@ -780,11 +839,11 @@ module.exports =
   
   var _stringify2 = _interopRequireDefault(_stringify);
   
-  var _slicedToArray2 = __webpack_require__(25);
+  var _slicedToArray2 = __webpack_require__(30);
   
   var _slicedToArray3 = _interopRequireDefault(_slicedToArray2);
   
-  var _getIterator2 = __webpack_require__(26);
+  var _getIterator2 = __webpack_require__(31);
   
   var _getIterator3 = _interopRequireDefault(_getIterator2);
   
@@ -928,37 +987,37 @@ module.exports =
   module.exports = insertCss;
 
 /***/ },
-/* 24 */
+/* 29 */
 /***/ function(module, exports) {
 
   module.exports = require("babel-runtime/core-js/object/assign");
 
 /***/ },
-/* 25 */
+/* 30 */
 /***/ function(module, exports) {
 
   module.exports = require("babel-runtime/helpers/slicedToArray");
 
 /***/ },
-/* 26 */
+/* 31 */
 /***/ function(module, exports) {
 
   module.exports = require("babel-runtime/core-js/get-iterator");
 
 /***/ },
-/* 27 */
+/* 32 */
 /***/ function(module, exports) {
 
   module.exports = require("universal-router");
 
 /***/ },
-/* 28 */
+/* 33 */
 /***/ function(module, exports) {
 
   module.exports = require("pretty-error");
 
 /***/ },
-/* 29 */
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -979,7 +1038,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _App = __webpack_require__(30);
+  var _App = __webpack_require__(35);
   
   var _App2 = _interopRequireDefault(_App);
   
@@ -1075,7 +1134,7 @@ module.exports =
   };
 
 /***/ },
-/* 30 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -1084,23 +1143,23 @@ module.exports =
     value: true
   });
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -1199,36 +1258,6 @@ module.exports =
   exports.default = App;
 
 /***/ },
-/* 31 */
-/***/ function(module, exports) {
-
-  module.exports = require("babel-runtime/core-js/object/get-prototype-of");
-
-/***/ },
-/* 32 */
-/***/ function(module, exports) {
-
-  module.exports = require("babel-runtime/helpers/classCallCheck");
-
-/***/ },
-/* 33 */
-/***/ function(module, exports) {
-
-  module.exports = require("babel-runtime/helpers/createClass");
-
-/***/ },
-/* 34 */
-/***/ function(module, exports) {
-
-  module.exports = require("babel-runtime/helpers/possibleConstructorReturn");
-
-/***/ },
-/* 35 */
-/***/ function(module, exports) {
-
-  module.exports = require("babel-runtime/helpers/inherits");
-
-/***/ },
 /* 36 */
 /***/ function(module, exports) {
 
@@ -1240,7 +1269,7 @@ module.exports =
 
   
       var content = __webpack_require__(38);
-      var insertCss = __webpack_require__(23);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -1272,12 +1301,12 @@ module.exports =
 /* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
   // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Prevent adjustments of font size after orientation changes in IE and iOS.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n * 2. Add the correct display in IE.\n */\n\narticle,\naside,\ndetails, /* 1 */\nfigcaption,\nfigure,\nfooter,\nheader,\nmain, /* 2 */\nmenu,\nnav,\nsection,\nsummary { /* 1 */\n  display: block;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  vertical-align: baseline;\n}\n\n/**\n * Add the correct display in IE 10-.\n * 1. Add the correct display in IE.\n */\n\ntemplate, /* 1 */\n[hidden] {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent; /* 1 */\n  -webkit-text-decoration-skip: objects; /* 2 */\n}\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\n\na:active,\na:hover {\n  outline-width: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  -webkit-box-sizing: content-box;\n          box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change font properties to `inherit` in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\nselect,\ntextarea {\n  font: inherit; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Restore the font weight unset by the previous rule.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Correct the text style of placeholders in Chrome, Edge, and Safari.\n */\n\n::-webkit-input-placeholder {\n  color: inherit;\n  opacity: 0.54;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n\n/*! React Starter Kit | MIT License | https://www.reactstarterkit.com/ */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n\n/*\n * Base styles\n * ========================================================================== */\n\nhtml {\n  color: #222;\n  font-weight: 100;\n  font-size: 1em; /* ~16px; */\n  font-family: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n  line-height: 1.375; /* ~22px */\n}\n\na {\n  color: #0074c2;\n}\n\n/*\n * Remove text-shadow in selection highlight:\n * https://twitter.com/miketaylr/status/12228805301\n *\n * These selection rule sets have to be separate.\n * Customize the background color to match your design.\n */\n\n::-moz-selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n::selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n/*\n * A better looking default horizontal rule\n */\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0;\n}\n\n/*\n * Remove the gap between audio, canvas, iframes,\n * images, videos and the bottom of their containers:\n * https://github.com/h5bp/html5-boilerplate/issues/440\n */\n\naudio,\ncanvas,\niframe,\nimg,\nsvg,\nvideo {\n  vertical-align: middle;\n}\n\n/*\n * Remove default fieldset styles.\n */\n\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\n\n/*\n * Allow only vertical resizing of textareas.\n */\n\ntextarea {\n  resize: vertical;\n}\n\n/*\n * Browser upgrade prompt\n * ========================================================================== */\n\n.browserupgrade {\n  margin: 0.2em 0;\n  background: #ccc;\n  color: #000;\n  padding: 0.2em 0;\n}\n\n/*\n * Print styles\n * Inlined to avoid the additional HTTP request:\n * http://www.phpied.com/delay-loading-your-print-css/\n * ========================================================================== */\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    background: transparent !important;\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\n    -webkit-box-shadow: none !important;\n            box-shadow: none !important;\n    text-shadow: none !important;\n  }\n\n  a,\n  a:visited {\n    text-decoration: underline;\n  }\n\n  a[href]::after {\n    content: ' (' attr(href) ')';\n  }\n\n  abbr[title]::after {\n    content: ' (' attr(title) ')';\n  }\n\n  /*\n   * Don't show links that are fragment identifiers,\n   * or use the `javascript:` pseudo protocol\n   */\n\n  a[href^='#']::after,\n  a[href^='javascript:']::after {\n    content: '';\n  }\n\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid;\n  }\n\n  /*\n   * Printing Tables:\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\n   */\n\n  thead {\n    display: table-header-group;\n  }\n\n  tr,\n  img {\n    page-break-inside: avoid;\n  }\n\n  img {\n    max-width: 100% !important;\n  }\n\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3;\n  }\n\n  h2,\n  h3 {\n    page-break-after: avoid;\n  }\n}\n", "", {"version":3,"sources":["/./components/App/App.css","/../node_modules/normalize.css/normalize.css","/./components/variables.css"],"names":[],"mappings":"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","file":"App.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../../node_modules/normalize.css/normalize.css';\n\n/*! React Starter Kit | MIT License | https://www.reactstarterkit.com/ */\n\n@import '../variables.css';\n\n/*\n * Base styles\n * ========================================================================== */\n\nhtml {\n  color: #222;\n  font-weight: 100;\n  font-size: 1em; /* ~16px; */\n  font-family: var(--font-family-base);\n  line-height: 1.375; /* ~22px */\n}\n\na {\n  color: #0074c2;\n}\n\n/*\n * Remove text-shadow in selection highlight:\n * https://twitter.com/miketaylr/status/12228805301\n *\n * These selection rule sets have to be separate.\n * Customize the background color to match your design.\n */\n\n::-moz-selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n::selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n/*\n * A better looking default horizontal rule\n */\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0;\n}\n\n/*\n * Remove the gap between audio, canvas, iframes,\n * images, videos and the bottom of their containers:\n * https://github.com/h5bp/html5-boilerplate/issues/440\n */\n\naudio,\ncanvas,\niframe,\nimg,\nsvg,\nvideo {\n  vertical-align: middle;\n}\n\n/*\n * Remove default fieldset styles.\n */\n\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\n\n/*\n * Allow only vertical resizing of textareas.\n */\n\ntextarea {\n  resize: vertical;\n}\n\n/*\n * Browser upgrade prompt\n * ========================================================================== */\n\n:global(.browserupgrade) {\n  margin: 0.2em 0;\n  background: #ccc;\n  color: #000;\n  padding: 0.2em 0;\n}\n\n/*\n * Print styles\n * Inlined to avoid the additional HTTP request:\n * http://www.phpied.com/delay-loading-your-print-css/\n * ========================================================================== */\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    background: transparent !important;\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\n    box-shadow: none !important;\n    text-shadow: none !important;\n  }\n\n  a,\n  a:visited {\n    text-decoration: underline;\n  }\n\n  a[href]::after {\n    content: ' (' attr(href) ')';\n  }\n\n  abbr[title]::after {\n    content: ' (' attr(title) ')';\n  }\n\n  /*\n   * Don't show links that are fragment identifiers,\n   * or use the `javascript:` pseudo protocol\n   */\n\n  a[href^='#']::after,\n  a[href^='javascript:']::after {\n    content: '';\n  }\n\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid;\n  }\n\n  /*\n   * Printing Tables:\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\n   */\n\n  thead {\n    display: table-header-group;\n  }\n\n  tr,\n  img {\n    page-break-inside: avoid;\n  }\n\n  img {\n    max-width: 100% !important;\n  }\n\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3;\n  }\n\n  h2,\n  h3 {\n    page-break-after: avoid;\n  }\n}\n","/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Prevent adjustments of font size after orientation changes in IE and iOS.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n * 2. Add the correct display in IE.\n */\n\narticle,\naside,\ndetails, /* 1 */\nfigcaption,\nfigure,\nfooter,\nheader,\nmain, /* 2 */\nmenu,\nnav,\nsection,\nsummary { /* 1 */\n  display: block;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  vertical-align: baseline;\n}\n\n/**\n * Add the correct display in IE 10-.\n * 1. Add the correct display in IE.\n */\n\ntemplate, /* 1 */\n[hidden] {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent; /* 1 */\n  -webkit-text-decoration-skip: objects; /* 2 */\n}\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\n\na:active,\na:hover {\n  outline-width: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change font properties to `inherit` in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\nselect,\ntextarea {\n  font: inherit; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Restore the font weight unset by the previous rule.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Correct the text style of placeholders in Chrome, Edge, and Safari.\n */\n\n::-webkit-input-placeholder {\n  color: inherit;\n  opacity: 0.54;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Prevent adjustments of font size after orientation changes in IE and iOS.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n * 2. Add the correct display in IE.\n */\n\narticle,\naside,\ndetails, /* 1 */\nfigcaption,\nfigure,\nfooter,\nheader,\nmain, /* 2 */\nmenu,\nnav,\nsection,\nsummary { /* 1 */\n  display: block;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  vertical-align: baseline;\n}\n\n/**\n * Add the correct display in IE 10-.\n * 1. Add the correct display in IE.\n */\n\ntemplate, /* 1 */\n[hidden] {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent; /* 1 */\n  -webkit-text-decoration-skip: objects; /* 2 */\n}\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\n\na:active,\na:hover {\n  outline-width: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  -webkit-box-sizing: content-box;\n          box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change font properties to `inherit` in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\nselect,\ntextarea {\n  font: inherit; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Restore the font weight unset by the previous rule.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Correct the text style of placeholders in Chrome, Edge, and Safari.\n */\n\n::-webkit-input-placeholder {\n  color: inherit;\n  opacity: 0.54;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n\n/*! React Starter Kit | MIT License | https://www.reactstarterkit.com/ */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n\n/*\n * Base styles\n * ========================================================================== */\n\nhtml {\n  color: #222;\n  font-weight: 100;\n  font-size: 1em; /* ~16px; */\n  font-family: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n  line-height: 1.375; /* ~22px */\n}\n\na {\n  color: #0074c2;\n}\n\nbody{\n  background-color: purple\n}\n\n/*\n * Remove text-shadow in selection highlight:\n * https://twitter.com/miketaylr/status/12228805301\n *\n * These selection rule sets have to be separate.\n * Customize the background color to match your design.\n */\n\n::-moz-selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n::selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n/*\n * A better looking default horizontal rule\n */\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0;\n}\n\n/*\n * Remove the gap between audio, canvas, iframes,\n * images, videos and the bottom of their containers:\n * https://github.com/h5bp/html5-boilerplate/issues/440\n */\n\naudio,\ncanvas,\niframe,\nimg,\nsvg,\nvideo {\n  vertical-align: middle;\n}\n\n/*\n * Remove default fieldset styles.\n */\n\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\n\n/*\n * Allow only vertical resizing of textareas.\n */\n\ntextarea {\n  resize: vertical;\n}\n\n/*\n * Browser upgrade prompt\n * ========================================================================== */\n\n.browserupgrade {\n  margin: 0.2em 0;\n  background: #ccc;\n  color: #000;\n  padding: 0.2em 0;\n}\n\n/*\n * Print styles\n * Inlined to avoid the additional HTTP request:\n * http://www.phpied.com/delay-loading-your-print-css/\n * ========================================================================== */\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    background: transparent !important;\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\n    -webkit-box-shadow: none !important;\n            box-shadow: none !important;\n    text-shadow: none !important;\n  }\n\n  a,\n  a:visited {\n    text-decoration: underline;\n  }\n\n  a[href]::after {\n    content: ' (' attr(href) ')';\n  }\n\n  abbr[title]::after {\n    content: ' (' attr(title) ')';\n  }\n\n  /*\n   * Don't show links that are fragment identifiers,\n   * or use the `javascript:` pseudo protocol\n   */\n\n  a[href^='#']::after,\n  a[href^='javascript:']::after {\n    content: '';\n  }\n\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid;\n  }\n\n  /*\n   * Printing Tables:\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\n   */\n\n  thead {\n    display: table-header-group;\n  }\n\n  tr,\n  img {\n    page-break-inside: avoid;\n  }\n\n  img {\n    max-width: 100% !important;\n  }\n\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3;\n  }\n\n  h2,\n  h3 {\n    page-break-after: avoid;\n  }\n}\n", "", {"version":3,"sources":["/./components/App/App.css","/../node_modules/normalize.css/normalize.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH,4EAA4E;;AAE5E;;;GAGG;;AAEH;EACE,wBAAwB,CAAC,OAAO;EAChC,2BAA2B,CAAC,OAAO;EACnC,+BAA+B,CAAC,OAAO;CACxC;;AAED;;GAEG;;AAEH;EACE,UAAU;CACX;;AAED;gFACgF;;AAEhF;;;;GAIG;;AAEH;;;;;;;;;;;UAWU,OAAO;EACf,eAAe;CAChB;;AAED;;GAEG;;AAEH;;;;EAIE,sBAAsB;CACvB;;AAED;;GAEG;;AAEH;EACE,cAAc;EACd,UAAU;CACX;;AAED;;GAEG;;AAEH;EACE,yBAAyB;CAC1B;;AAED;;;GAGG;;AAEH;;EAEE,cAAc;CACf;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;EACE,8BAA8B,CAAC,OAAO;EACtC,sCAAsC,CAAC,OAAO;CAC/C;;AAED;;;GAGG;;AAEH;;EAEE,iBAAiB;CAClB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;EACE,oBAAoB,CAAC,OAAO;EAC5B,2BAA2B,CAAC,OAAO;EACnC,kCAAkC,CAAC,OAAO;CAC3C;;AAED;;GAEG;;AAEH;;EAEE,qBAAqB;CACtB;;AAED;;GAEG;;AAEH;;EAEE,oBAAoB;CACrB;;AAED;;GAEG;;AAEH;EACE,mBAAmB;CACpB;;AAED;;;GAGG;;AAEH;EACE,eAAe;EACf,iBAAiB;CAClB;;AAED;;GAEG;;AAEH;EACE,uBAAuB;EACvB,YAAY;CACb;;AAED;;GAEG;;AAEH;EACE,eAAe;CAChB;;AAED;;;GAGG;;AAEH;;EAEE,eAAe;EACf,eAAe;EACf,mBAAmB;EACnB,yBAAyB;CAC1B;;AAED;EACE,gBAAgB;CACjB;;AAED;EACE,YAAY;CACb;;AAED;gFACgF;;AAEhF;;GAEG;;AAEH;EACE,mBAAmB;CACpB;;AAED;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;;;;EAIE,kCAAkC,CAAC,OAAO;EAC1C,eAAe,CAAC,OAAO;CACxB;;AAED;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;;;GAGG;;AAEH;EACE,gCAAwB;UAAxB,wBAAwB,CAAC,OAAO;EAChC,UAAU,CAAC,OAAO;EAClB,kBAAkB,CAAC,OAAO;CAC3B;;AAED;gFACgF;;AAEhF;;;GAGG;;AAEH;;;;EAIE,cAAc,CAAC,OAAO;EACtB,UAAU,CAAC,OAAO;CACnB;;AAED;;GAEG;;AAEH;EACE,kBAAkB;CACnB;;AAED;;;GAGG;;AAEH;QACQ,OAAO;EACb,kBAAkB;CACnB;;AAED;;;GAGG;;AAEH;SACS,OAAO;EACd,qBAAqB;CACtB;;AAED;;;;GAIG;;AAEH;;;;EAIE,2BAA2B,CAAC,OAAO;CACpC;;AAED;;GAEG;;AAEH;;;;EAIE,mBAAmB;EACnB,WAAW;CACZ;;AAED;;GAEG;;AAEH;;;;EAIE,+BAA+B;CAChC;;AAED;;GAEG;;AAEH;EACE,0BAA0B;EAC1B,cAAc;EACd,+BAA+B;CAChC;;AAED;;;;;GAKG;;AAEH;EACE,+BAAuB;UAAvB,uBAAuB,CAAC,OAAO;EAC/B,eAAe,CAAC,OAAO;EACvB,eAAe,CAAC,OAAO;EACvB,gBAAgB,CAAC,OAAO;EACxB,WAAW,CAAC,OAAO;EACnB,oBAAoB,CAAC,OAAO;CAC7B;;AAED;;GAEG;;AAEH;EACE,eAAe;CAChB;;AAED;;;GAGG;;AAEH;;EAEE,+BAAuB;UAAvB,uBAAuB,CAAC,OAAO;EAC/B,WAAW,CAAC,OAAO;CACpB;;AAED;;GAEG;;AAEH;;EAEE,aAAa;CACd;;AAED;;;GAGG;;AAEH;EACE,8BAA8B,CAAC,OAAO;EACtC,qBAAqB,CAAC,OAAO;CAC9B;;AAED;;GAEG;;AAEH;;EAEE,yBAAyB;CAC1B;;AAED;;GAEG;;AAEH;EACE,eAAe;EACf,cAAc;CACf;;AAED;;;GAGG;;AAEH;EACE,2BAA2B,CAAC,OAAO;EACnC,cAAc,CAAC,OAAO;CACvB;;ADvZD,yEAAyE;;AEXzE;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;;EAI9E;;gFAE8E;;EAI9E;;gFAE8E,EAErD,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;CAC3D;;AFfD;;gFAEgF;;AAEhF;EACE,YAAY;EACZ,iBAAiB;EACjB,eAAe,CAAC,YAAY;EAC5B,2DAAqC;EACrC,mBAAmB,CAAC,WAAW;CAChC;;AAED;EACE,eAAe;CAChB;;AACD;EACE,wBAAwB;CACzB;;AAED;;;;;;GAMG;;AAEH;EACE,oBAAoB;EACpB,kBAAkB;CACnB;;AAED;EACE,oBAAoB;EACpB,kBAAkB;CACnB;;AAED;;GAEG;;AAEH;EACE,eAAe;EACf,YAAY;EACZ,UAAU;EACV,2BAA2B;EAC3B,cAAc;EACd,WAAW;CACZ;;AAED;;;;GAIG;;AAEH;;;;;;EAME,uBAAuB;CACxB;;AAED;;GAEG;;AAEH;EACE,UAAU;EACV,UAAU;EACV,WAAW;CACZ;;AAED;;GAEG;;AAEH;EACE,iBAAiB;CAClB;;AAED;;gFAEgF;;AAEhF;EACE,gBAAgB;EAChB,iBAAiB;EACjB,YAAY;EACZ,iBAAiB;CAClB;;AAED;;;;gFAIgF;;AAEhF;EACE;;;IAGE,mCAAmC;IACnC,uBAAuB,CAAC,+DAA+D;IACvF,oCAA4B;YAA5B,4BAA4B;IAC5B,6BAA6B;GAC9B;;EAED;;IAEE,2BAA2B;GAC5B;;EAED;IACE,6BAA6B;GAC9B;;EAED;IACE,8BAA8B;GAC/B;;EAED;;;KAGG;;EAEH;;IAEE,YAAY;GACb;;EAED;;IAEE,uBAAuB;IACvB,yBAAyB;GAC1B;;EAED;;;KAGG;;EAEH;IACE,4BAA4B;GAC7B;;EAED;;IAEE,yBAAyB;GAC1B;;EAED;IACE,2BAA2B;GAC5B;;EAED;;;IAGE,WAAW;IACX,UAAU;GACX;;EAED;;IAEE,wBAAwB;GACzB;CACF","file":"App.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../../node_modules/normalize.css/normalize.css';\n\n/*! React Starter Kit | MIT License | https://www.reactstarterkit.com/ */\n\n@import '../variables.css';\n\n/*\n * Base styles\n * ========================================================================== */\n\nhtml {\n  color: #222;\n  font-weight: 100;\n  font-size: 1em; /* ~16px; */\n  font-family: var(--font-family-base);\n  line-height: 1.375; /* ~22px */\n}\n\na {\n  color: #0074c2;\n}\nbody{\n  background-color: purple\n}\n\n/*\n * Remove text-shadow in selection highlight:\n * https://twitter.com/miketaylr/status/12228805301\n *\n * These selection rule sets have to be separate.\n * Customize the background color to match your design.\n */\n\n::-moz-selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n::selection {\n  background: #b3d4fc;\n  text-shadow: none;\n}\n\n/*\n * A better looking default horizontal rule\n */\n\nhr {\n  display: block;\n  height: 1px;\n  border: 0;\n  border-top: 1px solid #ccc;\n  margin: 1em 0;\n  padding: 0;\n}\n\n/*\n * Remove the gap between audio, canvas, iframes,\n * images, videos and the bottom of their containers:\n * https://github.com/h5bp/html5-boilerplate/issues/440\n */\n\naudio,\ncanvas,\niframe,\nimg,\nsvg,\nvideo {\n  vertical-align: middle;\n}\n\n/*\n * Remove default fieldset styles.\n */\n\nfieldset {\n  border: 0;\n  margin: 0;\n  padding: 0;\n}\n\n/*\n * Allow only vertical resizing of textareas.\n */\n\ntextarea {\n  resize: vertical;\n}\n\n/*\n * Browser upgrade prompt\n * ========================================================================== */\n\n:global(.browserupgrade) {\n  margin: 0.2em 0;\n  background: #ccc;\n  color: #000;\n  padding: 0.2em 0;\n}\n\n/*\n * Print styles\n * Inlined to avoid the additional HTTP request:\n * http://www.phpied.com/delay-loading-your-print-css/\n * ========================================================================== */\n\n@media print {\n  *,\n  *::before,\n  *::after {\n    background: transparent !important;\n    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */\n    box-shadow: none !important;\n    text-shadow: none !important;\n  }\n\n  a,\n  a:visited {\n    text-decoration: underline;\n  }\n\n  a[href]::after {\n    content: ' (' attr(href) ')';\n  }\n\n  abbr[title]::after {\n    content: ' (' attr(title) ')';\n  }\n\n  /*\n   * Don't show links that are fragment identifiers,\n   * or use the `javascript:` pseudo protocol\n   */\n\n  a[href^='#']::after,\n  a[href^='javascript:']::after {\n    content: '';\n  }\n\n  pre,\n  blockquote {\n    border: 1px solid #999;\n    page-break-inside: avoid;\n  }\n\n  /*\n   * Printing Tables:\n   * http://css-discuss.incutio.com/wiki/Printing_Tables\n   */\n\n  thead {\n    display: table-header-group;\n  }\n\n  tr,\n  img {\n    page-break-inside: avoid;\n  }\n\n  img {\n    max-width: 100% !important;\n  }\n\n  p,\n  h2,\n  h3 {\n    orphans: 3;\n    widows: 3;\n  }\n\n  h2,\n  h3 {\n    page-break-after: avoid;\n  }\n}\n","/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */\n\n/**\n * 1. Change the default font family in all browsers (opinionated).\n * 2. Prevent adjustments of font size after orientation changes in IE and iOS.\n */\n\nhtml {\n  font-family: sans-serif; /* 1 */\n  -ms-text-size-adjust: 100%; /* 2 */\n  -webkit-text-size-adjust: 100%; /* 2 */\n}\n\n/**\n * Remove the margin in all browsers (opinionated).\n */\n\nbody {\n  margin: 0;\n}\n\n/* HTML5 display definitions\n   ========================================================================== */\n\n/**\n * Add the correct display in IE 9-.\n * 1. Add the correct display in Edge, IE, and Firefox.\n * 2. Add the correct display in IE.\n */\n\narticle,\naside,\ndetails, /* 1 */\nfigcaption,\nfigure,\nfooter,\nheader,\nmain, /* 2 */\nmenu,\nnav,\nsection,\nsummary { /* 1 */\n  display: block;\n}\n\n/**\n * Add the correct display in IE 9-.\n */\n\naudio,\ncanvas,\nprogress,\nvideo {\n  display: inline-block;\n}\n\n/**\n * Add the correct display in iOS 4-7.\n */\n\naudio:not([controls]) {\n  display: none;\n  height: 0;\n}\n\n/**\n * Add the correct vertical alignment in Chrome, Firefox, and Opera.\n */\n\nprogress {\n  vertical-align: baseline;\n}\n\n/**\n * Add the correct display in IE 10-.\n * 1. Add the correct display in IE.\n */\n\ntemplate, /* 1 */\n[hidden] {\n  display: none;\n}\n\n/* Links\n   ========================================================================== */\n\n/**\n * 1. Remove the gray background on active links in IE 10.\n * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.\n */\n\na {\n  background-color: transparent; /* 1 */\n  -webkit-text-decoration-skip: objects; /* 2 */\n}\n\n/**\n * Remove the outline on focused links when they are also active or hovered\n * in all browsers (opinionated).\n */\n\na:active,\na:hover {\n  outline-width: 0;\n}\n\n/* Text-level semantics\n   ========================================================================== */\n\n/**\n * 1. Remove the bottom border in Firefox 39-.\n * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.\n */\n\nabbr[title] {\n  border-bottom: none; /* 1 */\n  text-decoration: underline; /* 2 */\n  text-decoration: underline dotted; /* 2 */\n}\n\n/**\n * Prevent the duplicate application of `bolder` by the next rule in Safari 6.\n */\n\nb,\nstrong {\n  font-weight: inherit;\n}\n\n/**\n * Add the correct font weight in Chrome, Edge, and Safari.\n */\n\nb,\nstrong {\n  font-weight: bolder;\n}\n\n/**\n * Add the correct font style in Android 4.3-.\n */\n\ndfn {\n  font-style: italic;\n}\n\n/**\n * Correct the font size and margin on `h1` elements within `section` and\n * `article` contexts in Chrome, Firefox, and Safari.\n */\n\nh1 {\n  font-size: 2em;\n  margin: 0.67em 0;\n}\n\n/**\n * Add the correct background and color in IE 9-.\n */\n\nmark {\n  background-color: #ff0;\n  color: #000;\n}\n\n/**\n * Add the correct font size in all browsers.\n */\n\nsmall {\n  font-size: 80%;\n}\n\n/**\n * Prevent `sub` and `sup` elements from affecting the line height in\n * all browsers.\n */\n\nsub,\nsup {\n  font-size: 75%;\n  line-height: 0;\n  position: relative;\n  vertical-align: baseline;\n}\n\nsub {\n  bottom: -0.25em;\n}\n\nsup {\n  top: -0.5em;\n}\n\n/* Embedded content\n   ========================================================================== */\n\n/**\n * Remove the border on images inside links in IE 10-.\n */\n\nimg {\n  border-style: none;\n}\n\n/**\n * Hide the overflow in IE.\n */\n\nsvg:not(:root) {\n  overflow: hidden;\n}\n\n/* Grouping content\n   ========================================================================== */\n\n/**\n * 1. Correct the inheritance and scaling of font size in all browsers.\n * 2. Correct the odd `em` font sizing in all browsers.\n */\n\ncode,\nkbd,\npre,\nsamp {\n  font-family: monospace, monospace; /* 1 */\n  font-size: 1em; /* 2 */\n}\n\n/**\n * Add the correct margin in IE 8.\n */\n\nfigure {\n  margin: 1em 40px;\n}\n\n/**\n * 1. Add the correct box sizing in Firefox.\n * 2. Show the overflow in Edge and IE.\n */\n\nhr {\n  box-sizing: content-box; /* 1 */\n  height: 0; /* 1 */\n  overflow: visible; /* 2 */\n}\n\n/* Forms\n   ========================================================================== */\n\n/**\n * 1. Change font properties to `inherit` in all browsers (opinionated).\n * 2. Remove the margin in Firefox and Safari.\n */\n\nbutton,\ninput,\nselect,\ntextarea {\n  font: inherit; /* 1 */\n  margin: 0; /* 2 */\n}\n\n/**\n * Restore the font weight unset by the previous rule.\n */\n\noptgroup {\n  font-weight: bold;\n}\n\n/**\n * Show the overflow in IE.\n * 1. Show the overflow in Edge.\n */\n\nbutton,\ninput { /* 1 */\n  overflow: visible;\n}\n\n/**\n * Remove the inheritance of text transform in Edge, Firefox, and IE.\n * 1. Remove the inheritance of text transform in Firefox.\n */\n\nbutton,\nselect { /* 1 */\n  text-transform: none;\n}\n\n/**\n * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`\n *    controls in Android 4.\n * 2. Correct the inability to style clickable types in iOS and Safari.\n */\n\nbutton,\nhtml [type=\"button\"], /* 1 */\n[type=\"reset\"],\n[type=\"submit\"] {\n  -webkit-appearance: button; /* 2 */\n}\n\n/**\n * Remove the inner border and padding in Firefox.\n */\n\nbutton::-moz-focus-inner,\n[type=\"button\"]::-moz-focus-inner,\n[type=\"reset\"]::-moz-focus-inner,\n[type=\"submit\"]::-moz-focus-inner {\n  border-style: none;\n  padding: 0;\n}\n\n/**\n * Restore the focus styles unset by the previous rule.\n */\n\nbutton:-moz-focusring,\n[type=\"button\"]:-moz-focusring,\n[type=\"reset\"]:-moz-focusring,\n[type=\"submit\"]:-moz-focusring {\n  outline: 1px dotted ButtonText;\n}\n\n/**\n * Change the border, margin, and padding in all browsers (opinionated).\n */\n\nfieldset {\n  border: 1px solid #c0c0c0;\n  margin: 0 2px;\n  padding: 0.35em 0.625em 0.75em;\n}\n\n/**\n * 1. Correct the text wrapping in Edge and IE.\n * 2. Correct the color inheritance from `fieldset` elements in IE.\n * 3. Remove the padding so developers are not caught out when they zero out\n *    `fieldset` elements in all browsers.\n */\n\nlegend {\n  box-sizing: border-box; /* 1 */\n  color: inherit; /* 2 */\n  display: table; /* 1 */\n  max-width: 100%; /* 1 */\n  padding: 0; /* 3 */\n  white-space: normal; /* 1 */\n}\n\n/**\n * Remove the default vertical scrollbar in IE.\n */\n\ntextarea {\n  overflow: auto;\n}\n\n/**\n * 1. Add the correct box sizing in IE 10-.\n * 2. Remove the padding in IE 10-.\n */\n\n[type=\"checkbox\"],\n[type=\"radio\"] {\n  box-sizing: border-box; /* 1 */\n  padding: 0; /* 2 */\n}\n\n/**\n * Correct the cursor style of increment and decrement buttons in Chrome.\n */\n\n[type=\"number\"]::-webkit-inner-spin-button,\n[type=\"number\"]::-webkit-outer-spin-button {\n  height: auto;\n}\n\n/**\n * 1. Correct the odd appearance in Chrome and Safari.\n * 2. Correct the outline style in Safari.\n */\n\n[type=\"search\"] {\n  -webkit-appearance: textfield; /* 1 */\n  outline-offset: -2px; /* 2 */\n}\n\n/**\n * Remove the inner padding and cancel buttons in Chrome and Safari on OS X.\n */\n\n[type=\"search\"]::-webkit-search-cancel-button,\n[type=\"search\"]::-webkit-search-decoration {\n  -webkit-appearance: none;\n}\n\n/**\n * Correct the text style of placeholders in Chrome, Edge, and Safari.\n */\n\n::-webkit-input-placeholder {\n  color: inherit;\n  opacity: 0.54;\n}\n\n/**\n * 1. Correct the inability to style clickable types in iOS and Safari.\n * 2. Change font properties to `inherit` in Safari.\n */\n\n::-webkit-file-upload-button {\n  -webkit-appearance: button; /* 1 */\n  font: inherit; /* 2 */\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
 
@@ -1292,23 +1321,23 @@ module.exports =
     value: true
   });
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -1325,7 +1354,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _withStyles = __webpack_require__(19);
+  var _withStyles = __webpack_require__(24);
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
@@ -1421,7 +1450,7 @@ module.exports =
 
   
       var content = __webpack_require__(41);
-      var insertCss = __webpack_require__(23);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -1453,7 +1482,7 @@ module.exports =
 /* 41 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
@@ -1490,23 +1519,23 @@ module.exports =
   
   var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -1667,23 +1696,23 @@ module.exports =
     value: true
   });
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -1704,7 +1733,7 @@ module.exports =
   
   var _classnames2 = _interopRequireDefault(_classnames);
   
-  var _withStyles = __webpack_require__(19);
+  var _withStyles = __webpack_require__(24);
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
@@ -1809,7 +1838,7 @@ module.exports =
 
   
       var content = __webpack_require__(51);
-      var insertCss = __webpack_require__(23);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -1841,7 +1870,7 @@ module.exports =
 /* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
@@ -1872,23 +1901,23 @@ module.exports =
     value: true
   });
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -1905,7 +1934,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _withStyles = __webpack_require__(19);
+  var _withStyles = __webpack_require__(24);
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
@@ -1967,7 +1996,7 @@ module.exports =
 
   
       var content = __webpack_require__(55);
-      var insertCss = __webpack_require__(23);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -1999,7 +2028,7 @@ module.exports =
 /* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
@@ -2024,23 +2053,23 @@ module.exports =
     value: true
   });
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -2057,7 +2086,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _withStyles = __webpack_require__(19);
+  var _withStyles = __webpack_require__(24);
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
@@ -2137,7 +2166,7 @@ module.exports =
 
   
       var content = __webpack_require__(58);
-      var insertCss = __webpack_require__(23);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -2169,7 +2198,7 @@ module.exports =
 /* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
@@ -2328,15 +2357,15 @@ module.exports =
   
   var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5;
+  var _desc, _value, _class, _descriptor, _descriptor2, _descriptor3, _descriptor4, _descriptor5, _descriptor6;
   
   var _mobx = __webpack_require__(63);
   
@@ -2406,6 +2435,8 @@ module.exports =
           _initDefineProp(this, 'authorize', _descriptor4, this);
   
           _initDefineProp(this, 'news', _descriptor5, this);
+  
+          _initDefineProp(this, 'loginErr', _descriptor6, this);
   
           this.noFetch = false;
       }
@@ -2497,6 +2528,7 @@ module.exports =
               this.userPreviligy = store.userPreviligy;
               this.authorize = store.authorize;
               this.news = store.news;
+              this.loginErr = store.loginErr;
           }
       }, {
           key: 'toJson',
@@ -2533,6 +2565,11 @@ module.exports =
       enumerable: true,
       initializer: function initializer() {
           return [];
+      }
+  }), _descriptor6 = _applyDecoratedDescriptor(_class.prototype, 'loginErr', [_mobx.observable], {
+      enumerable: true,
+      initializer: function initializer() {
+          return false;
       }
   })), _class);
   var userInfo = exports.userInfo = new UserInfo();
@@ -2819,23 +2856,23 @@ module.exports =
     value: true
   });
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -2852,7 +2889,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _withStyles = __webpack_require__(19);
+  var _withStyles = __webpack_require__(24);
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
@@ -2977,7 +3014,7 @@ module.exports =
 
   
       var content = __webpack_require__(73);
-      var insertCss = __webpack_require__(23);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -3009,7 +3046,7 @@ module.exports =
 /* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
@@ -3162,23 +3199,23 @@ module.exports =
     value: true
   });
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -3195,7 +3232,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _withStyles = __webpack_require__(19);
+  var _withStyles = __webpack_require__(24);
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
@@ -3290,7 +3327,7 @@ module.exports =
 
   
       var content = __webpack_require__(78);
-      var insertCss = __webpack_require__(23);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -3322,7 +3359,7 @@ module.exports =
 /* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
@@ -3351,11 +3388,11 @@ module.exports =
   
   var _defineProperty2 = _interopRequireDefault(_defineProperty);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
@@ -3528,7 +3565,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _withStyles = __webpack_require__(19);
+  var _withStyles = __webpack_require__(24);
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
@@ -3706,7 +3743,7 @@ module.exports =
 
   
       var content = __webpack_require__(83);
-      var insertCss = __webpack_require__(23);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -3738,7 +3775,7 @@ module.exports =
 /* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
@@ -3842,23 +3879,23 @@ module.exports =
     value: true
   });
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -3866,7 +3903,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _withStyles = __webpack_require__(19);
+  var _withStyles = __webpack_require__(24);
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
@@ -3934,7 +3971,7 @@ module.exports =
 
   
       var content = __webpack_require__(87);
-      var insertCss = __webpack_require__(23);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -3966,7 +4003,7 @@ module.exports =
 /* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
@@ -3993,11 +4030,11 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _App = __webpack_require__(30);
+  var _App = __webpack_require__(35);
   
   var _App2 = _interopRequireDefault(_App);
   
-  var _ErrorPage = __webpack_require__(18);
+  var _ErrorPage = __webpack_require__(23);
   
   var _ErrorPage2 = _interopRequireDefault(_ErrorPage);
   
@@ -4108,23 +4145,23 @@ module.exports =
     value: true
   });
   
-  var _getPrototypeOf = __webpack_require__(31);
+  var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
   
-  var _classCallCheck2 = __webpack_require__(32);
+  var _classCallCheck2 = __webpack_require__(19);
   
   var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
   
-  var _createClass2 = __webpack_require__(33);
+  var _createClass2 = __webpack_require__(20);
   
   var _createClass3 = _interopRequireDefault(_createClass2);
   
-  var _possibleConstructorReturn2 = __webpack_require__(34);
+  var _possibleConstructorReturn2 = __webpack_require__(21);
   
   var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
   
-  var _inherits2 = __webpack_require__(35);
+  var _inherits2 = __webpack_require__(22);
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
@@ -4141,7 +4178,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _withStyles = __webpack_require__(19);
+  var _withStyles = __webpack_require__(24);
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
@@ -4149,9 +4186,9 @@ module.exports =
   
   var _Detail2 = _interopRequireDefault(_Detail);
   
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  var _UserInfo = __webpack_require__(61);
   
-  // import { httpPostJSON } from './../../core/HttpUtils'
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
   var title = 'Detail page with params';
   
@@ -4172,10 +4209,6 @@ module.exports =
       key: 'postTest',
       value: function postTest() {
         console.log('post test now');
-        // httpPostJSON('/signup', { username: 'hah', nike: 'gogo' })
-        //   .then(data => {
-        //     console.log(data);
-        //   })
       }
     }, {
       key: 'preventForm',
@@ -4192,7 +4225,7 @@ module.exports =
           this.props.id,
           _react2.default.createElement(
             'form',
-            { ref: 'myForm', action: '/signup', method: 'post' },
+            { ref: 'myForm', action: '/signin', method: 'post' },
             _react2.default.createElement(
               'label',
               null,
@@ -4215,7 +4248,8 @@ module.exports =
             'button',
             { onClick: this.postTest.bind(this) },
             'POST test'
-          )
+          ),
+          _UserInfo.userInfo.loginErr ? 'error here' : 'no error'
         );
       }
     }]);
@@ -4233,7 +4267,7 @@ module.exports =
 
   
       var content = __webpack_require__(92);
-      var insertCss = __webpack_require__(23);
+      var insertCss = __webpack_require__(28);
   
       if (typeof content === 'string') {
         content = [[module.id, content, '']];
@@ -4265,7 +4299,7 @@ module.exports =
 /* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
-  exports = module.exports = __webpack_require__(22)();
+  exports = module.exports = __webpack_require__(27)();
   // imports
   
   
@@ -4293,6 +4327,37 @@ module.exports =
 /***/ function(module, exports) {
 
   module.exports = require("./assets");
+
+/***/ },
+/* 94 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, "__esModule", {
+      value: true
+  });
+  exports.generateCookie = undefined;
+  
+  var _jsonwebtoken = __webpack_require__(14);
+  
+  var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  var generateCookie = exports.generateCookie = function generateCookie(info, auth, res) {
+      // const expiresIn = 60; // 180 days
+      var expiresIn = 60 * 60 * 24 * 180; // 180 days
+      var token = _jsonwebtoken2.default.sign(info, auth.jwt.secret, { expiresIn: expiresIn });
+  
+      //  TODO: store the {userId,token} in redis if we need
+      //  set token in cookies
+      res.cookie('id_token', token, {
+          expires: new Date(Date.now() + 900000),
+          maxAge: 1000 * expiresIn,
+          httpOnly: true
+      });
+  };
 
 /***/ }
 /******/ ]);

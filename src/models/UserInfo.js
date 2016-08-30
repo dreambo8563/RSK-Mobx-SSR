@@ -11,6 +11,7 @@ class UserInfo {
     @observable userPreviligy = null;
     @observable authorize = false;
     @observable news = [];
+    @observable loginErr = false
     noFetch = false
 
     update(user) {
@@ -53,6 +54,7 @@ class UserInfo {
         this.userPreviligy = store.userPreviligy
         this.authorize = store.authorize
         this.news = store.news
+        this.loginErr = store.loginErr
     }
 
     toJson() {

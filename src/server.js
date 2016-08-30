@@ -14,7 +14,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import expressJwt from 'express-jwt';
 // import expressGraphQL from 'express-graphql';
-import jwt from 'jsonwebtoken';
+
 import React from 'react';
 import ReactDOM from 'react-dom/server';
 import Html from './components/Html';
@@ -28,10 +28,12 @@ import PrettyError from 'pretty-error';
 import routes from './routes';
 import assets from './assets'; // eslint-disable-line import/no-unresolved
 import { port, auth } from './config';
+import { generateCookie } from './core/cookiesManager'
 
 // import { getToken } from './core/token';
 import { userInfo } from './models/UserInfo'
 import { getStore, clearStore } from './models/syncStore'
+import { httpPostJSON } from './core/HTTPUtils'
 
 
 const app = express();
@@ -62,9 +64,30 @@ app.use(expressJwt({
 }));
 // app.use(passport.initialize());
 
+app.post('/validate', (req, res) => {
+    // TODO change to backend API
+    res.send(false)
+})
+
+app.post('/signin', async (req, res) => {
+    // TODO: send the body to server to validate and fetch userInfo
+    httpPostJSON('/validate', { username: 'hah', nike: 'gogo' })
+        .then(data => {
+            // if the user is valid then generateCookie
+            //   generateCookie(userinfo, auth, res);
+            // if invalide then sync error state
+            if (!data) {
+                userInfo.loginErr = true
+                res.redirect('/detail/88')
+            }
+            // redirect to the page login
+            // if valid
+            res.redirect('/')
+        })
+})
 
 app.post('/signup', (req, res) => {
-    // console.log(req)
+    console.log('signup here')
     // TODO: send the body to server and fetch userInfo
     const userinfo = {
         id: '1111',
@@ -73,19 +96,8 @@ app.post('/signup', (req, res) => {
     }
     //  test the http post
     // res.send(userinfo)
+    generateCookie(userinfo, auth, res);
 
-    // const expiresIn = 60; // 180 days
-    const expiresIn = 60 * 60 * 24 * 180; // 180 days
-    const token = jwt.sign(userinfo, auth.jwt.secret, { expiresIn });
-
-    //  TODO: store the {userId,token} in redis
-    //  set token in cookies
-    res.cookie('id_token', token,
-        {
-            expires: new Date(Date.now() + 900000),
-            maxAge: 1000 * expiresIn,
-            httpOnly: true,
-        });
     res.redirect('/');
 })
 
