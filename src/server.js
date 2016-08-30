@@ -82,6 +82,7 @@ app.post('/signin', async (req, res) => {
             }
             // redirect to the page login
             // if valid
+            // TODO update user state
             res.redirect('/')
         })
 })
@@ -97,6 +98,7 @@ app.post('/signup', (req, res) => {
     //  test the http post
     // res.send(userinfo)
     generateCookie(userinfo, auth, res);
+    // TODO update user state
 
     res.redirect('/');
 })

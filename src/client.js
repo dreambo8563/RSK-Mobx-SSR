@@ -114,7 +114,8 @@ function run() {
         initialStore[key].initial(htmlStore[key])
         // console.log(JSON.stringify(userInfo), JSON.stringify(testInstance))
       } else {
-        initialStore[key].noFetch = true
+        // console.log(key)
+        // initialStore[key].noFetch = true
       }
     })
   }

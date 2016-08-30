@@ -4,4 +4,9 @@ export const updateStore = (store) => {
 }
 
 export const getStore = () => syncStore;
-export const clearStore = () => { syncStore = undefined }
+export const clearStore = () => {
+    Object.keys(syncStore).forEach(key => {
+        syncStore[key].clear()
+    })
+    syncStore = undefined
+}

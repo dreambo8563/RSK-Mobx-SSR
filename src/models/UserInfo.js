@@ -7,12 +7,12 @@ import filter from 'lodash/filter'
 class UserInfo {
 
     @observable id;
-    @observable name = null;
-    @observable userPreviligy = null;
-    @observable authorize = false;
-    @observable news = [];
-    @observable loginErr = false
-    noFetch = false
+    @observable name = undefined;
+    @observable userPreviligy = undefined;
+    @observable authorize = undefined;
+    @observable news = undefined;
+    @observable loginErr = undefined
+    noFetch = undefined
 
     update(user) {
         this.id = user.id
@@ -57,14 +57,8 @@ class UserInfo {
         this.loginErr = store.loginErr
     }
 
-    toJson() {
-        return {
-            id: this.id,
-            name: this.name,
-            authorize: this.authorize,
-            userPreviligy: this.userPreviligy,
-            news: this.news,
-        };
+    clear() {
+        this.initial({});
     }
 }
 
