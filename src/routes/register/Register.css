@@ -23,17 +23,17 @@
   width:50%;
   height: 20em;
   overflow: hidden;
-  background-color: blue;
 }
  .carousel img{
     -webkit-transition:  3s ;
     -moz-transition:  3s ;
     transition:  3s ;
     width:0;
+    height: 20em;
   }
  .carousel img.current{
-  width:100%
+  width:100%;
 }
 .defaultImg{
-  background-color: red
+  background-color:black;
 }

@@ -1,1 +1,1 @@
-module.exports = {"commons":{"js":"/assets/commons.js"},"app":{"js":"/assets/app.js?df298c9eabb56275bdf4"},"vendor":{"js":"/assets/vendor.js?df298c9eabb56275bdf4"}};
+module.exports = {"commons":{"js":"/assets/commons.js"},"app":{"js":"/assets/app.js?33a5ac43fb5407fd51f9"},"vendor":{"js":"/assets/vendor.js?33a5ac43fb5407fd51f9"}};

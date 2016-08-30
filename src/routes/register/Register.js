@@ -32,8 +32,6 @@ const imgData = [
 
 @observer
 class Register extends Component {
-
-
   componentWillMount() {
     this.context.setTitle(title);
   }
