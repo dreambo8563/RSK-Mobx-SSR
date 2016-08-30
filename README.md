@@ -27,6 +27,7 @@ changelog:
 - add HTTPUtils.js to provide common json get & post method
 - add sign in validat process on node side
 - add signin error state sync (maybe we need ErrorState?)
+- add simple carousel in register component
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),
