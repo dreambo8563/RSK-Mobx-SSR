@@ -2738,10 +2738,12 @@ module.exports =
       return syncStore;
   };
   var clearStore = exports.clearStore = function clearStore() {
-      (0, _keys2.default)(syncStore).forEach(function (key) {
-          syncStore[key].clear();
-      });
-      syncStore = undefined;
+      if (!!syncStore) {
+          (0, _keys2.default)(syncStore).forEach(function (key) {
+              syncStore[key].clear();
+          });
+          syncStore = undefined;
+      }
   };
 
 /***/ },
@@ -3886,6 +3888,10 @@ module.exports =
     value: true
   });
   
+  var _defineProperty = __webpack_require__(62);
+  
+  var _defineProperty2 = _interopRequireDefault(_defineProperty);
+  
   var _getPrototypeOf = __webpack_require__(18);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -3906,6 +3912,15 @@ module.exports =
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
+  var _class, _desc, _value, _class2, _descriptor; /**
+                                                    * React Starter Kit (https://www.reactstarterkit.com/)
+                                                    *
+                                                    * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
+                                                    *
+                                                    * This source code is licensed under the MIT license found in the
+                                                    * LICENSE.txt file in the root directory of this source tree.
+                                                    */
+  
   var _react = __webpack_require__(15);
   
   var _react2 = _interopRequireDefault(_react);
@@ -3918,23 +3933,86 @@ module.exports =
   
   var _Register2 = _interopRequireDefault(_Register);
   
+  var _mobxReact = __webpack_require__(74);
+  
+  var _mobx = __webpack_require__(63);
+  
+  var _classnames = __webpack_require__(49);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
+  
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  var title = 'New User Registration'; /**
-                                        * React Starter Kit (https://www.reactstarterkit.com/)
-                                        *
-                                        * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                        *
-                                        * This source code is licensed under the MIT license found in the
-                                        * LICENSE.txt file in the root directory of this source tree.
-                                        */
+  function _initDefineProp(target, property, descriptor, context) {
+    if (!descriptor) return;
+    (0, _defineProperty2.default)(target, property, {
+      enumerable: descriptor.enumerable,
+      configurable: descriptor.configurable,
+      writable: descriptor.writable,
+      value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+    });
+  }
   
-  var Register = function (_Component) {
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+    var desc = {};
+    Object['ke' + 'ys'](descriptor).forEach(function (key) {
+      desc[key] = descriptor[key];
+    });
+    desc.enumerable = !!desc.enumerable;
+    desc.configurable = !!desc.configurable;
+  
+    if ('value' in desc || desc.initializer) {
+      desc.writable = true;
+    }
+  
+    desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+      return decorator(target, property, desc) || desc;
+    }, desc);
+  
+    if (context && desc.initializer !== void 0) {
+      desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+      desc.initializer = undefined;
+    }
+  
+    if (desc.initializer === void 0) {
+      Object['define' + 'Property'](target, property, desc);
+      desc = null;
+    }
+  
+    return desc;
+  }
+  
+  function _initializerWarningHelper(descriptor, context) {
+    throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+  }
+  
+  var title = 'New User Registration';
+  var imgData = [{
+    imgSrc: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png',
+    alt: 'hah'
+  }, {
+    imgSrc: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png',
+    alt: 'hah'
+  }, {
+    imgSrc: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png',
+    alt: 'hah'
+  }];
+  
+  var Register = (0, _mobxReact.observer)(_class = (_class2 = function (_Component) {
     (0, _inherits3.default)(Register, _Component);
   
     function Register() {
+      var _Object$getPrototypeO;
+  
+      var _temp, _this, _ret;
+  
       (0, _classCallCheck3.default)(this, Register);
-      return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Register).apply(this, arguments));
+  
+      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+  
+      return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Register)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _initDefineProp(_this, 'currentIndex', _descriptor, _this), _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
     }
   
     (0, _createClass3.default)(Register, [{
@@ -3943,8 +4021,28 @@ module.exports =
         this.context.setTitle(title);
       }
     }, {
+      key: 'componentDidMount',
+      value: function componentDidMount() {
+        var _this2 = this;
+  
+        this.handle = setInterval(function () {
+          if (_this2.currentIndex >= 2) {
+            _this2.currentIndex = 0;
+          } else {
+            _this2.currentIndex++;
+          }
+        }, 8000);
+      }
+    }, {
+      key: 'componentWillUnmount',
+      value: function componentWillUnmount() {
+        window.clearInterval(this.handle);
+      }
+    }, {
       key: 'render',
       value: function render() {
+        var _this3 = this;
+  
         return _react2.default.createElement(
           'div',
           { className: _Register2.default.root },
@@ -3957,16 +4055,26 @@ module.exports =
               title
             ),
             _react2.default.createElement(
-              'p',
-              null,
-              '...'
+              'div',
+              { className: _Register2.default.carousel },
+              imgData.map(function (item, index) {
+                return _react2.default.createElement('img', {
+                  className: _this3.currentIndex === index ? (0, _classnames2.default)(_Register2.default.current, _Register2.default.defaultImg) : (0, _classnames2.default)(_Register2.default.defaultImg),
+                  key: index, src: item.imgSrc,
+                  alt: item.alt });
+              })
             )
           )
         );
       }
     }]);
     return Register;
-  }(_react.Component);
+  }(_react.Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'currentIndex', [_mobx.observable], {
+    enumerable: true,
+    initializer: function initializer() {
+      return 0;
+    }
+  })), _class2)) || _class;
   
   Register.contextTypes = { setTitle: _react.PropTypes.func.isRequired };
   
@@ -4015,12 +4123,15 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n\n.Register_root_3RB {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.Register_container_1Lf {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 1000px;\n}\n", "", {"version":3,"sources":["/./routes/register/Register.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;;EAI9E;;gFAE8E;;EAI9E;;gFAE8E,EAErD,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;CAC3D;;ADnBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;CACrC","file":"Register.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: var(--max-content-width);\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n\n.Register_root_3RB {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.Register_container_1Lf {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 1000px;\n}\n\n.Register_carousel_1K5{\n  width:50%;\n  height: 20em;\n  overflow: hidden;\n  background-color: blue;\n}\n\n.Register_carousel_1K5 img{\n    -webkit-transition:  3s ;\n    -o-transition: 3s ;\n    transition:  3s ;\n    width:0;\n  }\n\n.Register_carousel_1K5 img.Register_current_DJo{\n  width:100%\n}\n\n.Register_defaultImg_M5i{\n  background-color: red\n}", "", {"version":3,"sources":["/./routes/register/Register.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;;EAI9E;;gFAE8E;;EAI9E;;gFAE8E,EAErD,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;CAC3D;;ADnBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;CACrC;;AACD;EACE,UAAU;EACV,aAAa;EACb,iBAAiB;EACjB,uBAAuB;CACxB;;AACA;IACG,yBAAyB;IAEzB,mBAAiB;IAAjB,iBAAiB;IACjB,QAAQ;GACT;;AACF;EACC,UAAU;CACX;;AACD;EACE,qBAAqB;CACtB","file":"Register.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: var(--max-content-width);\n}\n.carousel{\n  width:50%;\n  height: 20em;\n  overflow: hidden;\n  background-color: blue;\n}\n .carousel img{\n    -webkit-transition:  3s ;\n    -moz-transition:  3s ;\n    transition:  3s ;\n    width:0;\n  }\n .carousel img.current{\n  width:100%\n}\n.defaultImg{\n  background-color: red\n}","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"root": "Register_root_3RB",
-  	"container": "Register_container_1Lf"
+  	"container": "Register_container_1Lf",
+  	"carousel": "Register_carousel_1K5",
+  	"current": "Register_current_DJo",
+  	"defaultImg": "Register_defaultImg_M5i"
   };
 
 /***/ },

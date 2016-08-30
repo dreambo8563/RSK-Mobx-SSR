@@ -19,3 +19,21 @@
   padding: 0 0 40px;
   max-width: var(--max-content-width);
 }
+.carousel{
+  width:50%;
+  height: 20em;
+  overflow: hidden;
+  background-color: blue;
+}
+ .carousel img{
+    -webkit-transition:  3s ;
+    -moz-transition:  3s ;
+    transition:  3s ;
+    width:0;
+  }
+ .carousel img.current{
+  width:100%
+}
+.defaultImg{
+  background-color: red
+}
