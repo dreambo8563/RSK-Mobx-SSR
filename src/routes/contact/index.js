@@ -9,6 +9,7 @@
 
 import React from 'react';
 import Contact from './Contact';
+import DropDownMenu from './../../components/DropDownMenu/DropDownMenu'
 import { testInstance } from './../../models/testModel'
 import { updateStore } from './../../models/syncStore'
 
@@ -41,7 +42,7 @@ export default {
         return (
           <div>
             <h1>good</h1>
-
+            <DropDownMenu />
           </div>
         )
       },
