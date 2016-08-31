@@ -1,7 +1,7 @@
 
 import { observable } from 'mobx';
 import fetch from './../core/fetch'
-import filter from 'lodash/filter'
+// import filter from 'lodash/filter'
 
 
 class UserInfo {
@@ -24,7 +24,7 @@ class UserInfo {
     deleteNewsById(newsid) {
         // require.ensure([], (require) => {
         // const filter = require('lodash/filter');
-        this.news = filter(this.news, o => o.id !== newsid);
+        this.news = this.news.filter(o => o.id !== newsid);
         // })
 
         // this.news = this.news.filter(x => x.id !== newsid)

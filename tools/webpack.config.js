@@ -206,8 +206,7 @@ const clientConfig = extend(true, {}, config, {
 
   entry: {
     app: './client.js',
-    vendor: ['react', 'react-dom', 'universal-router',
-      'fastclick', 'mobx-react', 'mobx', 'lodash/filter'],
+    vendor: './vendor.js',
   },
 
   output: {
@@ -218,7 +217,7 @@ const clientConfig = extend(true, {}, config, {
   target: 'web',
 
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin('commons', 'commons.js'),
+    new webpack.optimize.CommonsChunkPlugin('commons', 'commons_v1.js'),
     // Define free variables
     // https://webpack.github.io/docs/list-of-plugins.html#defineplugin
     new webpack.DefinePlugin({ ...GLOBALS, 'process.env.BROWSER': true }),

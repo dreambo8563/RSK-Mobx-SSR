@@ -1,11 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
 
-// function Html({  }) {
-
-// }
-
-
 class Html extends Component {
 
   render() {

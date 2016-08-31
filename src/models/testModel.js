@@ -1,7 +1,6 @@
 
 import { observable } from 'mobx';
 
-
 class test {
     @observable timerData = {
         secondsPassed: 0,
