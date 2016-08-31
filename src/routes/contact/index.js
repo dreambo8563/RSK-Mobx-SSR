@@ -10,6 +10,8 @@
 import React from 'react';
 import Contact from './Contact';
 import DropDownMenu from './../../components/DropDownMenu/DropDownMenu'
+import Tabs from './../../components/Tabs/Tabs'
+import Test from './../../components/Test/Test'
 import { testInstance } from './../../models/testModel'
 import { updateStore } from './../../models/syncStore'
 
@@ -36,13 +38,17 @@ export default {
     },
     {
       path: '/name',
-      action: async () => {
+      action: async (context) => {
         updateStore({ testInstance })
-        console.log('in name router')
+        testInstance.noFetch = false;
+        // console.log(context.query.tab, 'in name router')
         return (
           <div>
             <h1>good</h1>
             <DropDownMenu />
+            <Tabs selectedTab={context.query.tab}>
+              <Test />
+            </Tabs>
           </div>
         )
       },

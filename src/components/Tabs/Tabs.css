@@ -1,0 +1,15 @@
+nav{
+    display: flex
+}
+
+    section{
+        width:500px;
+        height:500px;
+        background-color: green;
+    }
+.tabItem{
+    width:100px;
+    height: 100px;
+    background-color: palegreen;
+    color:white;
+}
