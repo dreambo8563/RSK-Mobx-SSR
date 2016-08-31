@@ -7,7 +7,7 @@
  * LICENSE.txt file in the root directory of this source tree.
  */
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes} from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './DropDownMenu.css';
 import { observer } from 'mobx-react'
@@ -29,22 +29,15 @@ class DropDownMenu extends Component {
     onMouseLeave = {::this.hideMenu }
     className = { s.dropDownButton } >
     dropDown
-                { this.show ? (<div className={s.menuContent}>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-    <li>5</li>
-    <li>6</li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</div>) : undefined
+                { this.show ? this.props.children : undefined
 }
             </div >
         );
     }
 }
+DropDownMenu.propTypes = {
+    children: PropTypes.element,
+};
+
 
 export default withStyles(s)(DropDownMenu);

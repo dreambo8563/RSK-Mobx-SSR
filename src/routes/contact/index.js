@@ -45,7 +45,14 @@ export default {
         return (
           <div>
             <h1>good</h1>
-            <DropDownMenu />
+            <DropDownMenu>
+              <div>
+                <h1>good</h1>
+                <h1>good</h1>
+                <h1>good</h1>
+              </div>
+
+            </DropDownMenu>
             <Tabs selectedTab={context.query.tab}>
               <Test />
             </Tabs>
