@@ -20,18 +20,26 @@ import { httpGetJSON } from './../../core/HTTPUtils'
 class Tabs extends Component {
 
     componentDidMount() {
+        console.log(this.config[this.selectedIndex], this.selectedIndex)
         this.selectedIndex = this.props.selectedTab || this.selectedIndex
-        this.getTabData(this.config[this.selectedIndex].navAPI)
-        console.log(this.props.children)
+        this.getTabData(this.selectedIndex)
     }
-    getTabData(api) {
-        httpGetJSON(api)
+    getTabData(index) {
+        console.log(index)
+        httpGetJSON(this.config[index].navAPI)
             .then(data => {
                 this.tabContent = data;
+                this.selectedIndex = index
+                this.childContent = this.props.children && React.cloneElement(
+                    this.props.children[index],
+                    { data: this.tabContent }
+                );
             })
     }
     @observable selectedIndex = 0;
     @observable tabContent = undefined
+    @observable childContent = undefined
+
     config = [
         { navText: 'A', navLink: 'name', navAPI: 'http://jsonplaceholder.typicode.com/posts/1' },
         { navText: 'B', navLink: 'B', navAPI: 'http://jsonplaceholder.typicode.com/posts/2' },
@@ -42,23 +50,19 @@ class Tabs extends Component {
             (item, index) => <div
                 className={s.tabItem}
                 key={index}
-                onClick={() => this.getTabData(item.navAPI) }
+                onClick={() => this.getTabData(index) }
                 to = { item.navLink } >
                 { item.navText }
             </div>)
     }
     render() {
-        const child = this.props.children && React.cloneElement(
-            this.props.children,
-            { data: this.tabContent }
-        );
         return (
             <div>
                 <nav>
                     {this.navRender() }
                 </nav>
                 <section>
-                    {child}
+                    {this.childContent}
                 </section>
             </div>
         );
@@ -66,7 +70,7 @@ class Tabs extends Component {
 }
 Tabs.propTypes = {
     selectedTab: PropTypes.string,
-    children: PropTypes.element,
+    children: PropTypes.array,
 };
 
 export default withStyles(s)(Tabs);

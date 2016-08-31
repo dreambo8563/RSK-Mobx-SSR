@@ -46,14 +46,14 @@ export default {
           <div>
             <h1>good</h1>
             <DropDownMenu>
-              <div>
-                <h1>good</h1>
-                <h1>good</h1>
-                <h1>good</h1>
-              </div>
+
+              <h1>good</h1>
+
 
             </DropDownMenu>
             <Tabs selectedTab={context.query.tab}>
+              <Test />
+              <Test />
               <Test />
             </Tabs>
           </div>
