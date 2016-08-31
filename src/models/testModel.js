@@ -15,6 +15,9 @@ class test {
     initial(store) {
         this.timerData = store.timerData
     }
+    clear() {
+        this.initial({});
+    }
 }
 
 export const testInstance = new test();
