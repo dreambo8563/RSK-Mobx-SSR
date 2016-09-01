@@ -143,6 +143,7 @@
       "react/jsx-indent-props": 0,
       "react/jsx-indent": 0,
       "react/jsx-equals-spacing": 0,
+      "react/jsx-boolean-value": 0,
       "indent": 0
     }
   },

@@ -12,7 +12,6 @@ import Contact from './Contact';
 import DropDownMenu from './../../components/DropDownMenu/DropDownMenu'
 import Tabs from './../../components/Tabs/Tabs'
 import Test from './../../components/Test/Test'
-import SimpleChartComponent from './../../components/Chart/Chart'
 import { testInstance } from './../../models/testModel'
 import { updateStore } from './../../models/syncStore'
 
@@ -57,7 +56,6 @@ export default {
               <Test />
               <Test />
             </Tabs>
-            <SimpleChartComponent />
           </div>
         )
       },

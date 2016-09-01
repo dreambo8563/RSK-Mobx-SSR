@@ -70,6 +70,11 @@ class SimpleChartComponent extends Component {
         };
         return option;
     }
+    onChartReady(chart) {
+        setTimeout(() => {
+            chart.hideLoading();
+        }, 3000);
+    }
     render() {
         return (
             <div className="examples">
@@ -78,7 +83,10 @@ class SimpleChartComponent extends Component {
                     <ReactEcharts
                         option={this.getOtion() }
                         style={{ height: '350px', width: '100%' }}
-                        className="react_for_echarts" />
+                        className="react_for_echarts"
+                        showLoading={true}
+                        onChartReady={this.onChartReady}
+                        />
                 </div>
             </div>
         );
