@@ -1,0 +1,38 @@
+.vertical .header {
+    width: 100px;
+    text-align: center;
+}
+
+.vertical .number {
+    width: 100px;
+    text-align: center;
+}
+
+.horizontal {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.horizontal .header {
+    width: 100px;
+    text-align: center;
+}
+
+.horizontal .number {
+    width: 100px;
+    text-align: center;
+}
+
+.horizontal .table {
+    width: 100%;
+    overflow: hidden;
+    float: left;
+}
+
+.vertical .table {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+}

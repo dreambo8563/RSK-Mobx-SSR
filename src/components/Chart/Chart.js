@@ -4,14 +4,14 @@ import ReactEcharts from 'echarts-for-react';
 // import s from './Tabs.css';
 // import Link from '../Link'
 // import history from './../../core/history'
-// import { observer } from 'mobx-react'
-// import { observable } from 'mobx'
+import { observer } from 'mobx-react'
+import { observable } from 'mobx'
 // import { httpGetJSON } from './../../core/HTTPUtils'
 
-
+@observer
 class SimpleChartComponent extends Component {
-    getOtion() {
-        const option = {
+    componentDidMount() {
+        this.option = {
             title: {
                 text: '堆叠区域图',
             },
@@ -68,25 +68,31 @@ class SimpleChartComponent extends Component {
                 },
             ],
         };
-        return option;
     }
+
     onChartReady(chart) {
         setTimeout(() => {
             chart.hideLoading();
         }, 3000);
     }
+    @observable option = undefined
     render() {
         return (
             <div className="examples">
                 <div className="parent">
                     <label> render a Simple echart With <strong>option and height</strong>: </label>
-                    <ReactEcharts
-                        option={this.getOtion() }
+                    {!!this.option ? <ReactEcharts
+                        option={this.option }
                         style={{ height: '350px', width: '100%' }}
                         className="react_for_echarts"
                         showLoading={true}
                         onChartReady={this.onChartReady}
-                        />
+                        modules={
+                            ['echarts/lib/chart/bar',
+                                'echarts/lib/component/tooltip',
+                                'echarts/lib/component/title']
+                        }
+                        /> : undefined}
                 </div>
             </div>
         );

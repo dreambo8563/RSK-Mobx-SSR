@@ -11,14 +11,17 @@ import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './DropDownMenu.css';
 import { observer } from 'mobx-react'
-import { observable } from 'mobx'
+import { observable, action } from 'mobx'
 
 @observer
 class DropDownMenu extends Component {
     @observable show = false;
+
+    @action
     showMenu() {
         this.show = true
     }
+    @action
     hideMenu() {
         this.show = false
     }

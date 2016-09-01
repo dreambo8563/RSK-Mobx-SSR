@@ -8,7 +8,9 @@
  */
 
 import React from 'react';
-import SimpleChartComponent from './../../components/Chart/Chart'
+import ExcelTable from './../../components/ExcelTable/ExcelTable'
+// import SimpleChartComponent from './../../components/Chart/Chart'
+
 // import Content from './Content';
 // import fetch from '../../core/fetch';
 
@@ -16,7 +18,7 @@ export default {
 
   path: '/content',
 
-  action() { // eslint-disable-line react/prop-types
+  async action(context) { // eslint-disable-line react/prop-types
     // const resp = await fetch('/graphql', {
     //   method: 'post',
     //   headers: {
@@ -31,7 +33,34 @@ export default {
     // if (resp.status !== 200) throw new Error(resp.statusText);
     // const { data } = await resp.json();
     // if (!data || !data.content) return undefined;
-    return <SimpleChartComponent />;
+    console.log('before require');
+    try {
+      var SimpleChartComponent = await new Promise((resolve) => {
+        require.ensure([], (require) =>
+          resolve(require('./../../components/Chart/Chart').default));
+      });
+
+      // the config structure for the excel
+      var config = {
+        type: 'vertical', // horizontal
+        data: [
+          { header: 'aaa', value: [1, 2, 3, 4, 5, 6, 6, 6, 6] },
+          { header: 'aaa', value: [1, 2, 3, 4, 5, 6, 6, 6, 6] },
+        ],
+      }
+    } catch (e) {
+      console.log(context)
+      console.log(e)
+    }
+    return (<div >
+      <SimpleChartComponent />
+      <ExcelTable data={config} />
+    </div >);
+    // const ExcelTable = await new Promise((resolve) => {
+    //   require.ensure([], (require) =>
+    //     resolve(require('./../../components/ExcelTable/ExcelTable').default));
+    // });
+
   },
 
 };

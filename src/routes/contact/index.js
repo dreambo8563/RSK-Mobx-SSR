@@ -38,7 +38,7 @@ export default {
     },
     {
       path: '/name',
-      action: async (context) => {
+      action: () => {
         updateStore({ testInstance })
         testInstance.noFetch = false;
         // console.log(context.query.tab, 'in name router')
@@ -51,12 +51,12 @@ export default {
 
 
             </DropDownMenu>
-            <Tabs selectedTab={context.query.tab}>
+            <Tabs>
               <Test />
               <Test />
               <Test />
             </Tabs>
-          </div>
+          </div >
         )
       },
     },

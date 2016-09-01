@@ -13,31 +13,31 @@ import s from './Tabs.css';
 // import Link from '../Link'
 // import history from './../../core/history'
 import { observer } from 'mobx-react'
-import { observable } from 'mobx'
+import { observable, action } from 'mobx'
 import { httpGetJSON } from './../../core/HTTPUtils'
 
 @observer
 class Tabs extends Component {
 
     componentDidMount() {
-        console.log(this.config[this.selectedIndex], this.selectedIndex)
-        this.selectedIndex = this.props.selectedTab || this.selectedIndex
+        // console.log(this.config[this.selectedIndex], this.selectedIndex)
+        // this.selectedIndex = this.props.selectedTab || this.selectedIndex
         this.getTabData(this.selectedIndex)
     }
     getTabData(index) {
         console.log(index)
         httpGetJSON(this.config[index].navAPI)
             .then(data => {
-                this.tabContent = data;
-                this.selectedIndex = index
-                this.childContent = this.props.children && React.cloneElement(
-                    this.props.children[index],
-                    { data: this.tabContent }
-                );
+                console.log(data, 'before update')
+                this.updateObs(data, index)
             })
     }
+    @action
+    updateObs(data, index) {
+        this.selectedIndex = index
+        this.childContent = data
+    }
     @observable selectedIndex = 0;
-    @observable tabContent = undefined
     @observable childContent = undefined
 
     config = [
@@ -56,20 +56,23 @@ class Tabs extends Component {
             </div>)
     }
     render() {
+        console.log('ready to render')
         return (
             <div>
                 <nav>
                     {this.navRender() }
                 </nav>
                 <section>
-                    {this.childContent}
+                    {this.props.children && React.cloneElement(
+                        this.props.children[this.selectedIndex],
+                        { data: this.childContent }
+                    ) }
                 </section>
             </div>
         );
     }
 }
 Tabs.propTypes = {
-    selectedTab: PropTypes.string,
     children: PropTypes.array,
 };
 
