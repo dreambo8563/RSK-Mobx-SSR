@@ -3759,10 +3759,6 @@ module.exports =
       value: true
   });
   
-  var _defineProperty = __webpack_require__(61);
-  
-  var _defineProperty2 = _interopRequireDefault(_defineProperty);
-  
   var _getPrototypeOf = __webpack_require__(17);
   
   var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -3783,334 +3779,54 @@ module.exports =
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
-  var _class, _desc, _value, _class2, _descriptor, _descriptor2;
+  var _dec, _class, _class2, _temp;
+  // import Navigation from './../ComposedComponent/Navigation/Navigation'
+  // import BaseButton from './../BaseComponent/BaseButton/BaseButton'
+  // import withStyles from 'isomorphic-style-loader/lib/withStyles'
+  
   
   var _react = __webpack_require__(14);
   
   var _react2 = _interopRequireDefault(_react);
-  
-  var _Navigation = __webpack_require__(83);
-  
-  var _Navigation2 = _interopRequireDefault(_Navigation);
-  
-  var _BaseButton = __webpack_require__(84);
-  
-  var _BaseButton2 = _interopRequireDefault(_BaseButton);
-  
-  var _withStyles = __webpack_require__(23);
-  
-  var _withStyles2 = _interopRequireDefault(_withStyles);
   
   var _Test = __webpack_require__(85);
   
   var _Test2 = _interopRequireDefault(_Test);
   
-  var _Container = __webpack_require__(112);
-  
-  var _Container2 = _interopRequireDefault(_Container);
-  
-  var _mobx = __webpack_require__(62);
-  
-  var _mobxReact = __webpack_require__(72);
+  var _DialogDecorator = __webpack_require__(120);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  function _initDefineProp(target, property, descriptor, context) {
-      if (!descriptor) return;
-      (0, _defineProperty2.default)(target, property, {
-          enumerable: descriptor.enumerable,
-          configurable: descriptor.configurable,
-          writable: descriptor.writable,
-          value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
-      });
-  }
-  
-  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
-      var desc = {};
-      Object['ke' + 'ys'](descriptor).forEach(function (key) {
-          desc[key] = descriptor[key];
-      });
-      desc.enumerable = !!desc.enumerable;
-      desc.configurable = !!desc.configurable;
-  
-      if ('value' in desc || desc.initializer) {
-          desc.writable = true;
-      }
-  
-      desc = decorators.slice().reverse().reduce(function (desc, decorator) {
-          return decorator(target, property, desc) || desc;
-      }, desc);
-  
-      if (context && desc.initializer !== void 0) {
-          desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
-          desc.initializer = undefined;
-      }
-  
-      if (desc.initializer === void 0) {
-          Object['define' + 'Property'](target, property, desc);
-          desc = null;
-      }
-  
-      return desc;
-  }
-  
-  function _initializerWarningHelper(descriptor, context) {
-      throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
-  }
-  
-  var xClass = {
-      width: '100px',
-      height: '200px',
-      color: 'red'
-  };
-  
-  var itemClass = {
-      color: 'blue'
-  };
-  
-  var config = {
-      cc: 'ddd'
-  };
-  
-  var Test = (0, _mobxReact.observer)(_class = (_class2 = function (_Component) {
+  var Test = (_dec = (0, _DialogDecorator.dialog)(_Test2.default.container), _dec(_class = (_temp = _class2 = function (_Component) {
       (0, _inherits3.default)(Test, _Component);
   
       function Test() {
-          var _Object$getPrototypeO;
-  
-          var _temp, _this, _ret;
-  
           (0, _classCallCheck3.default)(this, Test);
-  
-          for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-              args[_key] = arguments[_key];
-          }
-  
-          return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Test)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _initDefineProp(_this, 'selectedIndex', _descriptor, _this), _initDefineProp(_this, 'tabContent', _descriptor2, _this), _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Test).apply(this, arguments));
       }
   
       (0, _createClass3.default)(Test, [{
-          key: 'output',
-          value: function output() {
-              this.selectedIndex = 0;
-              this.contentRender();
-          }
-      }, {
-          key: 'output1',
-          value: function output1() {
-              this.selectedIndex = 1;
-              this.contentRender();
-          }
-      }, {
-          key: 'contentRender',
-          value: function contentRender() {
-              switch (this.selectedIndex) {
-                  case 0:
-                      this.tabContent = _react2.default.createElement(
-                          'h1',
-                          null,
-                          '0000'
-                      );break;
-                  case 1:
-                      this.tabContent = _react2.default.createElement(
-                          'h1',
-                          null,
-                          '11111'
-                      );break;
-                  default:
-                      this.tabContent = _react2.default.createElement(
-                          'h1',
-                          null,
-                          '4444'
-                      );break;
-              }
-          }
-      }, {
           key: 'render',
           value: function render() {
+              var _context;
+  
               return _react2.default.createElement(
                   'div',
                   null,
-                  _react2.default.createElement(
-                      _Navigation2.default,
-                      { className: _Test2.default.good },
-                      _react2.default.createElement(
-                          _BaseButton2.default,
-                          { onClick: this.output.bind(this) },
-                          'US'
-                      ),
-                      _react2.default.createElement(
-                          _BaseButton2.default,
-                          { className: _Test2.default.bad, onClick: this.output1.bind(this) },
-                          'CN'
-                      ),
-                      _react2.default.createElement(
-                          _BaseButton2.default,
-                          null,
-                          'UK'
-                      )
-                  ),
-                  _react2.default.createElement(
-                      _Container2.default,
-                      { className: _Test2.default.container },
-                      this.tabContent
-                  )
+                  _react2.default.createElement('input', { onChange: (_context = this.props).onClose.bind(_context), type: 'text' }),
+                  _react2.default.createElement('input', { type: 'text' })
               );
           }
       }]);
       return Test;
-  }(_react.Component), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'selectedIndex', [_mobx.observable], {
-      enumerable: true,
-      initializer: function initializer() {
-          return 0;
-      }
-  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'tabContent', [_mobx.observable], {
-      enumerable: true,
-      initializer: function initializer() {
-          return _react2.default.createElement('div', null);
-      }
-  })), _class2)) || _class;
-  
-  exports.default = (0, _withStyles2.default)(_Test2.default)(Test);
+  }(_react.Component), _class2.propTypes = {
+      onClose: _react.PropTypes.func.isRequired
+  }, _temp)) || _class);
+  exports.default = Test;
 
 /***/ },
-/* 83 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-  
-  var _extends2 = __webpack_require__(5);
-  
-  var _extends3 = _interopRequireDefault(_extends2);
-  
-  var _objectWithoutProperties2 = __webpack_require__(42);
-  
-  var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-  
-  var _getPrototypeOf = __webpack_require__(17);
-  
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-  
-  var _classCallCheck2 = __webpack_require__(18);
-  
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-  
-  var _createClass2 = __webpack_require__(19);
-  
-  var _createClass3 = _interopRequireDefault(_createClass2);
-  
-  var _possibleConstructorReturn2 = __webpack_require__(20);
-  
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-  
-  var _inherits2 = __webpack_require__(21);
-  
-  var _inherits3 = _interopRequireDefault(_inherits2);
-  
-  var _class, _temp;
-  
-  var _react = __webpack_require__(14);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  var Navigation = (_temp = _class = function (_Component) {
-      (0, _inherits3.default)(Navigation, _Component);
-  
-      function Navigation() {
-          (0, _classCallCheck3.default)(this, Navigation);
-          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Navigation).apply(this, arguments));
-      }
-  
-      (0, _createClass3.default)(Navigation, [{
-          key: 'render',
-          value: function render() {
-              var _props = this.props;
-              var className = _props.className;
-              var children = _props.children;
-              var prop = (0, _objectWithoutProperties3.default)(_props, ['className', 'children']);
-  
-              return _react2.default.createElement(
-                  'div',
-                  (0, _extends3.default)({ className: className }, prop),
-                  children
-              );
-          }
-      }]);
-      return Navigation;
-  }(_react.Component), _class.propTypes = {
-      className: _react.PropTypes.string,
-      children: _react.PropTypes.oneOfType([_react.PropTypes.element, _react.PropTypes.array]).isRequired
-  }, _temp);
-  exports.default = Navigation;
-
-/***/ },
-/* 84 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-  
-  var _objectWithoutProperties2 = __webpack_require__(42);
-  
-  var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-  
-  var _getPrototypeOf = __webpack_require__(17);
-  
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-  
-  var _classCallCheck2 = __webpack_require__(18);
-  
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-  
-  var _createClass2 = __webpack_require__(19);
-  
-  var _createClass3 = _interopRequireDefault(_createClass2);
-  
-  var _possibleConstructorReturn2 = __webpack_require__(20);
-  
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-  
-  var _inherits2 = __webpack_require__(21);
-  
-  var _inherits3 = _interopRequireDefault(_inherits2);
-  
-  var _react = __webpack_require__(14);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  var BaseButton = function (_Component) {
-      (0, _inherits3.default)(BaseButton, _Component);
-  
-      function BaseButton() {
-          (0, _classCallCheck3.default)(this, BaseButton);
-          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(BaseButton).apply(this, arguments));
-      }
-  
-      (0, _createClass3.default)(BaseButton, [{
-          key: 'render',
-          value: function render() {
-              var prop = (0, _objectWithoutProperties3.default)(this.props, []);
-  
-              return _react2.default.createElement('button', prop);
-          }
-      }]);
-      return BaseButton;
-  }(_react.Component);
-  
-  exports.default = BaseButton;
-
-/***/ },
+/* 83 */,
+/* 84 */,
 /* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -5700,7 +5416,7 @@ module.exports =
         return _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(_Test2.default, null),
+          _react2.default.createElement(_Test2.default, { onClose: this.postTest.bind(this) }),
           'this is the params got from path ',
           this.props.id,
           _react2.default.createElement(
@@ -5846,7 +5562,121 @@ module.exports =
   module.exports = require("jsonwebtoken");
 
 /***/ },
-/* 112 */
+/* 112 */,
+/* 113 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, "__esModule", {
+      value: true
+  });
+  
+  var _getPrototypeOf = __webpack_require__(17);
+  
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+  
+  var _classCallCheck2 = __webpack_require__(18);
+  
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+  
+  var _createClass2 = __webpack_require__(19);
+  
+  var _createClass3 = _interopRequireDefault(_createClass2);
+  
+  var _possibleConstructorReturn2 = __webpack_require__(20);
+  
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+  
+  var _inherits2 = __webpack_require__(21);
+  
+  var _inherits3 = _interopRequireDefault(_inherits2);
+  
+  var _react = __webpack_require__(14);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _withStyles = __webpack_require__(23);
+  
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+  
+  var _Overlay = __webpack_require__(114);
+  
+  var _Overlay2 = _interopRequireDefault(_Overlay);
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  var Overlay = function (_Component) {
+      (0, _inherits3.default)(Overlay, _Component);
+  
+      function Overlay() {
+          (0, _classCallCheck3.default)(this, Overlay);
+          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Overlay).apply(this, arguments));
+      }
+  
+      (0, _createClass3.default)(Overlay, [{
+          key: 'render',
+          value: function render() {
+              return _react2.default.createElement('div', { className: _Overlay2.default.overlay });
+          }
+      }]);
+      return Overlay;
+  }(_react.Component);
+  
+  exports.default = (0, _withStyles2.default)(_Overlay2.default)(Overlay);
+
+/***/ },
+/* 114 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(115);
+      var insertCss = __webpack_require__(27);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+    
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Overlay.css", function() {
+          content = require("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Overlay.css");
+  
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+  
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 115 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(26)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, ".Overlay_overlay_1vg\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n    background-color: rgba(128, 128, 128, 0.9);\r\n}\r\n", "", {"version":3,"sources":["/./components/BaseComponent/Overlay/Overlay.css"],"names":[],"mappings":"AAAA;;IAEI,gBAAgB;IAChB,OAAO;IACP,QAAQ;;IAER,YAAY;IACZ,aAAa;;IAEb,2CAA0C;CAC7C","file":"Overlay.css","sourcesContent":[".overlay\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n    background-color: color(grey alpha(-10%));\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"overlay": "Overlay_overlay_1vg"
+  };
+
+/***/ },
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5889,37 +5719,191 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
+  var _withStyles = __webpack_require__(23);
+  
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+  
+  var _DialogContainer = __webpack_require__(117);
+  
+  var _DialogContainer2 = _interopRequireDefault(_DialogContainer);
+  
+  var _classnames = __webpack_require__(48);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
+  
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  var Container = (_temp = _class = function (_Component) {
-      (0, _inherits3.default)(Container, _Component);
+  var DialogContainer = (_temp = _class = function (_Component) {
+      (0, _inherits3.default)(DialogContainer, _Component);
   
-      function Container() {
-          (0, _classCallCheck3.default)(this, Container);
-          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Container).apply(this, arguments));
+      function DialogContainer() {
+          (0, _classCallCheck3.default)(this, DialogContainer);
+          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DialogContainer).apply(this, arguments));
       }
   
-      (0, _createClass3.default)(Container, [{
+      (0, _createClass3.default)(DialogContainer, [{
           key: 'render',
           value: function render() {
               var _props = this.props;
               var className = _props.className;
+              var onClose = _props.onClose;
               var children = _props.children;
-              var prop = (0, _objectWithoutProperties3.default)(_props, ['className', 'children']);
+              var prop = (0, _objectWithoutProperties3.default)(_props, ['className', 'onClose', 'children']);
   
               return _react2.default.createElement(
                   'div',
-                  (0, _extends3.default)({ className: className }, prop),
+                  (0, _extends3.default)({ className: (0, _classnames2.default)(className, _DialogContainer2.default.container) }, prop),
+                  _react2.default.createElement(
+                      'div',
+                      { onClick: onClose, className: _DialogContainer2.default.closeBtn },
+                      'X'
+                  ),
                   children
               );
           }
       }]);
-      return Container;
+      return DialogContainer;
   }(_react.Component), _class.propTypes = {
       className: _react.PropTypes.string,
-      children: _react.PropTypes.any
+      children: _react.PropTypes.any,
+      onClose: _react.PropTypes.func
   }, _temp);
-  exports.default = Container;
+  exports.default = (0, _withStyles2.default)(_DialogContainer2.default)(DialogContainer);
+
+/***/ },
+/* 117 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(118);
+      var insertCss = __webpack_require__(27);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+    
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./DialogContainer.css", function() {
+          content = require("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./DialogContainer.css");
+  
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+  
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 118 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(26)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, ".DialogContainer_container_1B4\r\n{\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    -webkit-transform: translate(-50%,-50%);\r\n        -ms-transform: translate(-50%,-50%);\r\n         -o-transform: translate(-50%,-50%);\r\n            transform: translate(-50%,-50%);\r\n}\r\n.DialogContainer_closeBtn_2FQ{\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n}", "", {"version":3,"sources":["/./components/BaseComponent/DialogContainer/DialogContainer.css"],"names":[],"mappings":"AAAA;;IAEI,gBAAgB;IAChB,SAAS;IACT,UAAU;IACV,wCAAgC;QAAhC,oCAAgC;SAAhC,mCAAgC;YAAhC,gCAAgC;CACnC;AACD;IACI,mBAAmB;IACnB,SAAS;IACT,OAAO;CACV","file":"DialogContainer.css","sourcesContent":[".container\r\n{\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%,-50%);\r\n}\r\n.closeBtn{\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n}"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"container": "DialogContainer_container_1B4",
+  	"closeBtn": "DialogContainer_closeBtn_2FQ"
+  };
+
+/***/ },
+/* 119 */,
+/* 120 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, "__esModule", {
+      value: true
+  });
+  exports.dialog = undefined;
+  
+  var _getPrototypeOf = __webpack_require__(17);
+  
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+  
+  var _classCallCheck2 = __webpack_require__(18);
+  
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+  
+  var _createClass2 = __webpack_require__(19);
+  
+  var _createClass3 = _interopRequireDefault(_createClass2);
+  
+  var _possibleConstructorReturn2 = __webpack_require__(20);
+  
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+  
+  var _inherits2 = __webpack_require__(21);
+  
+  var _inherits3 = _interopRequireDefault(_inherits2);
+  
+  var _react = __webpack_require__(14);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _DialogContainer = __webpack_require__(116);
+  
+  var _DialogContainer2 = _interopRequireDefault(_DialogContainer);
+  
+  var _Overlay = __webpack_require__(113);
+  
+  var _Overlay2 = _interopRequireDefault(_Overlay);
+  
+  var _mobxReact = __webpack_require__(72);
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  var dialog = exports.dialog = function dialog(constainerClass) {
+      return function (Target) {
+          var _class, _class2, _temp;
+  
+          return (0, _mobxReact.observer)(_class = (_temp = _class2 = function (_Component) {
+              (0, _inherits3.default)(ComposedComponent, _Component);
+  
+              function ComposedComponent() {
+                  (0, _classCallCheck3.default)(this, ComposedComponent);
+                  return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ComposedComponent).apply(this, arguments));
+              }
+  
+              (0, _createClass3.default)(ComposedComponent, [{
+                  key: 'render',
+                  value: function render() {
+                      var _context;
+  
+                      return _react2.default.createElement(
+                          'div',
+                          null,
+                          _react2.default.createElement(_Overlay2.default, null),
+                          _react2.default.createElement(
+                              _DialogContainer2.default,
+                              { onClose: (_context = this.props).onClose.bind(_context), className: constainerClass },
+                              _react2.default.createElement(Target, { onClose: (_context = this.props).onClose.bind(_context) })
+                          )
+                      );
+                  }
+              }]);
+              return ComposedComponent;
+          }(_react.Component), _class2.propTypes = {
+              onClose: _react.PropTypes.func
+          }, _temp)) || _class;
+      };
+  };
 
 /***/ }
 /******/ ]);

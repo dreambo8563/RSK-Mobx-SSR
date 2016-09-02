@@ -44,7 +44,8 @@ class Detail extends Component {
     return (
       <div>
 
-        <MyComponent />
+        <MyComponent onClose={::this.postTest} />
+
 
         this is the params got from path {this.props.id}
         <form ref="myForm" action="/signin" method="post">
