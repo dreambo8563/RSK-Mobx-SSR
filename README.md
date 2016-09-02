@@ -29,6 +29,7 @@ changelog:
 - add signin error state sync (maybe we need ErrorState?)
 - add simple carousel in register component
 - add Tab component & integrate with echart react
+- add some base component and refactor dropdown with HOC & decorator
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),

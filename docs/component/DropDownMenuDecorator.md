@@ -8,9 +8,17 @@
  ## 实例
 
  ```js
+
 import React, { Component, PropTypes } from 'react';
 import { dropDownMenu } from './../DecoratorHelper/DropDownMenuDecorator/DropDownMenuDecorator'
 
+class DropContent extends Component {
+    render() {
+        return <div>pop area</div>;
+    }
+}
+
+@dropDownMenu(DropContent)
 class DropDownButton extends Component {
     static propTypes = {
         children: PropTypes.any,
@@ -23,11 +31,6 @@ class DropDownButton extends Component {
     }
 }
 
-class DropContent extends Component {
-    render() {
-        return <div>pop area</div>;
-    }
-}
 
-export default dropDownMenu(DropContent)(DropDownButton)
+export default DropDownButton
  ```

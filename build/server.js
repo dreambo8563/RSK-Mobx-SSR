@@ -3786,38 +3786,7 @@ module.exports =
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
-  var _class, _temp; /**
-                      * React Starter Kit (https://www.reactstarterkit.com/)
-                      *
-                      * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                      *
-                      * This source code is licensed under the MIT license found in the
-                      * LICENSE.txt file in the root directory of this source tree.
-                      */
-  
-  // import React, { Component, PropTypes } from 'react';
-  // import withStyles from 'isomorphic-style-loader/lib/withStyles';
-  // import s from './Test.css';
-  // // import Link from '../Link'
-  // // import history from './../../core/history'
-  // import { observer } from 'mobx-react'
-  
-  // @observer
-  // class Test extends Component {
-  //     render() {
-  //         return (
-  //             <div className={s.good}>
-  //                 <div className={s.bad}>test info</div>
-  //                 {JSON.stringify(this.props) }
-  //             </div>
-  //         );
-  //     }
-  // }
-  // Test.propTypes = {
-  //     data: PropTypes.any,
-  // };
-  
-  // export default withStyles(s)(Test);
+  var _dec, _class, _class2, _temp;
   
   var _react = __webpack_require__(14);
   
@@ -3827,8 +3796,29 @@ module.exports =
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  var DropDownButton = (_temp = _class = function (_Component) {
-      (0, _inherits3.default)(DropDownButton, _Component);
+  var DropContent = function (_Component) {
+      (0, _inherits3.default)(DropContent, _Component);
+  
+      function DropContent() {
+          (0, _classCallCheck3.default)(this, DropContent);
+          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DropContent).apply(this, arguments));
+      }
+  
+      (0, _createClass3.default)(DropContent, [{
+          key: 'render',
+          value: function render() {
+              return _react2.default.createElement(
+                  'div',
+                  null,
+                  'pop area'
+              );
+          }
+      }]);
+      return DropContent;
+  }(_react.Component);
+  
+  var DropDownButton = (_dec = (0, _DropDownMenuDecorator.dropDownMenu)(DropContent), _dec(_class = (_temp = _class2 = function (_Component2) {
+      (0, _inherits3.default)(DropDownButton, _Component2);
   
       function DropDownButton() {
           (0, _classCallCheck3.default)(this, DropDownButton);
@@ -3849,32 +3839,10 @@ module.exports =
           }
       }]);
       return DropDownButton;
-  }(_react.Component), _class.propTypes = {
+  }(_react.Component), _class2.propTypes = {
       children: _react.PropTypes.any
-  }, _temp);
-  
-  var DropContent = function (_Component2) {
-      (0, _inherits3.default)(DropContent, _Component2);
-  
-      function DropContent() {
-          (0, _classCallCheck3.default)(this, DropContent);
-          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DropContent).apply(this, arguments));
-      }
-  
-      (0, _createClass3.default)(DropContent, [{
-          key: 'render',
-          value: function render() {
-              return _react2.default.createElement(
-                  'div',
-                  null,
-                  'pop area'
-              );
-          }
-      }]);
-      return DropContent;
-  }(_react.Component);
-  
-  exports.default = (0, _DropDownMenuDecorator.dropDownMenu)(DropContent)(DropDownButton);
+  }, _temp)) || _class);
+  exports.default = DropDownButton;
 
 /***/ },
 /* 86 */,
