@@ -5,3 +5,10 @@
         background-color: black;
     }
 }
+
+
+.container{
+    width:50%;
+    height:200px;
+    background-color: black
+}

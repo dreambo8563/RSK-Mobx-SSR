@@ -21,7 +21,7 @@ class DropContent extends Component {
 @dropDownMenu(DropContent)
 class DropDownButton extends Component {
     static propTypes = {
-        children: PropTypes.any,
+        children: PropTypes.any.isRequired,
     };
     render() {
         const { ...prop } = this.props

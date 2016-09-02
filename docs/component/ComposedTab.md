@@ -1,27 +1,16 @@
+## 一般的tab两部分
 
-import React, { Component, PropTypes } from 'react';
-import Navigation from './../ComposedComponent/Navigation/Navigation'
-import BaseButton from './../BaseComponent/BaseButton/BaseButton'
-import withStyles from 'isomorphic-style-loader/lib/withStyles'
-import s from './Test.css'
-import Container from './../BaseComponent/Container/Container'
-import { observable } from 'mobx'
-import { observer } from 'mobx-react'
+### 导航部分
+### 内容部分
 
-const xClass = {
-    width: '100px',
-    height: '200px',
-    color: 'red',
-}
+可以由Navigation和Container来组合
+Container 就是一个接受各种属性的div
 
-const itemClass = {
-    color: 'blue',
-}
+### 实例
+最灵活的可能
 
-const config = {
-    cc: 'ddd',
-}
 
+```js
 @observer
 class Test extends Component {
     @observable selectedIndex = 0
@@ -58,3 +47,4 @@ class Test extends Component {
 }
 
 export default withStyles(s)(Test)
+```
