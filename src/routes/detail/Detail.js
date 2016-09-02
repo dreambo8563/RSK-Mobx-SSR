@@ -11,8 +11,15 @@ import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Detail.css';
 import { userInfo } from './../../models/UserInfo'
+import MyComponent from './../../components/Test/Test'
 
 const title = 'Detail page with params';
+
+// Test section
+//---------------------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------------
 
 class Detail extends Component {
 
@@ -36,13 +43,16 @@ class Detail extends Component {
   render() {
     return (
       <div>
+
+        <MyComponent />
+
         this is the params got from path {this.props.id}
         <form ref="myForm" action="/signin" method="post">
           <label>name: </label>
           <input name="name" />
           <label>password: </label>
           <input type="password" name="pwd" />
-          <button onClick={:: this.preventForm} type="submit">submit</button>
+          <button onClick={:: this.preventForm} type ="submit">submit</button>
         </form>
       <button onClick={:: this.postTest}>POST test</button >
         { userInfo.loginErr ? 'error here' : 'no error' }

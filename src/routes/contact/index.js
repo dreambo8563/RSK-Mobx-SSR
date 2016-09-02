@@ -9,7 +9,6 @@
 
 import React from 'react';
 import Contact from './Contact';
-import DropDownMenu from './../../components/DropDownMenu/DropDownMenu'
 import Tabs from './../../components/Tabs/Tabs'
 import Test from './../../components/Test/Test'
 import { testInstance } from './../../models/testModel'
@@ -45,12 +44,6 @@ export default {
         return (
           <div>
             <h1>good</h1>
-            <DropDownMenu>
-
-              <h1>good</h1>
-
-
-            </DropDownMenu>
             <Tabs>
               <Test />
               <Test />

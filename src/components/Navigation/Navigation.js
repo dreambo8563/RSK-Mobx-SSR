@@ -29,6 +29,7 @@ class Navigation extends Component {
     const { className } = this.props
     return (
       <div className={cx(s.root, className) } role="navigation">
+        <a href="http://www.baidu.com">去百度吧, 非路由</a>
         <Link className={s.link} to="/content"> Sample
         </Link>
         <Link className={s.link} to="/contact"> Contact

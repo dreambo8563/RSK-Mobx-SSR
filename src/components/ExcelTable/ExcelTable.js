@@ -8,19 +8,19 @@ class ExcelTable extends Component {
         return (
             <div className={type === 'vertical' ? s.vertical : s.horizontal}>
                 {data.map(
-                    (item, index) => (
+                    (table, index) => (
                         <div
                             key={index}
                             className={s.table}>
                             <div
                                 className={s.header} >
-                                {item.header}
+                                {table.header}
                             </div>
-                            {item.value.map(
-                                (itemer, indexer) => (
+                            {table.value.map(
+                                (item, indexer) => (
                                     <div
-                                        className={s.number}
-                                        key={indexer}>{itemer}
+                                        className={s.content}
+                                        key={indexer}>{item}
                                     </div>
                                 )) }
                         </div>)) }

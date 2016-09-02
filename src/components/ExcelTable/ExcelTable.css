@@ -1,4 +1,4 @@
-.vertical .header {
+/*.vertical .header {
     width: 100px;
     text-align: center;
 }
@@ -35,4 +35,29 @@
     overflow: hidden;
     display: flex;
     justify-content: space-between;
+}*/
+
+.vertical {
+    display: flex
+}
+
+.vertical .table {
+    flex-grow: 1;
+}
+
+.horizontal {
+    display: flex;
+    flex-direction: column
+}
+
+.header, .content {
+    text-align: center
+}
+
+.horizontal .table {
+    display: flex;
+}
+
+.horizontal .table .header, .horizontal .table .content {
+    flex-grow: 1;
 }

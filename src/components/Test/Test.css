@@ -1,0 +1,7 @@
+.good{
+    background-color: red;
+    padding: 10px;
+    & .bad{
+        background-color: black;
+    }
+}

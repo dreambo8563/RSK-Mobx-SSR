@@ -1,0 +1,12 @@
+.container
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.closeBtn{
+    position: absolute;
+    right: 0;
+    top: 0;
+}

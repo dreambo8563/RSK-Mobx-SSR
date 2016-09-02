@@ -22,7 +22,9 @@ export default {
     });
     updateStore({ userInfo })
     userInfo.noFetch = false;
-    return <Detail id={context.params.id} />;
+    return (<div>
+      <Detail id={context.params.id} />
+    </div>);
   },
 
 };
