@@ -44,13 +44,29 @@ class Detail extends Component {
   render() {
     return (
       <div>
+        <MyComponent>
+          <div style={{ display: 'inline-block' }}>
+            <ImageWithStatusText
+              href="www.baidu.com"
+              src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+          </div>
 
+          <ImageWithStatusText
+            href="www.baidu.com"
+            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+          <ImageWithStatusText
+            href="www.baidu.com"
+            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+          <ImageWithStatusText
+            href="www.baidu.com"
+            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+          <ImageWithStatusText
+            href="www.baidu.com"
+            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+        </MyComponent>
 
 
         this is the params got from path {this.props.id}
-        <ImageWithStatusText
-        href="www.baidu.com"
-        imageUrl="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
         <form ref="myForm" action="/signin" method="post">
           <label>name: </label>
           <input name="name" />

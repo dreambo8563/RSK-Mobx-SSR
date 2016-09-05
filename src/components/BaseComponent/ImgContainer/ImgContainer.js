@@ -23,7 +23,7 @@ class ImageContainer extends Component {
     render() {
         const { href, ...prop } = this.props
         return (
-            <a href={href}>
+            <a href={href} style={{ display: 'inline-block' }}>
                 <img
                     role="presentation"
                     onLoad={:: this.handleImageLoaded}

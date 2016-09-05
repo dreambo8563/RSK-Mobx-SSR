@@ -19,6 +19,7 @@ class Carousel extends Component {
 
     componentDidMount() {
         this.startPlay()
+        // console.log(this.refs.img0.style.width)
     }
 
     componentWillUnmount() {
@@ -70,7 +71,7 @@ class Carousel extends Component {
         return this.imgData.map((item, index) => {
             const child = this.props.children && React.cloneElement(
                 this.props.children,
-                { key: index }
+                { key: index },
             );
             return child
         })

@@ -3091,14 +3091,6 @@ module.exports =
   
   var _Contact2 = _interopRequireDefault(_Contact);
   
-  var _Tabs = __webpack_require__(78);
-  
-  var _Tabs2 = _interopRequireDefault(_Tabs);
-  
-  var _Test = __webpack_require__(82);
-  
-  var _Test2 = _interopRequireDefault(_Test);
-  
   var _testModel = __webpack_require__(77);
   
   var _syncStore = __webpack_require__(67);
@@ -3170,13 +3162,6 @@ module.exports =
             'h1',
             null,
             'good'
-          ),
-          _react2.default.createElement(
-            _Tabs2.default,
-            null,
-            _react2.default.createElement(_Test2.default, null),
-            _react2.default.createElement(_Test2.default, null),
-            _react2.default.createElement(_Test2.default, null)
           )
         );
       }
@@ -3239,6 +3224,14 @@ module.exports =
   
   var _Contact2 = _interopRequireDefault(_Contact);
   
+  var _Test = __webpack_require__(82);
+  
+  var _Test2 = _interopRequireDefault(_Test);
+  
+  var _Carousel = __webpack_require__(100);
+  
+  var _Carousel2 = _interopRequireDefault(_Carousel);
+  
   var _mobxReact = __webpack_require__(72);
   
   var _testModel = __webpack_require__(77);
@@ -3296,10 +3289,9 @@ module.exports =
       key: 'render',
       value: function render() {
         return _react2.default.createElement(
-          'span',
+          _Carousel2.default,
           null,
-          'Seconds passed: ',
-          _testModel.testInstance.timerData.secondsPassed
+          _react2.default.createElement('img', { src: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png', alt: 'dd' })
         );
       }
     }]);
@@ -3359,13 +3351,14 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n\n.Contact_root_sD4 {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.Contact_container_PcA {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 1000px;\n}\n\n.Contact_black_24u{\n  background-color:  black\n}\n", "", {"version":3,"sources":["/./routes/contact/Contact.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;;EAI9E;;gFAE8E;;EAI9E;;gFAE8E,EAErD,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;CAC3D;;ADnBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;CACrC;;AACD;EACE,wBAAwB;CACzB","file":"Contact.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: var(--max-content-width);\n}\n.black{\n  background-color:  black\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n\n.Contact_root_sD4 {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.Contact_container_PcA {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 1000px;\n}\n\n.Contact_black_24u{\n  background-color:  black\n}\n\n.Contact_test_9Z6{\n  width:100px;\n  height: 100px;\n  background-color: green;\n  content{\n    width: 100px;\n    height: 100px;\n    background-color: black\n  }\n}", "", {"version":3,"sources":["/./routes/contact/Contact.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;;ACPH;;;;;;;GAOG;;AAEH;EACE;;gFAE8E;;EAI9E;;gFAE8E;;EAI9E;;gFAE8E,EAErD,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;CAC3D;;ADnBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,kBAAoC;CACrC;;AACD;EACE,wBAAwB;CACzB;;AACD;EACE,YAAY;EACZ,cAAc;EACd,wBAAwB;EACxB;IACE,aAAa;IACb,cAAc;IACd,uBAAuB;GACxB;CACF","file":"Contact.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: var(--max-content-width);\n}\n.black{\n  background-color:  black\n}\n.test{\n  width:100px;\n  height: 100px;\n  background-color: green;\n  content{\n    width: 100px;\n    height: 100px;\n    background-color: black\n  }\n}","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
   	"root": "Contact_root_sD4",
   	"container": "Contact_container_PcA",
-  	"black": "Contact_black_24u"
+  	"black": "Contact_black_24u",
+  	"test": "Contact_test_9Z6"
   };
 
 /***/ },
@@ -3481,7 +3474,16 @@ module.exports =
   var testInstance = exports.testInstance = new test();
 
 /***/ },
-/* 78 */
+/* 78 */,
+/* 79 */
+/***/ function(module, exports) {
+
+  module.exports = require("babel-runtime/core-js/object/get-own-property-descriptor");
+
+/***/ },
+/* 80 */,
+/* 81 */,
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3518,17 +3520,9 @@ module.exports =
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
-  var _class, _desc, _value, _class2, _descriptor, _descriptor2; /**
-                                                                  * React Starter Kit (https://www.reactstarterkit.com/)
-                                                                  *
-                                                                  * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
-                                                                  *
-                                                                  * This source code is licensed under the MIT license found in the
-                                                                  * LICENSE.txt file in the root directory of this source tree.
-                                                                  */
-  
-  // import Link from '../Link'
-  // import history from './../../core/history'
+  var _class, _desc, _value, _class2, _descriptor, _descriptor2, _class3, _temp2;
+  // import Navigation from './../ComposedComponent/Navigation/Navigation'
+  // import BaseButton from './../BaseComponent/BaseButton/BaseButton'
   
   
   var _react = __webpack_require__(14);
@@ -3539,15 +3533,17 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Tabs = __webpack_require__(80);
+  var _Test = __webpack_require__(83);
   
-  var _Tabs2 = _interopRequireDefault(_Tabs);
+  var _Test2 = _interopRequireDefault(_Test);
   
   var _mobxReact = __webpack_require__(72);
   
   var _mobx = __webpack_require__(62);
   
-  var _HTTPUtils = __webpack_require__(68);
+  var _classnames = __webpack_require__(48);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
@@ -3559,10 +3555,6 @@ module.exports =
           writable: descriptor.writable,
           value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
       });
-  }
-  
-  function _initializerWarningHelper(descriptor, context) {
-      throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
   }
   
   function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
@@ -3594,235 +3586,140 @@ module.exports =
       return desc;
   }
   
-  var Tabs = (0, _mobxReact.observer)(_class = (_class2 = function (_Component) {
-      (0, _inherits3.default)(Tabs, _Component);
+  function _initializerWarningHelper(descriptor, context) {
+      throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+  }
   
-      function Tabs() {
+  var Test = (0, _mobxReact.observer)(_class = (_class2 = (_temp2 = _class3 = function (_Component) {
+      (0, _inherits3.default)(Test, _Component);
+  
+      function Test() {
           var _Object$getPrototypeO;
   
           var _temp, _this, _ret;
   
-          (0, _classCallCheck3.default)(this, Tabs);
+          (0, _classCallCheck3.default)(this, Test);
   
           for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
               args[_key] = arguments[_key];
           }
   
-          return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Tabs)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _initDefineProp(_this, 'selectedIndex', _descriptor, _this), _initDefineProp(_this, 'childContent', _descriptor2, _this), _this.config = [{ navText: 'A', navLink: 'name', navAPI: 'http://jsonplaceholder.typicode.com/posts/1' }, { navText: 'B', navLink: 'B', navAPI: 'http://jsonplaceholder.typicode.com/posts/2' }, { navText: 'C', navLink: 'C', navAPI: 'http://jsonplaceholder.typicode.com/posts/3' }], _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+          return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Test)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _initDefineProp(_this, 'currentIndex', _descriptor, _this), _initDefineProp(_this, 'contentDimension', _descriptor2, _this), _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
       }
   
-      (0, _createClass3.default)(Tabs, [{
+      (0, _createClass3.default)(Test, [{
           key: 'componentDidMount',
           value: function componentDidMount() {
-              // console.log(this.config[this.selectedIndex], this.selectedIndex)
-              // this.selectedIndex = this.props.selectedTab || this.selectedIndex
-              this.getTabData(this.selectedIndex);
+              this.contentDimension.width = parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('width'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('margin-left'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('margin-right'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('padding-right'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('padding-left'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('border-left-width'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('border-right-width'), 10);
+  
+              this.contentDimension.height = parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('height'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('margin-top'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('margin-bottom'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('padding-top'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('padding-bottom'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('border-top-width'), 10) + parseInt(window.getComputedStyle(this.refs.content0, null).getPropertyValue('border-bottom-width'), 10);
+              console.log(this.contentDimension.width);
+              this.startPlay();
           }
       }, {
-          key: 'getTabData',
-          value: function getTabData(index) {
+          key: 'componentWillUnmount',
+          value: function componentWillUnmount() {
+              this.destroyTimer();
+          }
+      }, {
+          key: 'cloneWithState',
+          value: function cloneWithState(element, index) {
+              return _react2.default.cloneElement(element, { key: index, ref: 'content' + index, style: { float: 'left' } });
+          }
+      }, {
+          key: 'startPlay',
+          value: function startPlay() {
               var _this2 = this;
   
-              console.log(index);
-              (0, _HTTPUtils.httpGetJSON)(this.config[index].navAPI).then(function (data) {
-                  console.log(data, 'before update');
-                  _this2.updateObs(data, index);
-              });
+              this.handler = setInterval(function () {
+                  if (_this2.currentIndex >= _react2.default.Children.count(_this2.props.children) - 1) {
+                      _this2.currentIndex = 0;
+                  } else {
+                      _this2.currentIndex++;
+                  }
+              }, 3000);
           }
       }, {
-          key: 'updateObs',
-          value: function updateObs(data, index) {
-              this.selectedIndex = index;
-              this.childContent = data;
+          key: 'destroyTimer',
+          value: function destroyTimer() {
+              window.clearInterval(this.handler);
           }
       }, {
-          key: 'navRender',
-          value: function navRender() {
+          key: 'changeImage',
+          value: function changeImage(index) {
+              this.currentIndex = index;
+              this.destroyTimer();
+              this.startPlay();
+          }
+      }, {
+          key: 'dotRender',
+          value: function dotRender() {
               var _this3 = this;
   
-              return this.config.map(function (item, index) {
-                  return _react2.default.createElement(
-                      'div',
-                      {
-                          className: _Tabs2.default.tabItem,
-                          key: index,
-                          onClick: function onClick() {
-                              return _this3.getTabData(index);
-                          },
-                          to: item.navLink },
-                      item.navText
-                  );
+              return _react2.default.Children.map(this.props.children, function (item, index) {
+                  return _react2.default.createElement('li', {
+                      key: index,
+                      onClick: function onClick() {
+                          return _this3.changeIndex(index);
+                      },
+                      className: index === _this3.currentIndex ? (0, _classnames2.default)(_Test2.default.dot, _Test2.default.active) : _Test2.default.dot });
               });
+          }
+      }, {
+          key: 'contentRender',
+          value: function contentRender() {
+              return this.props.children && _react2.default.Children.map(this.props.children, this.cloneWithState);
           }
       }, {
           key: 'render',
           value: function render() {
-              console.log('ready to render');
+              var children = this.props.children;
+  
               return _react2.default.createElement(
                   'div',
-                  null,
+                  {
+                      style: { width: this.contentDimension.width, height: this.contentDimension.height },
+                      className: _Test2.default.wrapper },
                   _react2.default.createElement(
-                      'nav',
-                      null,
-                      this.navRender()
+                      'div',
+                      {
+                          style: {
+                              width: this.contentDimension.width * _react2.default.Children.count(children),
+                              height: this.contentDimension.height, marginLeft: this.leftValue
+                          },
+                          className: _Test2.default.content },
+                      this.contentRender()
                   ),
                   _react2.default.createElement(
-                      'section',
-                      null,
-                      this.props.children && _react2.default.cloneElement(this.props.children[this.selectedIndex], { data: this.childContent })
+                      'div',
+                      { className: _Test2.default.dotSection },
+                      this.dotRender()
                   )
               );
           }
+      }, {
+          key: 'leftValue',
+          get: function get() {
+              // 400 is the width of the visible area
+              return -this.currentIndex * this.contentDimension.width;
+          }
       }]);
-      return Tabs;
-  }(_react.Component), (_applyDecoratedDescriptor(_class2.prototype, 'updateObs', [_mobx.action], (0, _getOwnPropertyDescriptor2.default)(_class2.prototype, 'updateObs'), _class2.prototype), _descriptor = _applyDecoratedDescriptor(_class2.prototype, 'selectedIndex', [_mobx.observable], {
+      return Test;
+  }(_react.Component), _class3.propTypes = {
+      children: _react.PropTypes.oneOfType([_react.PropTypes.element, _react.PropTypes.array]).isRequired
+  }, _temp2), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'currentIndex', [_mobx.observable], {
       enumerable: true,
       initializer: function initializer() {
           return 0;
       }
-  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'childContent', [_mobx.observable], {
+  }), _descriptor2 = _applyDecoratedDescriptor(_class2.prototype, 'contentDimension', [_mobx.observable], {
       enumerable: true,
       initializer: function initializer() {
-          return undefined;
+          return { width: 0, height: 0 };
       }
-  })), _class2)) || _class;
+  }), _applyDecoratedDescriptor(_class2.prototype, 'leftValue', [_mobx.computed], (0, _getOwnPropertyDescriptor2.default)(_class2.prototype, 'leftValue'), _class2.prototype)), _class2)) || _class;
   
-  Tabs.propTypes = {
-      children: _react.PropTypes.array
-  };
-  
-  exports.default = (0, _withStyles2.default)(_Tabs2.default)(Tabs);
-
-/***/ },
-/* 79 */
-/***/ function(module, exports) {
-
-  module.exports = require("babel-runtime/core-js/object/get-own-property-descriptor");
-
-/***/ },
-/* 80 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(81);
-      var insertCss = __webpack_require__(27);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-    
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Tabs.css", function() {
-          content = require("!!./../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Tabs.css");
-  
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-  
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 81 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(26)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, "nav{\r\n    display: -webkit-box;\r\n    display: -webkit-flex;\r\n    display: -ms-flexbox;\r\n    display: flex\r\n}\r\n\r\n    section{\r\n        width:500px;\r\n        height:500px;\r\n        background-color: green;\r\n    }\r\n\r\n    .Tabs_tabItem_3d7{\r\n    width:100px;\r\n    height: 100px;\r\n    background-color: palegreen;\r\n    color:white;\r\n}", "", {"version":3,"sources":["/./components/Tabs/Tabs.css"],"names":[],"mappings":"AAAA;IACI,qBAAa;IAAb,sBAAa;IAAb,qBAAa;IAAb,aAAa;CAChB;;IAEG;QACI,YAAY;QACZ,aAAa;QACb,wBAAwB;KAC3B;;IACL;IACI,YAAY;IACZ,cAAc;IACd,4BAA4B;IAC5B,YAAY;CACf","file":"Tabs.css","sourcesContent":["nav{\r\n    display: flex\r\n}\r\n\r\n    section{\r\n        width:500px;\r\n        height:500px;\r\n        background-color: green;\r\n    }\r\n.tabItem{\r\n    width:100px;\r\n    height: 100px;\r\n    background-color: palegreen;\r\n    color:white;\r\n}"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"tabItem": "Tabs_tabItem_3d7"
-  };
-
-/***/ },
-/* 82 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-  
-  var _getPrototypeOf = __webpack_require__(17);
-  
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-  
-  var _classCallCheck2 = __webpack_require__(18);
-  
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-  
-  var _createClass2 = __webpack_require__(19);
-  
-  var _createClass3 = _interopRequireDefault(_createClass2);
-  
-  var _possibleConstructorReturn2 = __webpack_require__(20);
-  
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-  
-  var _inherits2 = __webpack_require__(21);
-  
-  var _inherits3 = _interopRequireDefault(_inherits2);
-  
-  var _dec, _class, _class2, _temp;
-  // import Navigation from './../ComposedComponent/Navigation/Navigation'
-  // import BaseButton from './../BaseComponent/BaseButton/BaseButton'
-  // import withStyles from 'isomorphic-style-loader/lib/withStyles'
-  
-  
-  var _react = __webpack_require__(14);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _Test = __webpack_require__(83);
-  
-  var _Test2 = _interopRequireDefault(_Test);
-  
-  var _DialogDecorator = __webpack_require__(85);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  var Test = (_dec = (0, _DialogDecorator.dialog)(_Test2.default.container), _dec(_class = (_temp = _class2 = function (_Component) {
-      (0, _inherits3.default)(Test, _Component);
-  
-      function Test() {
-          (0, _classCallCheck3.default)(this, Test);
-          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Test).apply(this, arguments));
-      }
-  
-      (0, _createClass3.default)(Test, [{
-          key: 'render',
-          value: function render() {
-              var _context;
-  
-              return _react2.default.createElement(
-                  'div',
-                  null,
-                  _react2.default.createElement('input', { onChange: (_context = this.props).onClose.bind(_context), type: 'text' }),
-                  _react2.default.createElement('input', { type: 'text' })
-              );
-          }
-      }]);
-      return Test;
-  }(_react.Component), _class2.propTypes = {
-      onClose: _react.PropTypes.func.isRequired
-  }, _temp)) || _class);
-  exports.default = Test;
+  exports.default = (0, _withStyles2.default)(_Test2.default)(Test);
 
 /***/ },
 /* 83 */
@@ -3867,358 +3764,25 @@ module.exports =
   
   
   // module
-  exports.push([module.id, ".Test_good_sDV{\r\n    background-color: red;\r\n    padding: 10px\r\n}\r\n\r\n\r\n.Test_good_sDV .Test_bad_1vM{\r\n    background-color: black\r\n}\r\n\r\n\r\n.Test_container_3Qp{\r\n    width:50%;\r\n    height:200px;\r\n    background-color: black\r\n}", "", {"version":3,"sources":["/./components/Test/Test.css"],"names":[],"mappings":"AAAA;IACI,sBAAsB;IACtB,aAAc;CAIjB;;;AAHG;IACI,uBAAwB;CAC3B;;;AAIL;IACI,UAAU;IACV,aAAa;IACb,uBAAuB;CAC1B","file":"Test.css","sourcesContent":[".good{\r\n    background-color: red;\r\n    padding: 10px;\r\n    & .bad{\r\n        background-color: black;\r\n    }\r\n}\r\n\r\n\r\n.container{\r\n    width:50%;\r\n    height:200px;\r\n    background-color: black\r\n}"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, ".Test_dotSection_1qd\r\n{\r\n    position: absolute;\r\n    bottom: 10%;\r\n    left: 50%;\r\n    width: 50px;\r\n    -webkit-transform: translate(-50%,-50%);\r\n        -ms-transform: translate(-50%,-50%);\r\n         -o-transform: translate(-50%,-50%);\r\n            transform: translate(-50%,-50%);\r\n}\r\n.Test_dot_1-j\r\n{\r\n    float: left;\r\n\r\n    width: 5px;\r\n    height: 5px;\r\n    margin-right: 20px;\r\n\r\n    list-style-type: none;\r\n\r\n    background-color: red;\r\n}\r\n.Test_active_fhG\r\n{\r\n    background-color: black;\r\n}\r\n.Test_content_iac{\r\n    -webkit-transition: 3s;\r\n    -o-transition: 3s;\r\n    transition: 3s;\r\n}\r\n.Test_wrapper_2Tx\r\n{\r\n    position: relative;\r\n\r\n    overflow: hidden ;\r\n}\r\n", "", {"version":3,"sources":["/./components/Test/Test.css"],"names":[],"mappings":"AAAA;;IAEI,mBAAmB;IACnB,YAAY;IACZ,UAAU;IACV,YAAY;IACZ,wCAAgC;QAAhC,oCAAgC;SAAhC,mCAAgC;YAAhC,gCAAgC;CACnC;AACD;;IAEI,YAAY;;IAEZ,WAAW;IACX,YAAY;IACZ,mBAAmB;;IAEnB,sBAAsB;;IAEtB,sBAAsB;CACzB;AACD;;IAEI,wBAAwB;CAC3B;AACD;IACI,uBAAe;IAAf,kBAAe;IAAf,eAAe;CAClB;AACD;;IAEI,mBAAmB;;IAEnB,kBAAkB;CACrB","file":"Test.css","sourcesContent":[".dotSection\r\n{\r\n    position: absolute;\r\n    bottom: 10%;\r\n    left: 50%;\r\n    width: 50px;\r\n    transform: translate(-50%,-50%);\r\n}\r\n.dot\r\n{\r\n    float: left;\r\n\r\n    width: 5px;\r\n    height: 5px;\r\n    margin-right: 20px;\r\n\r\n    list-style-type: none;\r\n\r\n    background-color: red;\r\n}\r\n.active\r\n{\r\n    background-color: black;\r\n}\r\n.content{\r\n    transition: 3s;\r\n}\r\n.wrapper\r\n{\r\n    position: relative;\r\n\r\n    overflow: hidden ;\r\n}\r\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
-  	"good": "Test_good_sDV",
-  	"bad": "Test_bad_1vM",
-  	"container": "Test_container_3Qp"
+  	"dotSection": "Test_dotSection_1qd",
+  	"dot": "Test_dot_1-j",
+  	"active": "Test_active_fhG",
+  	"content": "Test_content_iac",
+  	"wrapper": "Test_wrapper_2Tx"
   };
 
 /***/ },
-/* 85 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-  exports.dialog = undefined;
-  
-  var _getPrototypeOf = __webpack_require__(17);
-  
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-  
-  var _classCallCheck2 = __webpack_require__(18);
-  
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-  
-  var _createClass2 = __webpack_require__(19);
-  
-  var _createClass3 = _interopRequireDefault(_createClass2);
-  
-  var _possibleConstructorReturn2 = __webpack_require__(20);
-  
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-  
-  var _inherits2 = __webpack_require__(21);
-  
-  var _inherits3 = _interopRequireDefault(_inherits2);
-  
-  var _react = __webpack_require__(14);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _DialogContainer = __webpack_require__(86);
-  
-  var _DialogContainer2 = _interopRequireDefault(_DialogContainer);
-  
-  var _Overlay = __webpack_require__(89);
-  
-  var _Overlay2 = _interopRequireDefault(_Overlay);
-  
-  var _mobxReact = __webpack_require__(72);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  var dialog = exports.dialog = function dialog(constainerClass) {
-      return function (Target) {
-          var _class, _class2, _temp;
-  
-          return (0, _mobxReact.observer)(_class = (_temp = _class2 = function (_Component) {
-              (0, _inherits3.default)(ComposedComponent, _Component);
-  
-              function ComposedComponent() {
-                  (0, _classCallCheck3.default)(this, ComposedComponent);
-                  return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ComposedComponent).apply(this, arguments));
-              }
-  
-              (0, _createClass3.default)(ComposedComponent, [{
-                  key: 'render',
-                  value: function render() {
-                      var _context;
-  
-                      return _react2.default.createElement(
-                          'div',
-                          null,
-                          _react2.default.createElement(_Overlay2.default, null),
-                          _react2.default.createElement(
-                              _DialogContainer2.default,
-                              { onClose: (_context = this.props).onClose.bind(_context), className: constainerClass },
-                              _react2.default.createElement(Target, { onClose: (_context = this.props).onClose.bind(_context) })
-                          )
-                      );
-                  }
-              }]);
-              return ComposedComponent;
-          }(_react.Component), _class2.propTypes = {
-              onClose: _react.PropTypes.func
-          }, _temp)) || _class;
-      };
-  };
-
-/***/ },
-/* 86 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-  
-  var _extends2 = __webpack_require__(5);
-  
-  var _extends3 = _interopRequireDefault(_extends2);
-  
-  var _objectWithoutProperties2 = __webpack_require__(42);
-  
-  var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
-  
-  var _getPrototypeOf = __webpack_require__(17);
-  
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-  
-  var _classCallCheck2 = __webpack_require__(18);
-  
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-  
-  var _createClass2 = __webpack_require__(19);
-  
-  var _createClass3 = _interopRequireDefault(_createClass2);
-  
-  var _possibleConstructorReturn2 = __webpack_require__(20);
-  
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-  
-  var _inherits2 = __webpack_require__(21);
-  
-  var _inherits3 = _interopRequireDefault(_inherits2);
-  
-  var _class, _temp;
-  
-  var _react = __webpack_require__(14);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _withStyles = __webpack_require__(23);
-  
-  var _withStyles2 = _interopRequireDefault(_withStyles);
-  
-  var _DialogContainer = __webpack_require__(87);
-  
-  var _DialogContainer2 = _interopRequireDefault(_DialogContainer);
-  
-  var _classnames = __webpack_require__(48);
-  
-  var _classnames2 = _interopRequireDefault(_classnames);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  var DialogContainer = (_temp = _class = function (_Component) {
-      (0, _inherits3.default)(DialogContainer, _Component);
-  
-      function DialogContainer() {
-          (0, _classCallCheck3.default)(this, DialogContainer);
-          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DialogContainer).apply(this, arguments));
-      }
-  
-      (0, _createClass3.default)(DialogContainer, [{
-          key: 'render',
-          value: function render() {
-              var _props = this.props;
-              var className = _props.className;
-              var onClose = _props.onClose;
-              var children = _props.children;
-              var prop = (0, _objectWithoutProperties3.default)(_props, ['className', 'onClose', 'children']);
-  
-              return _react2.default.createElement(
-                  'div',
-                  (0, _extends3.default)({ className: (0, _classnames2.default)(className, _DialogContainer2.default.container) }, prop),
-                  _react2.default.createElement(
-                      'div',
-                      { onClick: onClose, className: _DialogContainer2.default.closeBtn },
-                      'X'
-                  ),
-                  children
-              );
-          }
-      }]);
-      return DialogContainer;
-  }(_react.Component), _class.propTypes = {
-      className: _react.PropTypes.string,
-      children: _react.PropTypes.any,
-      onClose: _react.PropTypes.func
-  }, _temp);
-  exports.default = (0, _withStyles2.default)(_DialogContainer2.default)(DialogContainer);
-
-/***/ },
-/* 87 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(88);
-      var insertCss = __webpack_require__(27);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-    
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./DialogContainer.css", function() {
-          content = require("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./DialogContainer.css");
-  
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-  
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 88 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(26)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, ".DialogContainer_container_1B4\r\n{\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    -webkit-transform: translate(-50%,-50%);\r\n        -ms-transform: translate(-50%,-50%);\r\n         -o-transform: translate(-50%,-50%);\r\n            transform: translate(-50%,-50%);\r\n}\r\n.DialogContainer_closeBtn_2FQ{\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n}", "", {"version":3,"sources":["/./components/BaseComponent/DialogContainer/DialogContainer.css"],"names":[],"mappings":"AAAA;;IAEI,gBAAgB;IAChB,SAAS;IACT,UAAU;IACV,wCAAgC;QAAhC,oCAAgC;SAAhC,mCAAgC;YAAhC,gCAAgC;CACnC;AACD;IACI,mBAAmB;IACnB,SAAS;IACT,OAAO;CACV","file":"DialogContainer.css","sourcesContent":[".container\r\n{\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%,-50%);\r\n}\r\n.closeBtn{\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n}"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"container": "DialogContainer_container_1B4",
-  	"closeBtn": "DialogContainer_closeBtn_2FQ"
-  };
-
-/***/ },
-/* 89 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-  
-  var _getPrototypeOf = __webpack_require__(17);
-  
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-  
-  var _classCallCheck2 = __webpack_require__(18);
-  
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-  
-  var _createClass2 = __webpack_require__(19);
-  
-  var _createClass3 = _interopRequireDefault(_createClass2);
-  
-  var _possibleConstructorReturn2 = __webpack_require__(20);
-  
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-  
-  var _inherits2 = __webpack_require__(21);
-  
-  var _inherits3 = _interopRequireDefault(_inherits2);
-  
-  var _react = __webpack_require__(14);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _withStyles = __webpack_require__(23);
-  
-  var _withStyles2 = _interopRequireDefault(_withStyles);
-  
-  var _Overlay = __webpack_require__(90);
-  
-  var _Overlay2 = _interopRequireDefault(_Overlay);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  var Overlay = function (_Component) {
-      (0, _inherits3.default)(Overlay, _Component);
-  
-      function Overlay() {
-          (0, _classCallCheck3.default)(this, Overlay);
-          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Overlay).apply(this, arguments));
-      }
-  
-      (0, _createClass3.default)(Overlay, [{
-          key: 'render',
-          value: function render() {
-              return _react2.default.createElement('div', { className: _Overlay2.default.overlay });
-          }
-      }]);
-      return Overlay;
-  }(_react.Component);
-  
-  exports.default = (0, _withStyles2.default)(_Overlay2.default)(Overlay);
-
-/***/ },
-/* 90 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(91);
-      var insertCss = __webpack_require__(27);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-    
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Overlay.css", function() {
-          content = require("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Overlay.css");
-  
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-  
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 91 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(26)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, ".Overlay_overlay_1vg\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n    background-color: rgba(128, 128, 128, 0.9);\r\n}\r\n", "", {"version":3,"sources":["/./components/BaseComponent/Overlay/Overlay.css"],"names":[],"mappings":"AAAA;;IAEI,gBAAgB;IAChB,OAAO;IACP,QAAQ;;IAER,YAAY;IACZ,aAAa;;IAEb,2CAA0C;CAC7C","file":"Overlay.css","sourcesContent":[".overlay\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n    background-color: color(grey alpha(-10%));\r\n}\r\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"overlay": "Overlay_overlay_1vg"
-  };
-
-/***/ },
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
 /* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -4899,6 +4463,7 @@ module.exports =
           key: 'componentDidMount',
           value: function componentDidMount() {
               this.startPlay();
+              // console.log(this.refs.img0.style.width)
           }
       }, {
           key: 'componentWillUnmount',
@@ -5760,11 +5325,31 @@ module.exports =
         return _react2.default.createElement(
           'div',
           null,
+          _react2.default.createElement(
+            _Test2.default,
+            { className: _Detail2.default.test },
+            _react2.default.createElement(
+              'div',
+              { style: { display: 'inline-block' } },
+              _react2.default.createElement(_ImgContainer2.default, {
+                href: 'www.baidu.com',
+                src: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png' })
+            ),
+            _react2.default.createElement(_ImgContainer2.default, {
+              href: 'www.baidu.com',
+              src: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png' }),
+            _react2.default.createElement(_ImgContainer2.default, {
+              href: 'www.baidu.com',
+              src: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png' }),
+            _react2.default.createElement(_ImgContainer2.default, {
+              href: 'www.baidu.com',
+              src: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png' }),
+            _react2.default.createElement(_ImgContainer2.default, {
+              href: 'www.baidu.com',
+              src: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png' })
+          ),
           'this is the params got from path ',
           this.props.id,
-          _react2.default.createElement(_ImgContainer2.default, {
-            href: 'www.baidu.com',
-            imageUrl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png' }),
           _react2.default.createElement(
             'form',
             { ref: 'myForm', action: '/signin', method: 'post' },
@@ -5846,7 +5431,7 @@ module.exports =
   
   
   // module
-  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n.Detail_root_1eI {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n.Detail_container_3f9 {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 380px;\n}\n.Detail_lead_1xS {\n  font-size: 1.25em;\n}\n.Detail_formGroup_3nj {\n  margin-bottom: 15px;\n}\n.Detail_label_2ke {\n  display: inline-block;\n  margin-bottom: 5px;\n  max-width: 100%;\n  font-weight: 700;\n}\n.Detail_input_2J8 {\n  display: block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  padding: 10px 16px;\n  width: 100%;\n  height: 46px;\n  outline: 0;\n  border: 1px solid #ccc;\n  border-radius: 0;\n  background: #fff;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  color: #616161;\n  font-size: 18px;\n  line-height: 1.3333333;\n  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n}\n.Detail_input_2J8:focus {\n  border-color: #0074c2;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 116, 194, 0.6);\n          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 116, 194, 0.6);\n}\n.Detail_button_2JE {\n  display: block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  margin: 0;\n  padding: 10px 16px;\n  width: 100%;\n  outline: 0;\n  border: 1px solid #373277;\n  border-radius: 0;\n  background: #373277;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 1.3333333;\n  cursor: pointer;\n}\n.Detail_button_2JE:hover {\n  background: rgba(54, 50, 119, 0.8);\n}\n.Detail_button_2JE:focus {\n  border-color: #0074c2;\n  -webkit-box-shadow: 0 0 8px rgba(0, 116, 194, 0.6);\n          box-shadow: 0 0 8px rgba(0, 116, 194, 0.6);\n}\n.Detail_facebook_3kH {\n  border-color: #3b5998;\n  background: #3b5998;\n}\n.Detail_facebook_3kH:hover {\n  background: #2d4373;\n}\n.Detail_google_HjY {\n  border-color: #dd4b39;\n  background: #dd4b39;\n}\n.Detail_google_HjY:hover {\n  background: #c23321;\n}\n.Detail_twitter_1Nc {\n  border-color: #55acee;\n  background: #55acee;\n}\n.Detail_twitter_1Nc:hover {\n  background: #2795e9;\n}\n.Detail_icon_1Xl {\n  display: inline-block;\n  margin: -2px 12px -2px 0;\n  width: 20px;\n  height: 20px;\n  vertical-align: middle;\n  fill: currentColor;\n}\n.Detail_lineThrough_1sT {\n  position: relative;\n  z-index: 1;\n  display: block;\n  margin-bottom: 15px;\n  width: 100%;\n  color: #757575;\n  text-align: center;\n  font-size: 80%;\n}\n.Detail_lineThrough_1sT::before {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  z-index: -1;\n  margin-top: -5px;\n  margin-left: -20px;\n  width: 40px;\n  height: 10px;\n  background-color: #fff;\n  content: '';\n}\n.Detail_lineThrough_1sT::after {\n  position: absolute;\n  top: 49%;\n  z-index: -2;\n  display: block;\n  width: 100%;\n  border-bottom: 1px solid #ddd;\n  content: '';\n}\n", "", {"version":3,"sources":["/./routes/detail/Detail.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;ACPH;;;;;;;GAOG;AAEH;EACE;;gFAE8E;;EAI9E;;gFAE8E;;EAI9E;;gFAE8E,EAErD,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;CAC3D;ADpBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,iBAAiB;CAClB;AAED;EACE,kBAAkB;CACnB;AAED;EACE,oBAAoB;CACrB;AAED;EACE,sBAAsB;EACtB,mBAAmB;EACnB,gBAAgB;EAChB,iBAAiB;CAClB;AAED;EACE,eAAe;EACf,+BAAuB;UAAvB,uBAAuB;EACvB,mBAAmB;EACnB,YAAY;EACZ,aAAa;EACb,WAAW;EACX,uBAAuB;EACvB,iBAAiB;EACjB,iBAAiB;EACjB,yDAAiD;UAAjD,iDAAiD;EACjD,eAAe;EACf,gBAAgB;EAChB,uBAAuB;EACvB,yFAAyE;EAAzE,iFAAyE;EAAzE,4EAAyE;EAAzE,yEAAyE;EAAzE,+GAAyE;CAC1E;AAED;EACE,sBAAsB;EACtB,yFAAiF;UAAjF,iFAAiF;CAClF;AAED;EACE,eAAe;EACf,+BAAuB;UAAvB,uBAAuB;EACvB,UAAU;EACV,mBAAmB;EACnB,YAAY;EACZ,WAAW;EACX,0BAA0B;EAC1B,iBAAiB;EACjB,oBAAoB;EACpB,YAAY;EACZ,mBAAmB;EACnB,sBAAsB;EACtB,gBAAgB;EAChB,uBAAuB;EACvB,gBAAgB;CACjB;AAED;EACE,mCAAmC;CACpC;AAED;EACE,sBAAsB;EACtB,mDAA2C;UAA3C,2CAA2C;CAC5C;AAED;EACE,sBAAsB;EACtB,oBAAoB;CAErB;AAED;EACE,oBAAoB;CACrB;AAED;EACE,sBAAsB;EACtB,oBAAoB;CAErB;AAED;EACE,oBAAoB;CACrB;AAED;EACE,sBAAsB;EACtB,oBAAoB;CAErB;AAED;EACE,oBAAoB;CACrB;AAED;EACE,sBAAsB;EACtB,yBAAyB;EACzB,YAAY;EACZ,aAAa;EACb,uBAAuB;EACvB,mBAAmB;CACpB;AAED;EACE,mBAAmB;EACnB,WAAW;EACX,eAAe;EACf,oBAAoB;EACpB,YAAY;EACZ,eAAe;EACf,mBAAmB;EACnB,eAAe;CAChB;AAED;EACE,mBAAmB;EACnB,SAAS;EACT,UAAU;EACV,YAAY;EACZ,iBAAiB;EACjB,mBAAmB;EACnB,YAAY;EACZ,aAAa;EACb,uBAAuB;EACvB,YAAY;CACb;AAED;EACE,mBAAmB;EACnB,SAAS;EACT,YAAY;EACZ,eAAe;EACf,YAAY;EACZ,8BAA8B;EAC9B,YAAY;CACb","file":"Detail.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 380px;\n}\n\n.lead {\n  font-size: 1.25em;\n}\n\n.formGroup {\n  margin-bottom: 15px;\n}\n\n.label {\n  display: inline-block;\n  margin-bottom: 5px;\n  max-width: 100%;\n  font-weight: 700;\n}\n\n.input {\n  display: block;\n  box-sizing: border-box;\n  padding: 10px 16px;\n  width: 100%;\n  height: 46px;\n  outline: 0;\n  border: 1px solid #ccc;\n  border-radius: 0;\n  background: #fff;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  color: #616161;\n  font-size: 18px;\n  line-height: 1.3333333;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n}\n\n.input:focus {\n  border-color: #0074c2;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 116, 194, 0.6);\n}\n\n.button {\n  display: block;\n  box-sizing: border-box;\n  margin: 0;\n  padding: 10px 16px;\n  width: 100%;\n  outline: 0;\n  border: 1px solid #373277;\n  border-radius: 0;\n  background: #373277;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 1.3333333;\n  cursor: pointer;\n}\n\n.button:hover {\n  background: rgba(54, 50, 119, 0.8);\n}\n\n.button:focus {\n  border-color: #0074c2;\n  box-shadow: 0 0 8px rgba(0, 116, 194, 0.6);\n}\n\n.facebook {\n  border-color: #3b5998;\n  background: #3b5998;\n  composes: button;\n}\n\n.facebook:hover {\n  background: #2d4373;\n}\n\n.google {\n  border-color: #dd4b39;\n  background: #dd4b39;\n  composes: button;\n}\n\n.google:hover {\n  background: #c23321;\n}\n\n.twitter {\n  border-color: #55acee;\n  background: #55acee;\n  composes: button;\n}\n\n.twitter:hover {\n  background: #2795e9;\n}\n\n.icon {\n  display: inline-block;\n  margin: -2px 12px -2px 0;\n  width: 20px;\n  height: 20px;\n  vertical-align: middle;\n  fill: currentColor;\n}\n\n.lineThrough {\n  position: relative;\n  z-index: 1;\n  display: block;\n  margin-bottom: 15px;\n  width: 100%;\n  color: #757575;\n  text-align: center;\n  font-size: 80%;\n}\n\n.lineThrough::before {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  z-index: -1;\n  margin-top: -5px;\n  margin-left: -20px;\n  width: 40px;\n  height: 10px;\n  background-color: #fff;\n  content: '';\n}\n\n.lineThrough::after {\n  position: absolute;\n  top: 49%;\n  z-index: -2;\n  display: block;\n  width: 100%;\n  border-bottom: 1px solid #ddd;\n  content: '';\n}\n","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
+  exports.push([module.id, "/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */  /* Extra small screen / phone */  /* Small screen / tablet */  /* Medium screen / desktop */ /* Large screen / wide desktop */\n}\n.Detail_root_1eI {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n.Detail_container_3f9 {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 380px;\n}\n.Detail_lead_1xS {\n  font-size: 1.25em;\n}\n.Detail_formGroup_3nj {\n  margin-bottom: 15px;\n}\n.Detail_label_2ke {\n  display: inline-block;\n  margin-bottom: 5px;\n  max-width: 100%;\n  font-weight: 700;\n}\n.Detail_input_2J8 {\n  display: block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  padding: 10px 16px;\n  width: 100%;\n  height: 46px;\n  outline: 0;\n  border: 1px solid #ccc;\n  border-radius: 0;\n  background: #fff;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  color: #616161;\n  font-size: 18px;\n  line-height: 1.3333333;\n  -webkit-transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n  -o-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s, -webkit-box-shadow ease-in-out 0.15s;\n}\n.Detail_input_2J8:focus {\n  border-color: #0074c2;\n  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 116, 194, 0.6);\n          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 116, 194, 0.6);\n}\n.Detail_button_2JE {\n  display: block;\n  -webkit-box-sizing: border-box;\n          box-sizing: border-box;\n  margin: 0;\n  padding: 10px 16px;\n  width: 100%;\n  outline: 0;\n  border: 1px solid #373277;\n  border-radius: 0;\n  background: #373277;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 1.3333333;\n  cursor: pointer;\n}\n.Detail_button_2JE:hover {\n  background: rgba(54, 50, 119, 0.8);\n}\n.Detail_button_2JE:focus {\n  border-color: #0074c2;\n  -webkit-box-shadow: 0 0 8px rgba(0, 116, 194, 0.6);\n          box-shadow: 0 0 8px rgba(0, 116, 194, 0.6);\n}\n.Detail_facebook_3kH {\n  border-color: #3b5998;\n  background: #3b5998;\n}\n.Detail_facebook_3kH:hover {\n  background: #2d4373;\n}\n.Detail_google_HjY {\n  border-color: #dd4b39;\n  background: #dd4b39;\n}\n.Detail_google_HjY:hover {\n  background: #c23321;\n}\n.Detail_twitter_1Nc {\n  border-color: #55acee;\n  background: #55acee;\n}\n.Detail_twitter_1Nc:hover {\n  background: #2795e9;\n}\n.Detail_icon_1Xl {\n  display: inline-block;\n  margin: -2px 12px -2px 0;\n  width: 20px;\n  height: 20px;\n  vertical-align: middle;\n  fill: currentColor;\n}\n.Detail_lineThrough_1sT {\n  position: relative;\n  z-index: 1;\n  display: block;\n  margin-bottom: 15px;\n  width: 100%;\n  color: #757575;\n  text-align: center;\n  font-size: 80%;\n}\n.Detail_lineThrough_1sT::before {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  z-index: -1;\n  margin-top: -5px;\n  margin-left: -20px;\n  width: 40px;\n  height: 10px;\n  background-color: #fff;\n  content: '';\n}\n.Detail_lineThrough_1sT::after {\n  position: absolute;\n  top: 49%;\n  z-index: -2;\n  display: block;\n  width: 100%;\n  border-bottom: 1px solid #ddd;\n  content: '';\n}\n.Detail_test_iVI{\n  width:250px;\n  height: 15px;\n  background-color: green;\n}", "", {"version":3,"sources":["/./routes/detail/Detail.css","/./components/variables.css"],"names":[],"mappings":"AAAA;;;;;;;GAOG;ACPH;;;;;;;GAOG;AAEH;EACE;;gFAE8E;;EAI9E;;gFAE8E;;EAI9E;;gFAE8E,EAErD,gCAAgC,EAChC,2BAA2B,EAC3B,6BAA6B,CAC7B,iCAAiC;CAC3D;ADpBD;EACE,mBAAmB;EACnB,oBAAoB;CACrB;AAED;EACE,eAAe;EACf,kBAAkB;EAClB,iBAAiB;CAClB;AAED;EACE,kBAAkB;CACnB;AAED;EACE,oBAAoB;CACrB;AAED;EACE,sBAAsB;EACtB,mBAAmB;EACnB,gBAAgB;EAChB,iBAAiB;CAClB;AAED;EACE,eAAe;EACf,+BAAuB;UAAvB,uBAAuB;EACvB,mBAAmB;EACnB,YAAY;EACZ,aAAa;EACb,WAAW;EACX,uBAAuB;EACvB,iBAAiB;EACjB,iBAAiB;EACjB,yDAAiD;UAAjD,iDAAiD;EACjD,eAAe;EACf,gBAAgB;EAChB,uBAAuB;EACvB,yFAAyE;EAAzE,iFAAyE;EAAzE,4EAAyE;EAAzE,yEAAyE;EAAzE,+GAAyE;CAC1E;AAED;EACE,sBAAsB;EACtB,yFAAiF;UAAjF,iFAAiF;CAClF;AAED;EACE,eAAe;EACf,+BAAuB;UAAvB,uBAAuB;EACvB,UAAU;EACV,mBAAmB;EACnB,YAAY;EACZ,WAAW;EACX,0BAA0B;EAC1B,iBAAiB;EACjB,oBAAoB;EACpB,YAAY;EACZ,mBAAmB;EACnB,sBAAsB;EACtB,gBAAgB;EAChB,uBAAuB;EACvB,gBAAgB;CACjB;AAED;EACE,mCAAmC;CACpC;AAED;EACE,sBAAsB;EACtB,mDAA2C;UAA3C,2CAA2C;CAC5C;AAED;EACE,sBAAsB;EACtB,oBAAoB;CAErB;AAED;EACE,oBAAoB;CACrB;AAED;EACE,sBAAsB;EACtB,oBAAoB;CAErB;AAED;EACE,oBAAoB;CACrB;AAED;EACE,sBAAsB;EACtB,oBAAoB;CAErB;AAED;EACE,oBAAoB;CACrB;AAED;EACE,sBAAsB;EACtB,yBAAyB;EACzB,YAAY;EACZ,aAAa;EACb,uBAAuB;EACvB,mBAAmB;CACpB;AAED;EACE,mBAAmB;EACnB,WAAW;EACX,eAAe;EACf,oBAAoB;EACpB,YAAY;EACZ,eAAe;EACf,mBAAmB;EACnB,eAAe;CAChB;AAED;EACE,mBAAmB;EACnB,SAAS;EACT,UAAU;EACV,YAAY;EACZ,iBAAiB;EACjB,mBAAmB;EACnB,YAAY;EACZ,aAAa;EACb,uBAAuB;EACvB,YAAY;CACb;AAED;EACE,mBAAmB;EACnB,SAAS;EACT,YAAY;EACZ,eAAe;EACf,YAAY;EACZ,8BAA8B;EAC9B,YAAY;CACb;AACD;EACE,YAAY;EACZ,aAAa;EACb,wBAAwB;CACzB","file":"Detail.css","sourcesContent":["/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n@import '../../components/variables.css';\n\n.root {\n  padding-left: 20px;\n  padding-right: 20px;\n}\n\n.container {\n  margin: 0 auto;\n  padding: 0 0 40px;\n  max-width: 380px;\n}\n\n.lead {\n  font-size: 1.25em;\n}\n\n.formGroup {\n  margin-bottom: 15px;\n}\n\n.label {\n  display: inline-block;\n  margin-bottom: 5px;\n  max-width: 100%;\n  font-weight: 700;\n}\n\n.input {\n  display: block;\n  box-sizing: border-box;\n  padding: 10px 16px;\n  width: 100%;\n  height: 46px;\n  outline: 0;\n  border: 1px solid #ccc;\n  border-radius: 0;\n  background: #fff;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);\n  color: #616161;\n  font-size: 18px;\n  line-height: 1.3333333;\n  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;\n}\n\n.input:focus {\n  border-color: #0074c2;\n  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 116, 194, 0.6);\n}\n\n.button {\n  display: block;\n  box-sizing: border-box;\n  margin: 0;\n  padding: 10px 16px;\n  width: 100%;\n  outline: 0;\n  border: 1px solid #373277;\n  border-radius: 0;\n  background: #373277;\n  color: #fff;\n  text-align: center;\n  text-decoration: none;\n  font-size: 18px;\n  line-height: 1.3333333;\n  cursor: pointer;\n}\n\n.button:hover {\n  background: rgba(54, 50, 119, 0.8);\n}\n\n.button:focus {\n  border-color: #0074c2;\n  box-shadow: 0 0 8px rgba(0, 116, 194, 0.6);\n}\n\n.facebook {\n  border-color: #3b5998;\n  background: #3b5998;\n  composes: button;\n}\n\n.facebook:hover {\n  background: #2d4373;\n}\n\n.google {\n  border-color: #dd4b39;\n  background: #dd4b39;\n  composes: button;\n}\n\n.google:hover {\n  background: #c23321;\n}\n\n.twitter {\n  border-color: #55acee;\n  background: #55acee;\n  composes: button;\n}\n\n.twitter:hover {\n  background: #2795e9;\n}\n\n.icon {\n  display: inline-block;\n  margin: -2px 12px -2px 0;\n  width: 20px;\n  height: 20px;\n  vertical-align: middle;\n  fill: currentColor;\n}\n\n.lineThrough {\n  position: relative;\n  z-index: 1;\n  display: block;\n  margin-bottom: 15px;\n  width: 100%;\n  color: #757575;\n  text-align: center;\n  font-size: 80%;\n}\n\n.lineThrough::before {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  z-index: -1;\n  margin-top: -5px;\n  margin-left: -20px;\n  width: 40px;\n  height: 10px;\n  background-color: #fff;\n  content: '';\n}\n\n.lineThrough::after {\n  position: absolute;\n  top: 49%;\n  z-index: -2;\n  display: block;\n  width: 100%;\n  border-bottom: 1px solid #ddd;\n  content: '';\n}\n.test{\n  width:250px;\n  height: 15px;\n  background-color: green;\n}","/**\n * React Starter Kit (https://www.reactstarterkit.com/)\n *\n * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.txt file in the root directory of this source tree.\n */\n\n:root {\n  /*\n   * Typography\n   * ======================================================================== */\n\n  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;\n\n  /*\n   * Layout\n   * ======================================================================== */\n\n  --max-content-width: 1000px;\n\n  /*\n   * Media queries breakpoints\n   * ======================================================================== */\n\n  --screen-xs-min: 480px;  /* Extra small screen / phone */\n  --screen-sm-min: 768px;  /* Small screen / tablet */\n  --screen-md-min: 992px;  /* Medium screen / desktop */\n  --screen-lg-min: 1200px; /* Large screen / wide desktop */\n}\n"],"sourceRoot":"webpack://"}]);
   
   // exports
   exports.locals = {
@@ -5861,7 +5446,8 @@ module.exports =
   	"google": "Detail_google_HjY Detail_button_2JE",
   	"twitter": "Detail_twitter_1Nc Detail_button_2JE",
   	"icon": "Detail_icon_1Xl",
-  	"lineThrough": "Detail_lineThrough_1sT"
+  	"lineThrough": "Detail_lineThrough_1sT",
+  	"test": "Detail_test_iVI"
   };
 
 /***/ },
@@ -5997,7 +5583,7 @@ module.exports =
   
               return _react2.default.createElement(
                   'a',
-                  { href: href },
+                  { href: href, style: { display: 'inline-block' } },
                   _react2.default.createElement('img', (0, _extends3.default)({
                       role: 'presentation',
                       onLoad: this.handleImageLoaded.bind(this),

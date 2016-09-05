@@ -3,13 +3,13 @@ import React, { Component, PropTypes } from 'react';
 // import Navigation from './../ComposedComponent/Navigation/Navigation'
 // import BaseButton from './../BaseComponent/BaseButton/BaseButton'
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
-import s from './Test.css'
+import s from './Carousel.css'
 import { observer } from 'mobx-react'
 import { observable, computed } from 'mobx'
 import cx from 'classnames'
 
 @observer
-class Test extends Component {
+class Carousel extends Component {
 
     static propTypes = {
         children: PropTypes.oneOfType(
@@ -50,7 +50,6 @@ class Test extends Component {
                 .getPropertyValue('border-top-width'), 10) +
             parseInt(window.getComputedStyle(this.refs.content0, null)
                 .getPropertyValue('border-bottom-width'), 10)
-        console.log(this.contentDimension.width)
         this.startPlay();
     }
 
@@ -127,5 +126,5 @@ class Test extends Component {
     }
 }
 
-export default withStyles(s)(Test)
+export default withStyles(s)(Carousel)
 

@@ -9,8 +9,7 @@
 
 import React from 'react';
 import Contact from './Contact';
-import Tabs from './../../components/Tabs/Tabs'
-import Test from './../../components/Test/Test'
+
 import { testInstance } from './../../models/testModel'
 import { updateStore } from './../../models/syncStore'
 
@@ -44,11 +43,8 @@ export default {
         return (
           <div>
             <h1>good</h1>
-            <Tabs>
-              <Test />
-              <Test />
-              <Test />
-            </Tabs>
+
+
           </div >
         )
       },
