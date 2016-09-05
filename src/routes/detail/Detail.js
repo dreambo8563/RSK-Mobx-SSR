@@ -32,6 +32,7 @@ class Detail extends Component {
     id: PropTypes.string,
   };
 
+
   componentWillMount() {
     this.context.setTitle(title);
   }
@@ -41,30 +42,31 @@ class Detail extends Component {
   preventForm() {
     // e.preventDefault();
   }
+  bodyinfo = [{
+    name: 'zhangsan',
+    age: '18',
+    address: 'beijing',
+  }, {
+      name: 'lisi',
+      age: '18',
+      address: 'beijing',
+    }, {
+      name: 'wangwu',
+      age: '18',
+      address: 'beijing',
+    }]
+
+
   render() {
     return (
       <div>
-        <MyComponent>
-          <div style={{ display: 'inline-block' }}>
-            <ImageWithStatusText
-              href="www.baidu.com"
-              src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
-          </div>
-
-          <ImageWithStatusText
-            href="www.baidu.com"
-            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
-          <ImageWithStatusText
-            href="www.baidu.com"
-            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
-          <ImageWithStatusText
-            href="www.baidu.com"
-            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
-          <ImageWithStatusText
-            href="www.baidu.com"
-            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+        <MyComponent data={this.bodyinfo} className={s.table}>
+          <th style={{ width: '100px' }}>
+            <a href="">tilte1</a>
+          </th>
+          <th>title2</th>
+          <th>title3</th>
         </MyComponent>
-
 
         this is the params got from path {this.props.id}
         <form ref="myForm" action="/signin" method="post">

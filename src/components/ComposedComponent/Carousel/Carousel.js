@@ -34,8 +34,6 @@ class Carousel extends Component {
             parseInt(window.getComputedStyle(this.refs.content0, null)
                 .getPropertyValue('border-right-width'), 10)
 
-
-
         this.contentDimension.height = parseInt(window.getComputedStyle(this.refs.content0, null)
             .getPropertyValue('height'), 10) +
             parseInt(window.getComputedStyle(this.refs.content0, null)

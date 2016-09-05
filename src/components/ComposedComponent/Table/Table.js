@@ -1,12 +1,12 @@
 
 import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
-import s from './Test.css'
+import s from './Table.css'
 import { observer } from 'mobx-react'
 
 
 @observer
-class Test extends Component {
+class Table extends Component {
     static propTypes = {
         children: PropTypes.oneOfType(
             [
@@ -39,4 +39,4 @@ class Test extends Component {
     }
 }
 
-export default withStyles(s)(Test)
+export default withStyles(s)(Table)
