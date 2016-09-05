@@ -32,6 +32,7 @@ changelog:
 - add some base component and refactor dropdown with HOC & decorator
 - add navigation/container and tab example
 - add dialog decorator and example md
+- add ImageContainer component
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),

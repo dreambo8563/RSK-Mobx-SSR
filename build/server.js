@@ -128,13 +128,13 @@ module.exports =
   
   var _routes2 = _interopRequireDefault(_routes);
   
-  var _assets = __webpack_require__(109);
+  var _assets = __webpack_require__(115);
   
   var _assets2 = _interopRequireDefault(_assets);
   
   var _config = __webpack_require__(66);
   
-  var _cookiesManager = __webpack_require__(110);
+  var _cookiesManager = __webpack_require__(116);
   
   var _UserInfo = __webpack_require__(60);
   
@@ -1041,23 +1041,23 @@ module.exports =
   
   var _contact2 = _interopRequireDefault(_contact);
   
-  var _login = __webpack_require__(87);
+  var _login = __webpack_require__(92);
   
   var _login2 = _interopRequireDefault(_login);
   
-  var _register = __webpack_require__(91);
+  var _register = __webpack_require__(96);
   
   var _register2 = _interopRequireDefault(_register);
   
-  var _content = __webpack_require__(98);
+  var _content = __webpack_require__(103);
   
   var _content2 = _interopRequireDefault(_content);
   
-  var _error = __webpack_require__(104);
+  var _error = __webpack_require__(109);
   
   var _error2 = _interopRequireDefault(_error);
   
-  var _detail = __webpack_require__(105);
+  var _detail = __webpack_require__(110);
   
   var _detail2 = _interopRequireDefault(_detail);
   
@@ -3789,11 +3789,11 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _Test = __webpack_require__(85);
+  var _Test = __webpack_require__(83);
   
   var _Test2 = _interopRequireDefault(_Test);
   
-  var _DialogDecorator = __webpack_require__(120);
+  var _DialogDecorator = __webpack_require__(85);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
@@ -3825,13 +3825,11 @@ module.exports =
   exports.default = Test;
 
 /***/ },
-/* 83 */,
-/* 84 */,
-/* 85 */
+/* 83 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(86);
+      var content = __webpack_require__(84);
       var insertCss = __webpack_require__(27);
   
       if (typeof content === 'string') {
@@ -3861,7 +3859,7 @@ module.exports =
     
 
 /***/ },
-/* 86 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(26)();
@@ -3879,7 +3877,349 @@ module.exports =
   };
 
 /***/ },
+/* 85 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, "__esModule", {
+      value: true
+  });
+  exports.dialog = undefined;
+  
+  var _getPrototypeOf = __webpack_require__(17);
+  
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+  
+  var _classCallCheck2 = __webpack_require__(18);
+  
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+  
+  var _createClass2 = __webpack_require__(19);
+  
+  var _createClass3 = _interopRequireDefault(_createClass2);
+  
+  var _possibleConstructorReturn2 = __webpack_require__(20);
+  
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+  
+  var _inherits2 = __webpack_require__(21);
+  
+  var _inherits3 = _interopRequireDefault(_inherits2);
+  
+  var _react = __webpack_require__(14);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _DialogContainer = __webpack_require__(86);
+  
+  var _DialogContainer2 = _interopRequireDefault(_DialogContainer);
+  
+  var _Overlay = __webpack_require__(89);
+  
+  var _Overlay2 = _interopRequireDefault(_Overlay);
+  
+  var _mobxReact = __webpack_require__(72);
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  var dialog = exports.dialog = function dialog(constainerClass) {
+      return function (Target) {
+          var _class, _class2, _temp;
+  
+          return (0, _mobxReact.observer)(_class = (_temp = _class2 = function (_Component) {
+              (0, _inherits3.default)(ComposedComponent, _Component);
+  
+              function ComposedComponent() {
+                  (0, _classCallCheck3.default)(this, ComposedComponent);
+                  return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ComposedComponent).apply(this, arguments));
+              }
+  
+              (0, _createClass3.default)(ComposedComponent, [{
+                  key: 'render',
+                  value: function render() {
+                      var _context;
+  
+                      return _react2.default.createElement(
+                          'div',
+                          null,
+                          _react2.default.createElement(_Overlay2.default, null),
+                          _react2.default.createElement(
+                              _DialogContainer2.default,
+                              { onClose: (_context = this.props).onClose.bind(_context), className: constainerClass },
+                              _react2.default.createElement(Target, { onClose: (_context = this.props).onClose.bind(_context) })
+                          )
+                      );
+                  }
+              }]);
+              return ComposedComponent;
+          }(_react.Component), _class2.propTypes = {
+              onClose: _react.PropTypes.func
+          }, _temp)) || _class;
+      };
+  };
+
+/***/ },
+/* 86 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, "__esModule", {
+      value: true
+  });
+  
+  var _extends2 = __webpack_require__(5);
+  
+  var _extends3 = _interopRequireDefault(_extends2);
+  
+  var _objectWithoutProperties2 = __webpack_require__(42);
+  
+  var _objectWithoutProperties3 = _interopRequireDefault(_objectWithoutProperties2);
+  
+  var _getPrototypeOf = __webpack_require__(17);
+  
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+  
+  var _classCallCheck2 = __webpack_require__(18);
+  
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+  
+  var _createClass2 = __webpack_require__(19);
+  
+  var _createClass3 = _interopRequireDefault(_createClass2);
+  
+  var _possibleConstructorReturn2 = __webpack_require__(20);
+  
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+  
+  var _inherits2 = __webpack_require__(21);
+  
+  var _inherits3 = _interopRequireDefault(_inherits2);
+  
+  var _class, _temp;
+  
+  var _react = __webpack_require__(14);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _withStyles = __webpack_require__(23);
+  
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+  
+  var _DialogContainer = __webpack_require__(87);
+  
+  var _DialogContainer2 = _interopRequireDefault(_DialogContainer);
+  
+  var _classnames = __webpack_require__(48);
+  
+  var _classnames2 = _interopRequireDefault(_classnames);
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  var DialogContainer = (_temp = _class = function (_Component) {
+      (0, _inherits3.default)(DialogContainer, _Component);
+  
+      function DialogContainer() {
+          (0, _classCallCheck3.default)(this, DialogContainer);
+          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DialogContainer).apply(this, arguments));
+      }
+  
+      (0, _createClass3.default)(DialogContainer, [{
+          key: 'render',
+          value: function render() {
+              var _props = this.props;
+              var className = _props.className;
+              var onClose = _props.onClose;
+              var children = _props.children;
+              var prop = (0, _objectWithoutProperties3.default)(_props, ['className', 'onClose', 'children']);
+  
+              return _react2.default.createElement(
+                  'div',
+                  (0, _extends3.default)({ className: (0, _classnames2.default)(className, _DialogContainer2.default.container) }, prop),
+                  _react2.default.createElement(
+                      'div',
+                      { onClick: onClose, className: _DialogContainer2.default.closeBtn },
+                      'X'
+                  ),
+                  children
+              );
+          }
+      }]);
+      return DialogContainer;
+  }(_react.Component), _class.propTypes = {
+      className: _react.PropTypes.string,
+      children: _react.PropTypes.any,
+      onClose: _react.PropTypes.func
+  }, _temp);
+  exports.default = (0, _withStyles2.default)(_DialogContainer2.default)(DialogContainer);
+
+/***/ },
 /* 87 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(88);
+      var insertCss = __webpack_require__(27);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+    
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./DialogContainer.css", function() {
+          content = require("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./DialogContainer.css");
+  
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+  
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 88 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(26)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, ".DialogContainer_container_1B4\r\n{\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    -webkit-transform: translate(-50%,-50%);\r\n        -ms-transform: translate(-50%,-50%);\r\n         -o-transform: translate(-50%,-50%);\r\n            transform: translate(-50%,-50%);\r\n}\r\n.DialogContainer_closeBtn_2FQ{\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n}", "", {"version":3,"sources":["/./components/BaseComponent/DialogContainer/DialogContainer.css"],"names":[],"mappings":"AAAA;;IAEI,gBAAgB;IAChB,SAAS;IACT,UAAU;IACV,wCAAgC;QAAhC,oCAAgC;SAAhC,mCAAgC;YAAhC,gCAAgC;CACnC;AACD;IACI,mBAAmB;IACnB,SAAS;IACT,OAAO;CACV","file":"DialogContainer.css","sourcesContent":[".container\r\n{\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%,-50%);\r\n}\r\n.closeBtn{\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n}"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"container": "DialogContainer_container_1B4",
+  	"closeBtn": "DialogContainer_closeBtn_2FQ"
+  };
+
+/***/ },
+/* 89 */
+/***/ function(module, exports, __webpack_require__) {
+
+  'use strict';
+  
+  Object.defineProperty(exports, "__esModule", {
+      value: true
+  });
+  
+  var _getPrototypeOf = __webpack_require__(17);
+  
+  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+  
+  var _classCallCheck2 = __webpack_require__(18);
+  
+  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+  
+  var _createClass2 = __webpack_require__(19);
+  
+  var _createClass3 = _interopRequireDefault(_createClass2);
+  
+  var _possibleConstructorReturn2 = __webpack_require__(20);
+  
+  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+  
+  var _inherits2 = __webpack_require__(21);
+  
+  var _inherits3 = _interopRequireDefault(_inherits2);
+  
+  var _react = __webpack_require__(14);
+  
+  var _react2 = _interopRequireDefault(_react);
+  
+  var _withStyles = __webpack_require__(23);
+  
+  var _withStyles2 = _interopRequireDefault(_withStyles);
+  
+  var _Overlay = __webpack_require__(90);
+  
+  var _Overlay2 = _interopRequireDefault(_Overlay);
+  
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+  
+  var Overlay = function (_Component) {
+      (0, _inherits3.default)(Overlay, _Component);
+  
+      function Overlay() {
+          (0, _classCallCheck3.default)(this, Overlay);
+          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Overlay).apply(this, arguments));
+      }
+  
+      (0, _createClass3.default)(Overlay, [{
+          key: 'render',
+          value: function render() {
+              return _react2.default.createElement('div', { className: _Overlay2.default.overlay });
+          }
+      }]);
+      return Overlay;
+  }(_react.Component);
+  
+  exports.default = (0, _withStyles2.default)(_Overlay2.default)(Overlay);
+
+/***/ },
+/* 90 */
+/***/ function(module, exports, __webpack_require__) {
+
+  
+      var content = __webpack_require__(91);
+      var insertCss = __webpack_require__(27);
+  
+      if (typeof content === 'string') {
+        content = [[module.id, content, '']];
+      }
+  
+      module.exports = content.locals || {};
+      module.exports._getCss = function() { return content.toString(); };
+      module.exports._insertCss = function(options) { return insertCss(content, options) };
+    
+      // Hot Module Replacement
+      // https://webpack.github.io/docs/hot-module-replacement
+      // Only activated in browser context
+      if (false) {
+        var removeCss = function() {};
+        module.hot.accept("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Overlay.css", function() {
+          content = require("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Overlay.css");
+  
+          if (typeof content === 'string') {
+            content = [[module.id, content, '']];
+          }
+  
+          removeCss = insertCss(content, { replace: true });
+        });
+        module.hot.dispose(function() { removeCss(); });
+      }
+    
+
+/***/ },
+/* 91 */
+/***/ function(module, exports, __webpack_require__) {
+
+  exports = module.exports = __webpack_require__(26)();
+  // imports
+  
+  
+  // module
+  exports.push([module.id, ".Overlay_overlay_1vg\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n    background-color: rgba(128, 128, 128, 0.9);\r\n}\r\n", "", {"version":3,"sources":["/./components/BaseComponent/Overlay/Overlay.css"],"names":[],"mappings":"AAAA;;IAEI,gBAAgB;IAChB,OAAO;IACP,QAAQ;;IAER,YAAY;IACZ,aAAa;;IAEb,2CAA0C;CAC7C","file":"Overlay.css","sourcesContent":[".overlay\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n    background-color: color(grey alpha(-10%));\r\n}\r\n"],"sourceRoot":"webpack://"}]);
+  
+  // exports
+  exports.locals = {
+  	"overlay": "Overlay_overlay_1vg"
+  };
+
+/***/ },
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3924,7 +4264,7 @@ module.exports =
                 _context.next = 2;
                 return new _promise2.default(function (resolve) {
                   !/* require.ensure */(function (require) {
-                    return resolve(__webpack_require__(88).default);
+                    return resolve(__webpack_require__(93).default);
                   }(__webpack_require__));
                 });
   
@@ -3950,7 +4290,7 @@ module.exports =
       */
 
 /***/ },
-/* 88 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -3967,7 +4307,7 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Login = __webpack_require__(89);
+  var _Login = __webpack_require__(94);
   
   var _Login2 = _interopRequireDefault(_Login);
   
@@ -4136,11 +4476,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Login2.default)(Login);
 
 /***/ },
-/* 89 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(90);
+      var content = __webpack_require__(95);
       var insertCss = __webpack_require__(27);
   
       if (typeof content === 'string') {
@@ -4170,7 +4510,7 @@ module.exports =
     
 
 /***/ },
-/* 90 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(26)();
@@ -4197,7 +4537,7 @@ module.exports =
   };
 
 /***/ },
-/* 91 */
+/* 96 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4242,7 +4582,7 @@ module.exports =
                 _context.next = 2;
                 return new _promise2.default(function (resolve) {
                   !/* require.ensure */(function (require) {
-                    return resolve(__webpack_require__(92).default);
+                    return resolve(__webpack_require__(97).default);
                   }(__webpack_require__));
                 });
   
@@ -4268,7 +4608,7 @@ module.exports =
       */
 
 /***/ },
-/* 92 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4314,13 +4654,13 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Register = __webpack_require__(93);
+  var _Register = __webpack_require__(98);
   
   var _Register2 = _interopRequireDefault(_Register);
   
   var _mobxReact = __webpack_require__(72);
   
-  var _Carousel = __webpack_require__(95);
+  var _Carousel = __webpack_require__(100);
   
   var _Carousel2 = _interopRequireDefault(_Carousel);
   
@@ -4367,11 +4707,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Register2.default)(Register);
 
 /***/ },
-/* 93 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(94);
+      var content = __webpack_require__(99);
       var insertCss = __webpack_require__(27);
   
       if (typeof content === 'string') {
@@ -4401,7 +4741,7 @@ module.exports =
     
 
 /***/ },
-/* 94 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(26)();
@@ -4422,7 +4762,7 @@ module.exports =
   };
 
 /***/ },
-/* 95 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4476,7 +4816,7 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Carousel = __webpack_require__(96);
+  var _Carousel = __webpack_require__(101);
   
   var _Carousel2 = _interopRequireDefault(_Carousel);
   
@@ -4658,11 +4998,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Carousel2.default)(Carousel);
 
 /***/ },
-/* 96 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(97);
+      var content = __webpack_require__(102);
       var insertCss = __webpack_require__(27);
   
       if (typeof content === 'string') {
@@ -4692,7 +5032,7 @@ module.exports =
     
 
 /***/ },
-/* 97 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(26)();
@@ -4713,7 +5053,7 @@ module.exports =
   };
 
 /***/ },
-/* 98 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4734,11 +5074,11 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _ExcelTable = __webpack_require__(99);
+  var _ExcelTable = __webpack_require__(104);
   
   var _ExcelTable2 = _interopRequireDefault(_ExcelTable);
   
-  var _Chart = __webpack_require__(102);
+  var _Chart = __webpack_require__(107);
   
   var _Chart2 = _interopRequireDefault(_Chart);
   
@@ -4816,7 +5156,7 @@ module.exports =
       */
 
 /***/ },
-/* 99 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -4853,7 +5193,7 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _ExcelTable = __webpack_require__(100);
+  var _ExcelTable = __webpack_require__(105);
   
   var _ExcelTable2 = _interopRequireDefault(_ExcelTable);
   
@@ -4913,11 +5253,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_ExcelTable2.default)(ExcelTable);
 
 /***/ },
-/* 100 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(101);
+      var content = __webpack_require__(106);
       var insertCss = __webpack_require__(27);
   
       if (typeof content === 'string') {
@@ -4947,7 +5287,7 @@ module.exports =
     
 
 /***/ },
-/* 101 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(26)();
@@ -4967,7 +5307,7 @@ module.exports =
   };
 
 /***/ },
-/* 102 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5011,7 +5351,7 @@ module.exports =
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _echartsForReact = __webpack_require__(103);
+  var _echartsForReact = __webpack_require__(108);
   
   var _echartsForReact2 = _interopRequireDefault(_echartsForReact);
   
@@ -5186,13 +5526,13 @@ module.exports =
   exports.default = SimpleChartComponent;
 
 /***/ },
-/* 103 */
+/* 108 */
 /***/ function(module, exports) {
 
   module.exports = require("echarts-for-react");
 
 /***/ },
-/* 104 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5240,7 +5580,7 @@ module.exports =
       */
 
 /***/ },
-/* 105 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5288,7 +5628,7 @@ module.exports =
                 _context.next = 2;
                 return new _promise2.default(function (resolve) {
                   !/* require.ensure */(function (require) {
-                    return resolve(__webpack_require__(106).default);
+                    return resolve(__webpack_require__(111).default);
                   }(__webpack_require__));
                 });
   
@@ -5321,7 +5661,7 @@ module.exports =
       */
 
 /***/ },
-/* 106 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5367,7 +5707,7 @@ module.exports =
   
   var _withStyles2 = _interopRequireDefault(_withStyles);
   
-  var _Detail = __webpack_require__(107);
+  var _Detail = __webpack_require__(112);
   
   var _Detail2 = _interopRequireDefault(_Detail);
   
@@ -5376,6 +5716,10 @@ module.exports =
   var _Test = __webpack_require__(82);
   
   var _Test2 = _interopRequireDefault(_Test);
+  
+  var _ImgContainer = __webpack_require__(114);
+  
+  var _ImgContainer2 = _interopRequireDefault(_ImgContainer);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
@@ -5416,9 +5760,11 @@ module.exports =
         return _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(_Test2.default, { onClose: this.postTest.bind(this) }),
           'this is the params got from path ',
           this.props.id,
+          _react2.default.createElement(_ImgContainer2.default, {
+            href: 'www.baidu.com',
+            imageUrl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png' }),
           _react2.default.createElement(
             'form',
             { ref: 'myForm', action: '/signin', method: 'post' },
@@ -5458,11 +5804,11 @@ module.exports =
   exports.default = (0, _withStyles2.default)(_Detail2.default)(Detail);
 
 /***/ },
-/* 107 */
+/* 112 */
 /***/ function(module, exports, __webpack_require__) {
 
   
-      var content = __webpack_require__(108);
+      var content = __webpack_require__(113);
       var insertCss = __webpack_require__(27);
   
       if (typeof content === 'string') {
@@ -5492,7 +5838,7 @@ module.exports =
     
 
 /***/ },
-/* 108 */
+/* 113 */
 /***/ function(module, exports, __webpack_require__) {
 
   exports = module.exports = __webpack_require__(26)();
@@ -5519,171 +5865,18 @@ module.exports =
   };
 
 /***/ },
-/* 109 */
-/***/ function(module, exports) {
-
-  module.exports = require("./assets");
-
-/***/ },
-/* 110 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-  exports.generateCookie = undefined;
-  
-  var _jsonwebtoken = __webpack_require__(111);
-  
-  var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  var generateCookie = exports.generateCookie = function generateCookie(info, auth, res) {
-      // const expiresIn = 60; // 180 days
-      var expiresIn = 60 * 60 * 24 * 180; // 180 days
-      var token = _jsonwebtoken2.default.sign(info, auth.jwt.secret, { expiresIn: expiresIn });
-  
-      //  TODO: store the {userId,token} in redis if we need
-      //  set token in cookies
-      res.cookie('id_token', token, {
-          expires: new Date(Date.now() + 900000),
-          maxAge: 1000 * expiresIn,
-          httpOnly: true
-      });
-  };
-
-/***/ },
-/* 111 */
-/***/ function(module, exports) {
-
-  module.exports = require("jsonwebtoken");
-
-/***/ },
-/* 112 */,
-/* 113 */
-/***/ function(module, exports, __webpack_require__) {
-
-  'use strict';
-  
-  Object.defineProperty(exports, "__esModule", {
-      value: true
-  });
-  
-  var _getPrototypeOf = __webpack_require__(17);
-  
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-  
-  var _classCallCheck2 = __webpack_require__(18);
-  
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-  
-  var _createClass2 = __webpack_require__(19);
-  
-  var _createClass3 = _interopRequireDefault(_createClass2);
-  
-  var _possibleConstructorReturn2 = __webpack_require__(20);
-  
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-  
-  var _inherits2 = __webpack_require__(21);
-  
-  var _inherits3 = _interopRequireDefault(_inherits2);
-  
-  var _react = __webpack_require__(14);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _withStyles = __webpack_require__(23);
-  
-  var _withStyles2 = _interopRequireDefault(_withStyles);
-  
-  var _Overlay = __webpack_require__(114);
-  
-  var _Overlay2 = _interopRequireDefault(_Overlay);
-  
-  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-  
-  var Overlay = function (_Component) {
-      (0, _inherits3.default)(Overlay, _Component);
-  
-      function Overlay() {
-          (0, _classCallCheck3.default)(this, Overlay);
-          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Overlay).apply(this, arguments));
-      }
-  
-      (0, _createClass3.default)(Overlay, [{
-          key: 'render',
-          value: function render() {
-              return _react2.default.createElement('div', { className: _Overlay2.default.overlay });
-          }
-      }]);
-      return Overlay;
-  }(_react.Component);
-  
-  exports.default = (0, _withStyles2.default)(_Overlay2.default)(Overlay);
-
-/***/ },
 /* 114 */
 /***/ function(module, exports, __webpack_require__) {
 
-  
-      var content = __webpack_require__(115);
-      var insertCss = __webpack_require__(27);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
-      }
-  
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-    
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Overlay.css", function() {
-          content = require("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./Overlay.css");
-  
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-  
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
-
-/***/ },
-/* 115 */
-/***/ function(module, exports, __webpack_require__) {
-
-  exports = module.exports = __webpack_require__(26)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, ".Overlay_overlay_1vg\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n    background-color: rgba(128, 128, 128, 0.9);\r\n}\r\n", "", {"version":3,"sources":["/./components/BaseComponent/Overlay/Overlay.css"],"names":[],"mappings":"AAAA;;IAEI,gBAAgB;IAChB,OAAO;IACP,QAAQ;;IAER,YAAY;IACZ,aAAa;;IAEb,2CAA0C;CAC7C","file":"Overlay.css","sourcesContent":[".overlay\r\n{\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n    background-color: color(grey alpha(-10%));\r\n}\r\n"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"overlay": "Overlay_overlay_1vg"
-  };
-
-/***/ },
-/* 116 */
-/***/ function(module, exports, __webpack_require__) {
-
   'use strict';
   
   Object.defineProperty(exports, "__esModule", {
       value: true
   });
+  
+  var _defineProperty = __webpack_require__(61);
+  
+  var _defineProperty2 = _interopRequireDefault(_defineProperty);
   
   var _extends2 = __webpack_require__(5);
   
@@ -5713,117 +5906,127 @@ module.exports =
   
   var _inherits3 = _interopRequireDefault(_inherits2);
   
-  var _class, _temp;
+  var _class, _desc, _value, _class2, _descriptor, _class3, _temp2;
   
   var _react = __webpack_require__(14);
   
   var _react2 = _interopRequireDefault(_react);
   
-  var _withStyles = __webpack_require__(23);
+  var _mobxReact = __webpack_require__(72);
   
-  var _withStyles2 = _interopRequireDefault(_withStyles);
-  
-  var _DialogContainer = __webpack_require__(117);
-  
-  var _DialogContainer2 = _interopRequireDefault(_DialogContainer);
-  
-  var _classnames = __webpack_require__(48);
-  
-  var _classnames2 = _interopRequireDefault(_classnames);
+  var _mobx = __webpack_require__(62);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  var DialogContainer = (_temp = _class = function (_Component) {
-      (0, _inherits3.default)(DialogContainer, _Component);
+  function _initDefineProp(target, property, descriptor, context) {
+      if (!descriptor) return;
+      (0, _defineProperty2.default)(target, property, {
+          enumerable: descriptor.enumerable,
+          configurable: descriptor.configurable,
+          writable: descriptor.writable,
+          value: descriptor.initializer ? descriptor.initializer.call(context) : void 0
+      });
+  }
   
-      function DialogContainer() {
-          (0, _classCallCheck3.default)(this, DialogContainer);
-          return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(DialogContainer).apply(this, arguments));
+  function _applyDecoratedDescriptor(target, property, decorators, descriptor, context) {
+      var desc = {};
+      Object['ke' + 'ys'](descriptor).forEach(function (key) {
+          desc[key] = descriptor[key];
+      });
+      desc.enumerable = !!desc.enumerable;
+      desc.configurable = !!desc.configurable;
+  
+      if ('value' in desc || desc.initializer) {
+          desc.writable = true;
       }
   
-      (0, _createClass3.default)(DialogContainer, [{
+      desc = decorators.slice().reverse().reduce(function (desc, decorator) {
+          return decorator(target, property, desc) || desc;
+      }, desc);
+  
+      if (context && desc.initializer !== void 0) {
+          desc.value = desc.initializer ? desc.initializer.call(context) : void 0;
+          desc.initializer = undefined;
+      }
+  
+      if (desc.initializer === void 0) {
+          Object['define' + 'Property'](target, property, desc);
+          desc = null;
+      }
+  
+      return desc;
+  }
+  
+  function _initializerWarningHelper(descriptor, context) {
+      throw new Error('Decorating class property failed. Please ensure that transform-class-properties is enabled.');
+  }
+  
+  var ImageContainer = (0, _mobxReact.observer)(_class = (_class2 = (_temp2 = _class3 = function (_Component) {
+      (0, _inherits3.default)(ImageContainer, _Component);
+  
+      function ImageContainer() {
+          var _Object$getPrototypeO;
+  
+          var _temp, _this, _ret;
+  
+          (0, _classCallCheck3.default)(this, ImageContainer);
+  
+          for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+              args[_key] = arguments[_key];
+          }
+  
+          return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(ImageContainer)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _initDefineProp(_this, 'imageStatus', _descriptor, _this), _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+      }
+  
+      (0, _createClass3.default)(ImageContainer, [{
+          key: 'handleImageLoaded',
+          value: function handleImageLoaded() {
+              this.imageStatus = 'loaded';
+          }
+      }, {
+          key: 'handleImageErrored',
+          value: function handleImageErrored() {
+              this.imageStatus = 'failed to load';
+          }
+      }, {
           key: 'render',
           value: function render() {
               var _props = this.props;
-              var className = _props.className;
-              var onClose = _props.onClose;
-              var children = _props.children;
-              var prop = (0, _objectWithoutProperties3.default)(_props, ['className', 'onClose', 'children']);
+              var href = _props.href;
+              var prop = (0, _objectWithoutProperties3.default)(_props, ['href']);
   
               return _react2.default.createElement(
-                  'div',
-                  (0, _extends3.default)({ className: (0, _classnames2.default)(className, _DialogContainer2.default.container) }, prop),
-                  _react2.default.createElement(
-                      'div',
-                      { onClick: onClose, className: _DialogContainer2.default.closeBtn },
-                      'X'
-                  ),
-                  children
+                  'a',
+                  { href: href },
+                  _react2.default.createElement('img', (0, _extends3.default)({
+                      role: 'presentation',
+                      onLoad: this.handleImageLoaded.bind(this),
+                      onError: this.handleImageErrored.bind(this)
+                  }, prop))
               );
           }
       }]);
-      return DialogContainer;
-  }(_react.Component), _class.propTypes = {
-      className: _react.PropTypes.string,
-      children: _react.PropTypes.any,
-      onClose: _react.PropTypes.func
-  }, _temp);
-  exports.default = (0, _withStyles2.default)(_DialogContainer2.default)(DialogContainer);
-
-/***/ },
-/* 117 */
-/***/ function(module, exports, __webpack_require__) {
-
-  
-      var content = __webpack_require__(118);
-      var insertCss = __webpack_require__(27);
-  
-      if (typeof content === 'string') {
-        content = [[module.id, content, '']];
+      return ImageContainer;
+  }(_react.Component), _class3.propTypes = {
+      imageUrl: _react.PropTypes.string,
+      href: _react.PropTypes.string
+  }, _temp2), (_descriptor = _applyDecoratedDescriptor(_class2.prototype, 'imageStatus', [_mobx.observable], {
+      enumerable: true,
+      initializer: function initializer() {
+          return null;
       }
+  })), _class2)) || _class;
   
-      module.exports = content.locals || {};
-      module.exports._getCss = function() { return content.toString(); };
-      module.exports._insertCss = function(options) { return insertCss(content, options) };
-    
-      // Hot Module Replacement
-      // https://webpack.github.io/docs/hot-module-replacement
-      // Only activated in browser context
-      if (false) {
-        var removeCss = function() {};
-        module.hot.accept("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./DialogContainer.css", function() {
-          content = require("!!./../../../../node_modules/.0.23.1@css-loader/index.js?{\"sourceMap\":true,\"modules\":true,\"localIdentName\":\"[name]_[local]_[hash:base64:3]\",\"minimize\":false}!./../../../../node_modules/.0.9.1@postcss-loader/index.js?pack=default!./DialogContainer.css");
-  
-          if (typeof content === 'string') {
-            content = [[module.id, content, '']];
-          }
-  
-          removeCss = insertCss(content, { replace: true });
-        });
-        module.hot.dispose(function() { removeCss(); });
-      }
-    
+  exports.default = ImageContainer;
 
 /***/ },
-/* 118 */
-/***/ function(module, exports, __webpack_require__) {
+/* 115 */
+/***/ function(module, exports) {
 
-  exports = module.exports = __webpack_require__(26)();
-  // imports
-  
-  
-  // module
-  exports.push([module.id, ".DialogContainer_container_1B4\r\n{\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    -webkit-transform: translate(-50%,-50%);\r\n        -ms-transform: translate(-50%,-50%);\r\n         -o-transform: translate(-50%,-50%);\r\n            transform: translate(-50%,-50%);\r\n}\r\n.DialogContainer_closeBtn_2FQ{\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n}", "", {"version":3,"sources":["/./components/BaseComponent/DialogContainer/DialogContainer.css"],"names":[],"mappings":"AAAA;;IAEI,gBAAgB;IAChB,SAAS;IACT,UAAU;IACV,wCAAgC;QAAhC,oCAAgC;SAAhC,mCAAgC;YAAhC,gCAAgC;CACnC;AACD;IACI,mBAAmB;IACnB,SAAS;IACT,OAAO;CACV","file":"DialogContainer.css","sourcesContent":[".container\r\n{\r\n    position: fixed;\r\n    top: 50%;\r\n    left: 50%;\r\n    transform: translate(-50%,-50%);\r\n}\r\n.closeBtn{\r\n    position: absolute;\r\n    right: 0;\r\n    top: 0;\r\n}"],"sourceRoot":"webpack://"}]);
-  
-  // exports
-  exports.locals = {
-  	"container": "DialogContainer_container_1B4",
-  	"closeBtn": "DialogContainer_closeBtn_2FQ"
-  };
+  module.exports = require("./assets");
 
 /***/ },
-/* 119 */,
-/* 120 */
+/* 116 */
 /***/ function(module, exports, __webpack_require__) {
 
   'use strict';
@@ -5831,79 +6034,33 @@ module.exports =
   Object.defineProperty(exports, "__esModule", {
       value: true
   });
-  exports.dialog = undefined;
+  exports.generateCookie = undefined;
   
-  var _getPrototypeOf = __webpack_require__(17);
+  var _jsonwebtoken = __webpack_require__(117);
   
-  var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-  
-  var _classCallCheck2 = __webpack_require__(18);
-  
-  var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-  
-  var _createClass2 = __webpack_require__(19);
-  
-  var _createClass3 = _interopRequireDefault(_createClass2);
-  
-  var _possibleConstructorReturn2 = __webpack_require__(20);
-  
-  var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-  
-  var _inherits2 = __webpack_require__(21);
-  
-  var _inherits3 = _interopRequireDefault(_inherits2);
-  
-  var _react = __webpack_require__(14);
-  
-  var _react2 = _interopRequireDefault(_react);
-  
-  var _DialogContainer = __webpack_require__(116);
-  
-  var _DialogContainer2 = _interopRequireDefault(_DialogContainer);
-  
-  var _Overlay = __webpack_require__(113);
-  
-  var _Overlay2 = _interopRequireDefault(_Overlay);
-  
-  var _mobxReact = __webpack_require__(72);
+  var _jsonwebtoken2 = _interopRequireDefault(_jsonwebtoken);
   
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
   
-  var dialog = exports.dialog = function dialog(constainerClass) {
-      return function (Target) {
-          var _class, _class2, _temp;
+  var generateCookie = exports.generateCookie = function generateCookie(info, auth, res) {
+      // const expiresIn = 60; // 180 days
+      var expiresIn = 60 * 60 * 24 * 180; // 180 days
+      var token = _jsonwebtoken2.default.sign(info, auth.jwt.secret, { expiresIn: expiresIn });
   
-          return (0, _mobxReact.observer)(_class = (_temp = _class2 = function (_Component) {
-              (0, _inherits3.default)(ComposedComponent, _Component);
-  
-              function ComposedComponent() {
-                  (0, _classCallCheck3.default)(this, ComposedComponent);
-                  return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ComposedComponent).apply(this, arguments));
-              }
-  
-              (0, _createClass3.default)(ComposedComponent, [{
-                  key: 'render',
-                  value: function render() {
-                      var _context;
-  
-                      return _react2.default.createElement(
-                          'div',
-                          null,
-                          _react2.default.createElement(_Overlay2.default, null),
-                          _react2.default.createElement(
-                              _DialogContainer2.default,
-                              { onClose: (_context = this.props).onClose.bind(_context), className: constainerClass },
-                              _react2.default.createElement(Target, { onClose: (_context = this.props).onClose.bind(_context) })
-                          )
-                      );
-                  }
-              }]);
-              return ComposedComponent;
-          }(_react.Component), _class2.propTypes = {
-              onClose: _react.PropTypes.func
-          }, _temp)) || _class;
-      };
+      //  TODO: store the {userId,token} in redis if we need
+      //  set token in cookies
+      res.cookie('id_token', token, {
+          expires: new Date(Date.now() + 900000),
+          maxAge: 1000 * expiresIn,
+          httpOnly: true
+      });
   };
+
+/***/ },
+/* 117 */
+/***/ function(module, exports) {
+
+  module.exports = require("jsonwebtoken");
 
 /***/ }
 /******/ ]);

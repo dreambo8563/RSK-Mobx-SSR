@@ -12,6 +12,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Detail.css';
 import { userInfo } from './../../models/UserInfo'
 import MyComponent from './../../components/Test/Test'
+import ImageWithStatusText from './../../components/BaseComponent/ImgContainer/ImgContainer'
 
 const title = 'Detail page with params';
 
@@ -44,10 +45,12 @@ class Detail extends Component {
     return (
       <div>
 
-        <MyComponent onClose={::this.postTest} />
 
 
         this is the params got from path {this.props.id}
+        <ImageWithStatusText
+        href="www.baidu.com"
+        imageUrl="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
         <form ref="myForm" action="/signin" method="post">
           <label>name: </label>
           <input name="name" />
