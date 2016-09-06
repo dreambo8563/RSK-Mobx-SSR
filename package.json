@@ -145,7 +145,7 @@
       "react/jsx-equals-spacing": 0,
       "react/jsx-boolean-value": 0,
       "indent": 0,
-      "react/no-multi-comp":0
+      "react/no-multi-comp": 0
     }
   },
   "stylelint": {
