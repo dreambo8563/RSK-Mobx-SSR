@@ -13,6 +13,5 @@
     "files.associations": {
         "*.js": "javascriptreact",
         "*.css": "scss"
-    },
-    "doiuse.enable": true
+    }
 }
