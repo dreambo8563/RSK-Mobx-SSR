@@ -36,8 +36,10 @@ export default {
       //   });
       // console.log('browser', process.env.BROWSER);
       // const data = await resp.json();
+
       const data = await httpGetJSON('http://jsonplaceholder.typicode.com/posts');
-      userInfo.news = data
+
+      userInfo.news = Array.from(data)
       // make it available to client side when state sync
       updateStore({ userInfo })
       if (!data) throw new Error('Failed to load the news feed.');

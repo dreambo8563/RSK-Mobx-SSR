@@ -23,9 +23,9 @@ export function ErrorPage({ error }, context) {
     errorMessage = <pre>{error.stack}</pre>;
   }
 
-  if (context.setTitle) {
-    context.setTitle(title);
-  }
+  // if (context.setTitle) {
+  //   context.setTitle(title);
+  // }
 
   return (
     <div>

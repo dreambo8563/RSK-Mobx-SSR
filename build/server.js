@@ -673,9 +673,9 @@ module.exports =
       );
     }
   
-    if (context.setTitle) {
-      context.setTitle(title);
-    }
+    // if (context.setTitle) {
+    //   context.setTitle(title);
+    // }
   
     return _react2.default.createElement(
       'div',
@@ -2225,6 +2225,10 @@ module.exports =
   
   var _regenerator2 = _interopRequireDefault(_regenerator);
   
+  var _from = __webpack_require__(108);
+  
+  var _from2 = _interopRequireDefault(_from);
+  
   var _promise = __webpack_require__(59);
   
   var _promise2 = _interopRequireDefault(_promise);
@@ -2291,7 +2295,8 @@ module.exports =
               case 7:
                 data = _context.sent;
   
-                _UserInfo.userInfo.news = data;
+  
+                _UserInfo.userInfo.news = (0, _from2.default)(data);
                 // make it available to client side when state sync
                 (0, _syncStore.updateStore)({ userInfo: _UserInfo.userInfo });
   
@@ -5515,6 +5520,12 @@ module.exports =
 /***/ function(module, exports) {
 
   module.exports = require("jsonwebtoken");
+
+/***/ },
+/* 108 */
+/***/ function(module, exports) {
+
+  module.exports = require("babel-runtime/core-js/array/from");
 
 /***/ }
 /******/ ]);
