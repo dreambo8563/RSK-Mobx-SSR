@@ -9,7 +9,7 @@
 
 import React from 'react';
 import ExcelTable from './../../components/ExcelTable/ExcelTable'
-import SimpleChartComponent from './../../components/Chart/Chart'
+// import SimpleChartComponent from './../../components/Chart/Chart'
 
 
 // import Content from './Content';
@@ -35,26 +35,24 @@ export default {
     // const { data } = await resp.json();
     // if (!data || !data.content) return undefined;
     console.log('before require');
-    try {
+
       // var SimpleChartComponent = await new Promise((resolve) => {
       //   require.ensure([], (require) =>
       //     resolve(require('./../../components/Chart/Chart').default));
       // });
 
       // the config structure for the excel
-      var config = {
+      const config = {
         type: 'horizontal', // horizontal
         data: [
           { header: 'aaa', value: [1, 2, 3, 4, 5, 6, 6, 6, 6] },
           { header: 'aaa', value: [1, 2, 3, 4, 5, 6, 6, 6, 6] },
         ],
       }
-    } catch (e) {
-      console.log(context)
-      console.log(e)
-    }
+
+      // <SimpleChartComponent />
     return (<div >
-      <SimpleChartComponent />
+
       <ExcelTable data={config} />
     </div >);
     // const ExcelTable = await new Promise((resolve) => {
