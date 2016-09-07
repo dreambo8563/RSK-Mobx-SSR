@@ -12,13 +12,13 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Content.css';
 
 class Content extends Component {
-  componentWillMount () {
+  componentWillMount() {
     this.context.setTitle(this.props.title);
   }
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.context.setTitle(nextProps.title);
   }
-  render () {
+  render() {
     return (
       <div className={s.root}>
         <div className={s.container}>
