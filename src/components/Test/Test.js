@@ -2,39 +2,28 @@
 import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import s from './Test.css'
+import { httpGetJSON } from './../../core/HTTPUtils';
 import { observer } from 'mobx-react'
+import { observable } from 'mobx';
 
 
 @observer
 class Test extends Component {
-    static propTypes = {
-        children: PropTypes.oneOfType(
-            [
-                PropTypes.element,
-                PropTypes.array,
-            ]).isRequired,
-        className: PropTypes.string,
-        data: PropTypes.array.isRequired,
-    };
-    render() {
-        const { className, children } = this.props
-        return (
-            <table className={className}>
-                <thead>
-                    <tr>
-                        {children}
-                    </tr>
-                </thead>
-                <tbody >
-                    {this.props.data.map((item, index) => (<tr key={index}>
+    async componentDidMount() {
+        const data = await httpGetJSON('http://jsonplaceholder.typicode.com/posts');
+        this.content = Array.from(data)
+    }
+    @observable content = []
+    contentRender() {
+        return this.content.map((item, index) => <div key={index}>{item.title}</div>)
+    }
 
-                        {Object.keys(item).map((itemKey, keyIndex) => (
-                            <td key={keyIndex} >
-                                {item[itemKey]}
-                            </td>)) }
-                    </tr>)) }
-                </tbody>
-            </table>
+    render() {
+        return (
+            <div>
+                { this.contentRender() }
+            </div>
+
         );
     }
 }

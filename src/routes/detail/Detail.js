@@ -60,13 +60,7 @@ class Detail extends Component {
   render() {
     return (
       <div>
-        <MyComponent data={this.bodyinfo} className={s.table}>
-          <th style={{ width: '100px' }}>
-            <a href="">tilte1</a>
-          </th>
-          <th>title2</th>
-          <th>title3</th>
-        </MyComponent>
+        <MyComponent />
 
         this is the params got from path {this.props.id}
         <form ref="myForm" action="/signin" method="post">
