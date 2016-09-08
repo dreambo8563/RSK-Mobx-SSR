@@ -1,3 +1,13 @@
+## 基本需求
+- 一个input 输入搜索关键词
+- 一个button 进入其他搜索结果页面
+- 输入过程显示部分搜索结果
+
+### 利用现有基本组建可以合成
+
+### 实例
+
+```js
 
 import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
@@ -56,3 +66,7 @@ class SearchBox extends Component {
 }
 
 export default withStyles(s)(SearchBox)
+
+```
+
+>注意：这里对e.target做了异步操作，所以必须加persist方法，否则error

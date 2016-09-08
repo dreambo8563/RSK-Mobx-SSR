@@ -95,7 +95,7 @@ app.post('/signin', async (req, res) => {
 })
 
 app.post('/signup', (req, res) => {
-    console.log('signup here')
+    // console.log('signup here')
     // TODO: send the body to server and fetch userInfo
     const userinfo = {
         id: '1111',

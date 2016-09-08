@@ -37,7 +37,7 @@ class Detail extends Component {
     this.context.setTitle(title);
   }
   postTest() {
-    console.log('post test now')
+    // console.log('post test now')
   }
   preventForm() {
     // e.preventDefault();
@@ -60,13 +60,7 @@ class Detail extends Component {
   render() {
     return (
       <div>
-        <Test data={this.bodyinfo} className={s.table}>
-          <th style={{ width: '100px' }}>
-            <a href="">tilte1</a>
-          </th>
-          <th>title2</th>
-          <th>title3</th>
-        </Test>
+        <Test items={this.bodyinfo} />
 
         this is the params got from path {this.props.id}
         <form ref="myForm" action="/signin" method="post">

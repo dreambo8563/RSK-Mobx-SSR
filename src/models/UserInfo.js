@@ -41,10 +41,10 @@ class UserInfo {
                         'Content-Type': 'application/json',
                     },
                 });
-            console.log('browser', process.env.BROWSER);
+            // console.log('browser', process.env.BROWSER);
             const data = await resp.json();
             this.news = data;
-            console.log('get data')
+            // console.log('get data')
             if (!data) throw new Error('Failed to load the news feed.');
         }
     }

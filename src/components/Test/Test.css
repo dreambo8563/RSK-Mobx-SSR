@@ -1,33 +1,16 @@
-.dotSection
-{
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    width: 50px;
-    transform: translate(-50%,-50%);
+.green{
+  background-color: green;
 }
-.dot
-{
-    float: left;
-
-    width: 5px;
-    height: 5px;
-    margin-right: 20px;
-
-    list-style-type: none;
-
+.SearchSection{
+    width:15%;
+    height: 10%;
+}
+.inlineBlock{
+    display: inline-block;
+}
+.red{
     background-color: red;
 }
-.active
-{
-    background-color: black;
-}
-.content{
-    transition: 3s;
-}
-.wrapper
-{
-    position: relative;
-
-    overflow: hidden ;
+.gray{
+    background-color: gray;
 }
