@@ -32,9 +32,9 @@ import { generateCookie } from './core/cookiesManager'
 
 // import { getToken } from './core/token';
 import { userInfo } from './models/UserInfo'
-import { getStore, clearStore } from './models/syncStore'
+import { testInstance } from './models/testModel'
+import { clearStore ,getStore} from './models/syncStore'
 import { httpPostJSON } from './core/HTTPUtils'
-
 
 const app = express();
 
@@ -45,7 +45,14 @@ const app = express();
 // -----------------------------------------------------------------------------
 global.navigator = global.navigator || {};
 global.navigator.userAgent = global.navigator.userAgent || 'all';
-
+if (console && console.error) {
+    const old = console.error;
+    console.error = function (...args) {
+        if (!args[0].startsWith('Warning: forceUpdate(...):')) {
+            old.apply(this, args)
+        }
+    }
+}
 //
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
@@ -168,6 +175,8 @@ app.get('*', async (req, res, next) => {
             },
         });
         // console.log(JSON.stringify(getStore()), 'before embem in html');
+
+
         const html = ReactDOM.renderToStaticMarkup(<Html
             {...data } store={JSON.stringify(getStore()) }
             />);

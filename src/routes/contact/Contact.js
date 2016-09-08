@@ -42,7 +42,7 @@ class Contact extends Component {
   }
 
   componentDidMount() {
-    testInstance.count();
+    // testInstance.count();
     this.unlisten = history.listenBefore((location) => {
       console.log(location)
       if (location.pathname !== '/contact') {

@@ -12,6 +12,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
 import { observer } from 'mobx-react'
 import { userInfo } from './../../models/UserInfo'
+// import { syncStoreStates } from './../../models/syncStore';
 
 const title = 'React Starter Kit';
 
@@ -42,7 +43,12 @@ const title = 'React Starter Kit';
 class Home extends Component {
   componentWillMount() {
     this.context.setTitle(title);
+    console.log(userInfo.news)
   }
+  // componentDidMount() {
+  //   console.log(userInfo.news)
+  // }
+  
   delete(id) {
     console.log('delete', id)
     userInfo.deleteNewsById(id);

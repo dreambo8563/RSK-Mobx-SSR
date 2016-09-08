@@ -6,13 +6,13 @@ import fetch from './../core/fetch'
 
 class UserInfo {
 
-    @observable id;
+    @observable id = undefined;
     @observable name = undefined;
     @observable userPreviligy = undefined;
     @observable authorize = undefined;
-    @observable news = undefined;
+    @observable news = [];
     @observable loginErr = undefined
-    noFetch = undefined
+    synced = undefined
 
     update(user) {
         this.id = user.id
@@ -58,7 +58,18 @@ class UserInfo {
     }
 
     clear() {
-        this.initial({});
+        this.id = undefined;
+        this.name = undefined;
+        this.userPreviligy = undefined;
+        this.authorize = undefined;
+        this.news = [];
+        this.loginErr = undefined
+    }
+    syncNow() {
+        this.synced = true
+    }
+    syncRecover() {
+        this.synced = false
     }
 }
 

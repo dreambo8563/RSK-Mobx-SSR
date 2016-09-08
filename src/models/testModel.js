@@ -5,7 +5,7 @@ class test {
     @observable timerData = {
         secondsPassed: 0,
     }
-    noFetch = false
+    synced = false
 
     count() {
         setInterval(() => {
@@ -17,6 +17,12 @@ class test {
     }
     clear() {
         this.initial({});
+    }
+    syncNow() {
+        this.synced = true
+    }
+    syncRecover() {
+        this.synced = false
     }
 }
 

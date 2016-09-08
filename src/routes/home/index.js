@@ -11,7 +11,7 @@ import React from 'react';
 // import Home from './Home';
 // import fetch from '../../core/fetch';
 import { userInfo } from './../../models/UserInfo'
-import { updateStore } from './../../models/syncStore'
+// import { updateStore } from './../../models/syncStore'
 import { httpGetJSON } from './../../core/HTTPUtils'
 
 
@@ -24,8 +24,8 @@ export default {
       require.ensure([], (require) => resolve(require('./Home').default));
     });
     // avoid the duplicated requrest from client
-    console.log('check the noFetch: ', userInfo.noFetch)
-    if (!userInfo.noFetch) {
+    console.log('synced', !!userInfo.synced)
+    if (!userInfo.synced) {
       // const resp = await fetch('http://jsonplaceholder.typicode.com/posts',
       //   {
       //     method: 'get',
@@ -38,15 +38,16 @@ export default {
       // const data = await resp.json();
 
       const data = await httpGetJSON('http://jsonplaceholder.typicode.com/posts');
-
+      // console.log(data)
       userInfo.news = Array.from(data)
       // make it available to client side when state sync
-      updateStore({ userInfo })
+      // updateStore({ userInfo })
+      // console.log(userInfo.news)
       if (!data) throw new Error('Failed to load the news feed.');
     }
 
     // recover the noFetch status
-    userInfo.noFetch = false;
+    userInfo.syncRecover();
 
     // to reproduce the warning
     // userInfo.fetchNews();

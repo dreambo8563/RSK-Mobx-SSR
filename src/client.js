@@ -21,8 +21,10 @@ import {
   windowScrollY,
 } from './core/DOMUtils';
 
+import { updateHTMLStore, syncStoreStates } from './models/syncStore'
 import { userInfo } from './models/UserInfo'
 import { testInstance } from './models/testModel'
+
 
 const context = {
   insertCss: (...styles) => {
@@ -95,29 +97,17 @@ function run() {
   const storeEl = document.getElementById('store');
   // TODO: the obj which contain all the models
   // TODO: each model should have the initial method
-  const initialStore = {
-    userInfo,
-    testInstance,
-  };
+  // const initialStore = {
+  //   userInfo,
+  //   testInstance,
+  // };
 
   if (!!storeEl.attributes['data-initial-state']) {
     // TODO: loop the store and initial all the models
 
     const htmlStore = JSON.parse(storeEl.attributes['data-initial-state'].value)
-    console.log('before loop', htmlStore)
-    Object.keys(htmlStore).forEach(key => {
-      console.log('checking the key: ', htmlStore[key])
-      if (!!htmlStore[key]) {
-        console.log('client store check, we have ', key)
-        initialStore[key].noFetch = true
-        console.log('client store check, we set noFetch as true ', initialStore[key].noFetch)
-        initialStore[key].initial(htmlStore[key])
-        // console.log(JSON.stringify(userInfo), JSON.stringify(testInstance))
-      } else {
-        // console.log(key)
-        // initialStore[key].noFetch = true
-      }
-    })
+    updateHTMLStore(htmlStore)
+    syncStoreStates()
   }
 
 
@@ -131,7 +121,7 @@ function run() {
   function onLocationChange(location) {
     // Save the page scroll position into the current location's state
     if (currentLocation.key) {
-      console.log('currentLocation.key here: ', currentLocation.key)
+      // console.log('currentLocation.key here: ', currentLocation.key)
       saveState(currentLocation.key, {
         ...readState(currentLocation.key),
         scrollX: windowScrollX(),
@@ -140,7 +130,7 @@ function run() {
   }
   currentLocation = location;
 
-  console.log('start to resolve the router')
+  // console.log('start to resolve the router')
   UniversalRouter.resolve(routes, {
     path: location.pathname,
     query: location.query,

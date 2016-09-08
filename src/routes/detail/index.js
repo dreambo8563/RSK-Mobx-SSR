@@ -20,8 +20,8 @@ export default {
     const Detail = await new Promise((resolve) => {
       require.ensure([], (require) => resolve(require('./Detail').default));
     });
-    updateStore({ userInfo })
-    userInfo.noFetch = false;
+    // updateStore({ userInfo })
+    // userInfo.noFetch = false;
     return (<div>
       <Detail id={context.params.id} />
     </div>);

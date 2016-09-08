@@ -37,14 +37,12 @@ export default {
     {
       path: '/name',
       action: () => {
-        updateStore({ testInstance })
-        testInstance.noFetch = false;
+        // updateStore({ testInstance })
+        // testInstance.syncNow()
         // console.log(context.query.tab, 'in name router')
         return (
           <div>
             <h1>good</h1>
-
-
           </div >
         )
       },
