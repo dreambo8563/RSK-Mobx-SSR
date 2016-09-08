@@ -15,14 +15,15 @@ changelog:
   2. add the module into webpack vendor
 - add child router for contact component
 - state sync strategy
-  1. for each route which depend on the some models, we need to `updateStore(...stores dependency )`
-  2. when we add new models, we need to udpate the `initialStore` to contain it
-  3. for each model, it must have a `initial` method to sync the state
+  1. when we add new models, we need to udpate the `initialStore` to contain it
+  2. for each model, it must have a `initial` method to sync the state
+  3. `clear` method to reinitial the store
+  4. syncNow and syncRecover to avoid the dup request on client
 - dup request avode strategy
   1. after we get state Store from HTML, we will check the which store's state we have (the one we don't need to fetch data again)
-  2. set the specific store.noFetch prop as `true`
-  3. check the noFetch in the router
-  4. recover noFetch as `false` after the request. (to make the request when nav in frontEnd router)
+  2. set the specific store.synced prop as `true` invoke syncNow
+  3. check the synced in the router
+  4. recover synced as `false` after the request. invoke syncRecover (to make the request when nav in frontEnd router)
 - add sample pop alert before leaving specific router on contact component
 - add HTTPUtils.js to provide common json get & post method
 - add sign in validat process on node side
