@@ -52,7 +52,7 @@ export default {
     // to reproduce the warning
     // userInfo.fetchNews();
 
-    return <Home />;
+    return <Home data={userInfo.news} />;
   },
 
 };

@@ -10,7 +10,7 @@
 import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Home.css';
-import { observer } from 'mobx-react'
+import { observer, propTypes } from 'mobx-react'
 import { userInfo } from './../../models/UserInfo'
 // import { syncStoreStates } from './../../models/syncStore';
 
@@ -41,6 +41,9 @@ const title = 'React Starter Kit';
 
 @observer
 class Home extends Component {
+  static propTypes = {
+    data: propTypes.arrayOrObservableArray,
+  }
   componentWillMount() {
     this.context.setTitle(title);
     console.log(userInfo.news)
@@ -48,19 +51,19 @@ class Home extends Component {
   // componentDidMount() {
   //   console.log(userInfo.news)
   // }
-  
+
   delete(id) {
     console.log('delete', id)
     userInfo.deleteNewsById(id);
   }
   render() {
-    const { news } = userInfo
+    const { data } = this.props
     return (
       <div className={s.root}>
         <div className={s.container}>
           <h1 className={s.title}>React.js News</h1>
           <ul className={s.news}>
-            {news.map((item) => (
+            {data.map((item) => (
               <li key={item.id} className={s.newsItem}>
                 <a href={item.link} className={s.newsTitle}>{item.title}</a>
                 <span className={s.newsDesc} >

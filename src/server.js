@@ -45,14 +45,14 @@ const app = express();
 // -----------------------------------------------------------------------------
 global.navigator = global.navigator || {};
 global.navigator.userAgent = global.navigator.userAgent || 'all';
-if (console && console.error) {
-    const old = console.error;
-    console.error = (...args) => {
-        if (!args[0].startsWith('Warning: forceUpdate(...):')) {
-            old.apply(this, args)
-        }
-    }
-}
+// if (console && console.error) {
+//     const old = console.error;
+//     console.error = (...args) => {
+//         if (!args[0].startsWith('Warning: forceUpdate(...):')) {
+//             old.apply(this, args)
+//         }
+//     }
+// }
 //
 // Register Node.js middleware
 // -----------------------------------------------------------------------------
