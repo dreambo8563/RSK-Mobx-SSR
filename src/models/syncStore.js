@@ -49,9 +49,11 @@ export const syncStoreStates = () => {
                 // console.log('client store check, we have ', key)
                 // console.log("initialStore", initialStore)
                 // console.log("HTMLStore", HTMLStore)
-                // console.log('initial key', initialStore[key])
-                initialStore[key].syncNow()
-                initialStore[key].initial(HTMLStore[key])
+
+                if (!isStoreDefault(HTMLStore[key])) {
+                    initialStore[key].syncNow()
+                    initialStore[key].initial(HTMLStore[key])
+                }
             }
         })
         HTMLStore = undefined

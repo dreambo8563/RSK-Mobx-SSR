@@ -24,7 +24,7 @@ export default {
       require.ensure([], (require) => resolve(require('./Home').default));
     });
     // avoid the duplicated requrest from client
-    console.log('synced', !!userInfo.synced)
+    // console.log('synced', !!userInfo.synced)
     if (!userInfo.synced) {
       // const resp = await fetch('http://jsonplaceholder.typicode.com/posts',
       //   {
