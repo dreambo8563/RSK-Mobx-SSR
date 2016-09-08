@@ -11,8 +11,8 @@ import React, { PropTypes, Component } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Detail.css';
 import { userInfo } from './../../models/UserInfo'
-import MyComponent from './../../components/Test/Test'
-import ImageWithStatusText from './../../components/BaseComponent/ImgContainer/ImgContainer'
+import Test from './../../components/Test/Test'
+// import ImageWithStatusText from './../../components/BaseComponent/ImgContainer/ImgContainer'
 
 const title = 'Detail page with params';
 
@@ -60,7 +60,13 @@ class Detail extends Component {
   render() {
     return (
       <div>
-        <MyComponent />
+        <Test data={this.bodyinfo} className={s.table}>
+          <th style={{ width: '100px' }}>
+            <a href="">tilte1</a>
+          </th>
+          <th>title2</th>
+          <th>title3</th>
+        </Test>
 
         this is the params got from path {this.props.id}
         <form ref="myForm" action="/signin" method="post">

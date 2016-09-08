@@ -2,30 +2,23 @@
 import React, { Component, PropTypes } from 'react';
 import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import s from './Test.css'
-import { httpGetJSON } from './../../core/HTTPUtils';
-import { observer } from 'mobx-react'
-import { observable } from 'mobx';
+import { tabelHelper } from './../DecoratorHelper/TableDecorator/TableDecorator'
 
-
-@observer
-class Test extends Component {
-    async componentDidMount() {
-        const data = await httpGetJSON('http://jsonplaceholder.typicode.com/posts');
-        this.content = Array.from(data)
+@tabelHelper
+class TableItem extends Component {
+    static propTypes = {
+        item: PropTypes.object,
     }
-    @observable content = []
-    contentRender() {
-        return this.content.map((item, index) => <div key={index}>{item.title}</div>)
-    }
-
     render() {
+        const { name, age, address } = this.props.item
         return (
-            <div>
-                { this.contentRender() }
-            </div>
-
+            <tr>
+                <td>{name}</td>
+                <td>{age}</td>
+                <td>{address}</td>
+            </tr>
         );
     }
 }
 
-export default withStyles(s)(Test)
+export default withStyles(s)(TableItem)

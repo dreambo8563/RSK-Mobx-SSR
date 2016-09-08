@@ -36,6 +36,7 @@ changelog:
 - add ImageContainer component
 - refactor Carousel component
 - add table component
+- improve table with decorator
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),

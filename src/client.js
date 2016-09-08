@@ -22,8 +22,6 @@ import {
 } from './core/DOMUtils';
 
 import { updateHTMLStore, syncStoreStates } from './models/syncStore'
-import { userInfo } from './models/UserInfo'
-import { testInstance } from './models/testModel'
 
 
 const context = {

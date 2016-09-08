@@ -1,7 +1,7 @@
 
 import React, { Component, PropTypes } from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles'
-import s from './Table.css'
+// import withStyles from 'isomorphic-style-loader/lib/withStyles'
+// import s from './Table.css'
 import { observer } from 'mobx-react'
 
 
@@ -12,7 +12,7 @@ class Table extends Component {
             [
                 PropTypes.element,
                 PropTypes.array,
-            ]).isRequired,
+            ]),
         className: PropTypes.string,
         data: PropTypes.array.isRequired,
     };
@@ -39,4 +39,4 @@ class Table extends Component {
     }
 }
 
-export default withStyles(s)(Table)
+export default Table
