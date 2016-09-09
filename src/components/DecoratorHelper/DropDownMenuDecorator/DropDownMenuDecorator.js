@@ -4,7 +4,7 @@ import { observable, action } from 'mobx'
 
 export const dropDownMenu = PopComponent =>
     Target =>
-    @observer class ComposedComponent extends Component {
+    @observer class DropDownMenuDecorator extends Component {
         @observable show = false;
 
         @action

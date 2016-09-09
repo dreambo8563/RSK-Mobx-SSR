@@ -3,7 +3,7 @@ import React, { Component, PropTypes } from 'react';
 import { observer } from 'mobx-react'
 
 export const tabelHelper = Target =>
-    @observer class ComposedComponent extends Component {
+    @observer class TabDecorator extends Component {
     static propTypes = {
         children: PropTypes.oneOfType(
             [

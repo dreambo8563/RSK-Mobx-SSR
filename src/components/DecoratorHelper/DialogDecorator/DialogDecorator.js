@@ -5,7 +5,7 @@ import { observer } from 'mobx-react'
 
 export const dialog = constainerClass =>
     Target =>
-    @observer class ComposedComponent extends Component {
+    @observer class DialogDecorator extends Component {
         static propTypes = {
             onClose: PropTypes.func,
         }
