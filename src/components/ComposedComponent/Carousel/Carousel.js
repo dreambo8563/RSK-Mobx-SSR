@@ -19,35 +19,8 @@ class Carousel extends Component {
             ]).isRequired,
     };
     componentDidMount() {
-        this.contentDimension.width = parseInt(window.getComputedStyle(this.refs.content0, null)
-            .getPropertyValue('width'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('margin-left'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('margin-right'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('padding-right'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('padding-left'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('border-left-width'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('border-right-width'), 10)
-
-        this.contentDimension.height = parseInt(window.getComputedStyle(this.refs.content0, null)
-            .getPropertyValue('height'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('margin-top'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('margin-bottom'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('padding-top'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('padding-bottom'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('border-top-width'), 10) +
-            parseInt(window.getComputedStyle(this.refs.content0, null)
-                .getPropertyValue('border-bottom-width'), 10)
+        this.contentDimension.width = this.refs.content0.getBoundingClientRect().width
+        this.contentDimension.height = this.refs.content0.getBoundingClientRect().height
         this.startPlay();
     }
 

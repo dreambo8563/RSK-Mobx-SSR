@@ -12,6 +12,8 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import s from './Detail.css';
 import { userInfo } from './../../models/UserInfo'
 import Test from './../../components/Test/Test'
+import Carousel from './../../components/ComposedComponent/Carousel/Carousel'
+import ImageContainer from './../../components/BaseComponent/ImgContainer/ImgContainer'
 // import ImageWithStatusText from './../../components/BaseComponent/ImgContainer/ImgContainer'
 
 const title = 'Detail page with params';
@@ -61,6 +63,27 @@ class Detail extends Component {
     return (
       <div>
         <Test items={this.bodyinfo} />
+        <Carousel className={s.test}>
+          <div style={{ display: 'inline-block' }}>
+            <ImageContainer
+            style={{padding:"10px",margin:"20px","borderWidth":"20px" }}
+              href="www.baidu.com"
+              src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+          </div>
+
+          <ImageContainer
+            href="www.baidu.com"
+            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+          <ImageContainer
+            href="www.baidu.com"
+            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+          <ImageContainer
+            href="www.baidu.com"
+            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+          <ImageContainer
+            href="www.baidu.com"
+            src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
+        </Carousel>
 
         this is the params got from path {this.props.id}
         <form ref="myForm" action="/signin" method="post">
