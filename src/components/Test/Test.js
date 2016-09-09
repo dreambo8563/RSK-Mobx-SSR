@@ -37,7 +37,6 @@ class SearchBox extends Component {
             this.result = Array.from(data).slice(0, parseInt(e.target.value, 10))
         }
     }
-    
 
     @observable result = [];
     render() {

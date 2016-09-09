@@ -66,7 +66,7 @@ class Detail extends Component {
         <Carousel className={s.test}>
           <div style={{ display: 'inline-block' }}>
             <ImageContainer
-            style={{padding:"10px",margin:"20px","borderWidth":"20px" }}
+            style={{ padding: '10px', margin: '20px', borderWidth: '20px' }}
               href="www.baidu.com"
               src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
           </div>
