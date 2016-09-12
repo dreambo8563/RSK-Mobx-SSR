@@ -82,7 +82,6 @@ app.post('/signin', async (req, res) => {
         .then(data => {
             // if the user is valid then generateCookie
             //   generateCookie(userinfo, auth, res);
-            console.log(!data);
             // if invalide then sync error state
             if (!data) {
                 userInfo.loginErr = true

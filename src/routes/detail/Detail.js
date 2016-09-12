@@ -14,6 +14,10 @@ import { userInfo } from './../../models/UserInfo'
 import Test from './../../components/Test/Test'
 import Carousel from './../../components/ComposedComponent/Carousel/Carousel'
 import ImageContainer from './../../components/BaseComponent/ImgContainer/ImgContainer'
+import Button from 'antd/lib/button';
+import DatePicker from 'antd/lib/date-picker';
+
+// import * as ant from 'antd/dist/antd.css'
 // import ImageWithStatusText from './../../components/BaseComponent/ImgContainer/ImgContainer'
 
 const title = 'Detail page with params';
@@ -38,6 +42,8 @@ class Detail extends Component {
   componentWillMount() {
     this.context.setTitle(title);
   }
+
+
   postTest() {
     // console.log('post test now')
   }
@@ -59,15 +65,19 @@ class Detail extends Component {
       address: 'beijing',
     }]
 
-
   render() {
     return (
       <div>
+      <DatePicker />
+        <Button type="primary">Primary</Button>
+        <Button>Default</Button>
+        <Button type="ghost">Ghost</Button>
+        <Button type="dashed">Dashed</Button>
         <Test items={this.bodyinfo} />
         <Carousel className={s.test}>
           <div style={{ display: 'inline-block' }}>
             <ImageContainer
-            style={{ padding: '10px', margin: '20px', borderWidth: '20px' }}
+              style={{ padding: '10px', margin: '20px', borderWidth: '20px' }}
               href="www.baidu.com"
               src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" />
           </div>
