@@ -8,10 +8,10 @@
  */
 
 import React from 'react';
-import Contact from './Contact';
+// import Contact from './Contact';
 
-import { testInstance } from './../../models/testModel'
-import { updateStore } from './../../models/syncStore'
+// import { testInstance } from './../../models/testModel'
+// import { updateStore } from './../../models/syncStore'
 
 export default {
 
@@ -32,7 +32,12 @@ export default {
   children: [
     {
       path: '/', // Same as /parent
-      action: () => <Contact />,
+      async action() {
+        const Contact = await new Promise((resolve) => {
+          require.ensure([], (require) => resolve(require('./Contact').default));
+        });
+        return <Contact />
+      },
     },
     {
       path: '/name',
