@@ -100,6 +100,10 @@ function run() {
   //   testInstance,
   // };
 
+  document.addEventListener('scroll', () => {
+    // we can listen to the scroll event to controll the show/hide of Go to TOP
+    console.log(window.scrollY);
+  })
   if (!!storeEl.attributes['data-initial-state']) {
     // TODO: loop the store and initial all the models
 
