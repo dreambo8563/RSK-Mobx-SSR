@@ -8,18 +8,18 @@
  */
 
 import React from 'react';
-// import Login from './Login';
-import { updateStore } from './../../models/syncStore'
-import { userInfo } from './../../models/UserInfo'
+import Detail from './Detail';
+// import { updateStore } from './../../models/syncStore'
+// import { userInfo } from './../../models/UserInfo'
 
 export default {
 
   path: '/detail/:id',
 
-  async action(context) {
-    const Detail = await new Promise((resolve) => {
-      require.ensure([], (require) => resolve(require('./Detail').default));
-    });
+   action(context) {
+    // const Detail = await new Promise((resolve) => {
+    //   require.ensure([], (require) => resolve(require('./Detail').default));
+    // });
     // updateStore({ userInfo })
     // userInfo.noFetch = false;
     return (<div>
