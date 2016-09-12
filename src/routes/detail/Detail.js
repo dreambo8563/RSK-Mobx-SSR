@@ -43,6 +43,7 @@ class Detail extends Component {
   }
   preventForm() {
     // e.preventDefault();
+    this.refs.myForm.submit()
   }
   bodyinfo = [{
     name: 'zhangsan',
@@ -91,7 +92,7 @@ class Detail extends Component {
           <input name="name" />
           <label>password: </label>
           <input type="password" name="pwd" />
-          <button onClick={:: this.preventForm} type ="submit">submit</button>
+          <button onClick={:: this.preventForm} type ="button">submit</button>
         </form>
       <button onClick={:: this.postTest}>POST test</button >
         { userInfo.loginErr ? 'error here' : 'no error' }
