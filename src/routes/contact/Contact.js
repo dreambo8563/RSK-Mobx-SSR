@@ -12,7 +12,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles'
 import history from './../../core/history'
 import s from './Contact.css'
 import Test from './../../components/Test/Test'
-import Carousel from './../../components/Carousel/Carousel'
+import Carousel from './../../components/ComposedComponent/Carousel/Carousel'
 import { observer } from 'mobx-react'
 import { testInstance } from './../../models/testModel'
 
@@ -59,6 +59,9 @@ class Contact extends Component {
   render() {
     return (
       <Carousel >
+        <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" alt="dd" />
+        <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" alt="dd" />
+        <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" alt="dd" />
         <img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png" alt="dd" />
       </Carousel>
     )

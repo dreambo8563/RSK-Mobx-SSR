@@ -3,7 +3,7 @@
     position: absolute;
     bottom: 10%;
     left: 50%;
-    width: 50px;
+    width: 20%;
     transform: translate(-50%,-50%);
 }
 .dot
