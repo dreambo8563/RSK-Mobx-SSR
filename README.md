@@ -38,6 +38,7 @@ changelog:
 - add table component
 - improve table with decorator
 - add searchBox doc
+- add lazyList component
 
 > [React Starter Kit](https://www.reactstarterkit.com) is an opinionated
 > boilerplate for web development built on top of [Node.js](https://nodejs.org/),
