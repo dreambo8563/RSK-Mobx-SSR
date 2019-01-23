@@ -1,0 +1,16 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "src/components/App/package.json",
+        "src/components/Feedback/package.json",
+        "src/components/Footer/package.json",
+        "src/components/Header/package.json",
+        "src/components/Link/package.json",
+        "src/components/Navigation/package.json",
+        "src/core/fetch/package.json"
+      ]
+    }
+  }
+}
